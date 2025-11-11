@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { registerSchema } from '@/lib/validation/auth';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -14,6 +15,12 @@ export default function RegisterPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setFormError(null);
+    const parsed = registerSchema.safeParse({ email, name: name || undefined, password });
+    if (!parsed.success) {
+      const first = parsed.error.issues[0];
+      setFormError(first?.message || 'Invalid input');
+      return;
+    }
     setLoading(true);
     const res = await fetch('/api/register', {
       method: 'POST',

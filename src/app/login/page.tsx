@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { loginSchema } from '@/lib/validation/auth';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,6 +16,13 @@ export default function LoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setFormError(null);
+    // Client-side validation
+    const parsed = loginSchema.safeParse({ email, password });
+    if (!parsed.success) {
+      const first = parsed.error.issues[0];
+      setFormError(first?.message || 'Invalid input');
+      return;
+    }
     setLoading(true);
     const res = await signIn('credentials', { email, password, redirect: false, callbackUrl: '/dashboard' });
     setLoading(false);
