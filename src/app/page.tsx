@@ -15,11 +15,6 @@ function App() {
           LOGIN
         </Link>
       </div>
-
-      <HStack>
-        <Button>Click me</Button>
-        <Button>Click me</Button>
-      </HStack>
     </div>
   );
 }
