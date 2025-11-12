@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
+  images: {
+    remotePatterns: [new URL('https://nutrisys.s3.ap-southeast-2.amazonaws.com/images/**')],
+  },
 };
 
 export default nextConfig;
