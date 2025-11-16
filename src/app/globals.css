@@ -58,7 +58,7 @@
   --popover-foreground: oklch(0.147 0.004 49.25);
 
   /* HIJAU UTAMA (Primary Green - Gelap) */
-  --primary: oklch(0.35 0.1 150);
+  --primary: oklch(0.50 0.12 150);
   --primary-foreground: oklch(0.985 0.001 106.423); /* Putih */
   
   /* Warna Sekunder */
