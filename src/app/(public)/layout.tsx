@@ -1,13 +1,15 @@
-import PublicNavbar from "@/components/ui/navbar/PublicNavbar"
+import PublicNavbar from '@/components/ui/navbar/PublicNavbar';
+import { ThemeProvider } from 'next-themes';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <PublicNavbar />
-      <main>{children}</main>
-    </div>
+    <>
+      <ThemeProvider defaultTheme="light">
+        <PublicNavbar />
+        {children}
+      </ThemeProvider>
+    </>
   );
 };
 
 export default Layout;
-

@@ -1,13 +1,7 @@
-"use client";
-import { useState } from "react";
-import {
-  PaperAirplaneIcon,
-  MoonIcon,
-  SunIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import Link from "next/link";
+'use client';
+import { useState } from 'react';
+import { PaperAirplaneIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 function ProtectedNavbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -21,13 +15,10 @@ function ProtectedNavbar() {
             <div className="flex items-center gap-16 my-12">
               {/* logo */}
               <div>
-                <a
-                  href="/"
-                  className="flex gap-1 font-bold text-gray-700 items-center "
-                >
+                <Link href="/" className="flex gap-1 font-bold text-gray-700 items-center ">
                   <PaperAirplaneIcon className="h-6 w-6 text-primary" />
                   <span>NutriSys</span>
-                </a>
+                </Link>
               </div>
               {/* primary */}
               <div className="hidden lg:flex gap-8 ">
@@ -72,7 +63,7 @@ function ProtectedNavbar() {
         {/* mobile navigation */}
         <div
           className={`fixed z-40 w-full  bg-gray-100 overflow-hidden flex flex-col lg:hidden gap-12  origin-top duration-700 ${
-            !toggleMenu ? "h-0" : "h-full"
+            !toggleMenu ? 'h-0' : 'h-full'
           }`}
         >
           <div className="px-8">
