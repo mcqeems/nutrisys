@@ -1,14 +1,10 @@
-import Link from 'next/link';
+import HeroSection from "./(component)/hero-section";
 
-function App() {
+function home() {
   return (
     <div>
-      <h1>NutrySys Homepage</h1>
-      <Link href="/login" className="text-blue-400 underline">
-        LOGIN
-      </Link>
+      <HeroSection />
     </div>
   );
 }
-
-export default App;
+export default home;
