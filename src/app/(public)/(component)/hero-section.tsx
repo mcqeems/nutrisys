@@ -2,7 +2,6 @@
 import {
   Leaf,
   Apple,
-  Heart,
   CheckCircle,
   ChevronRight,
   Scale,
@@ -11,6 +10,7 @@ import {
 import { FloatingText } from "@/components/ui/floating-text";
 
 const HEALTH_MODEL_URL = "/dokter.png";
+
 const HeroSection = () => {
   const categories = [
     "Diet Plans",
@@ -23,14 +23,14 @@ const HeroSection = () => {
   ];
 
   return (
-    // Wrapper utama: menggunakan background tema
-    <div className="min-h-[90vh] bg-background text-foreground">
+    // Mengganti min-h-[100vh] menjadi min-h-screen (Saran Intellisense)
+    <div className="min-h-screen bg-background text-foreground relative">
       {/* Container Utama Konten */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 relative overflow-hidden">
         <div className="flex flex-col lg:flex-row items-center lg:pt-16">
-          {/* Sisi Kiri: Teks dan CTA */}
-          <div className="lg:w-1/2 z-10 space-y-6 md:space-y-8 pb-12 lg:pb-0">
-            {/* Tagline di Kotak (Menggunakan warna Hijau Primary) */}
+          {/* Sisi Kiri: Teks dan CTA (w-full agar mengambil lebar penuh di mobile) */}
+          <div className="w-full lg:w-1/2 z-10 space-y-4 md:space-y-6 lg:space-y-8 pb-8 lg:pb-0 text-center lg:text-left">
+            {/* Tagline */}
             <div className="inline-flex items-center space-x-2 p-2 pr-4 rounded-full bg-secondary/50 border border-border text-sm font-medium shadow-sm">
               <Leaf className="h-5 w-5 text-primary" />
               <span>Optimal Nutrition, Optimal Life</span>
@@ -40,9 +40,9 @@ const HeroSection = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
               Your Daily
               <span
-                className="block title-accent-span" 
+                className="block title-accent-span"
                 style={{
-                  color: "var(--color-primary)", 
+                  color: "var(--color-primary)",
                 }}
               >
                 Nutritional Health Partner
@@ -50,16 +50,16 @@ const HeroSection = () => {
             </h1>
 
             {/* Deskripsi */}
-            <p className="text-muted-foreground max-w-lg text-lg">
+            <p className="text-muted-foreground max-w-lg text-lg mx-auto lg:mx-0">
               Hitung kalori, lacak makro, dan temukan rencana makan yang
               dipersonalisasi. Mulai perjalanan kesehatan Anda hari ini.
             </p>
 
             {/* Buttons */}
-            <div className="flex space-x-4 pt-4">
+            <div className="flex space-x-4 pt-4 justify-center lg:justify-start">
               {/* Button Primary  */}
               <button
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-lg font-semibold
+                className="inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold
                            bg-primary text-primary-foreground shadow-lg shadow-primary/30 
                            hover:opacity-90 transition-opacity duration-200"
               >
@@ -69,7 +69,7 @@ const HeroSection = () => {
 
               {/* Button Outline */}
               <button
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-lg font-semibold
+                className="inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold
                            border border-border text-foreground hover:bg-accent/50 transition-colors duration-200"
               >
                 Explore Features
@@ -77,45 +77,46 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Sisi Kanan: Visual dan Badges */}
-          <div className="lg:w-1/2 relative h-[500px] lg:h-[600px] flex justify-center items-center">
+          {/* 🍎 Sisi Kanan: Visual dan Badges (hidden md:block untuk menyembunyikan di mobile & menampilkan di tablet+) */}
+          <div className="lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden md:flex">
+            
             {/* Gambar Dokter */}
             <img
               src={HEALTH_MODEL_URL}
               alt="Healthy food bowl with fresh ingredients"
-              className="relative z-10 w-full max-w-md h-auto object-cover rounded-full shadow-2xl" // Ubah rounded-lg menjadi rounded-full
+              className="relative z-10 w-11/12 max-w-sm sm:max-w-md h-auto object-cover rounded-full shadow-2xl"
             />
             {/* Badge 1 */}
-            <div className="absolute top-1/4 left-0 ">
+            <div className="absolute top-1/4 left-4 sm:left-0">
               <FloatingText
                 icon={<Scale className="h-5 w-5 text-primary" />}
                 title="Track Calories"
               />
             </div>
-
             {/* Badge 2 */}
-            <div className="absolute bottom-1/4 right-0 px-30">
+            <div className="absolute bottom-1/4 right-4 sm:right-0 px-30">
               <FloatingText
                 icon={<Clock className="h-5 w-5 text-primary" />}
                 title="Quick Meals"
               />
             </div>
-            {/* Logo Lingkaran di Atas Kanan (Simulasi Logo Brand - Apple/Nutrisi) */}
-            <div className="absolute top-0 right-0 p-3 rounded-full bg-primary/10 border border-border shadow-lg">
+            {/* Logo Lingkaran */}
+            <div className="absolute top-0 right-4 sm:right-0 p-3 rounded-full bg-primary/10 border border-border shadow-lg">
               <Apple className="h-8 w-8 text-primary" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Kategori Bar di Bawah (Sementara) */}
+      {/* Kategori Bar di Bawah */}
       <div className="absolute bottom-0 left-0 w-full bg-primary py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between overflow-x-auto whitespace-nowrap space-x-6 md:space-x-10 text-primary-foreground font-semibold">
+          <div className="flex space-x-6 md:space-x-10 overflow-x-auto whitespace-nowrap text-primary-foreground font-semibold">
             {categories.map((category, index) => (
               <span
                 key={index}
-                className="hover:text-yellow-300 transition-colors cursor-pointer text-sm md:text-base"
+                // Mengganti flex-shrink-0 menjadi shrink-0 (Saran Intellisense)
+                className="hover:text-yellow-300 transition-colors cursor-pointer text-sm md:text-base shrink-0"
               >
                 {category}
               </span>
