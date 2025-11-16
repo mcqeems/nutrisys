@@ -21,7 +21,7 @@ function PublicNavbar() {
       <nav className="bg-background text-foreground border-border">
         <div className="max-w-7xl mx-auto">
           <div className="flex mx-auto justify-between w-5/6 ">
-            <div className="flex items-center gap-16 my-6 lg:my-12">
+            <div className="flex items-center gap-16 my-6 lg:my-8">
               <div>
                 <Link
                   href="/"
@@ -40,8 +40,8 @@ function PublicNavbar() {
                     </span>
 
                     <span className="text-primary dark:text-primary">
-                      <span className="hoverText text-hover-primary">S</span>
-                      <span className="hovqerText text-hover-light">y</span>
+                      <span className="hoverText text-hover-light">S</span>
+                      <span className="hoverText text-hover-light">y</span>
                       <span className="hoverText text-hover-light">s</span>
                     </span>
                   </div>
