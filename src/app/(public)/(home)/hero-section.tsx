@@ -8,6 +8,7 @@ import {
   Clock,
 } from "lucide-react";
 import { FloatingText } from "@/components/ui/floating-text";
+import TextType from "@/components/TextType";
 
 const HEALTH_MODEL_URL = "/dokter.png";
 
@@ -23,7 +24,6 @@ const HeroSection = () => {
   ];
 
   return (
-    // Mengganti min-h-[100vh] menjadi min-h-screen (Saran Intellisense)
     <div className="min-h-screen bg-background text-foreground relative">
       {/* Container Utama Konten */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 relative overflow-hidden">
@@ -38,14 +38,20 @@ const HeroSection = () => {
 
             {/* Judul Utama */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
-              Your Daily
+              <TextType
+                text={["Rencana Nutrisi", "Khusus Untukmu"]}
+                typingSpeed={40}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
               <span
                 className="block title-accent-span"
                 style={{
                   color: "var(--color-primary)",
                 }}
               >
-                Nutritional Health Partner
+                Partner Kesehatan Nutrisi Harian Anda
               </span>
             </h1>
 
@@ -58,14 +64,15 @@ const HeroSection = () => {
             {/* Buttons */}
             <div className="flex space-x-4 pt-4 justify-center lg:justify-start">
               {/* Button Primary  */}
-              <button
+              <a
+                href="/login"
                 className="inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold
                            bg-primary text-primary-foreground shadow-lg shadow-primary/30 
                            hover:opacity-90 transition-opacity duration-200"
               >
                 Get Started
                 <ChevronRight className="ml-2 h-5 w-5" />
-              </button>
+              </a>
 
               {/* Button Outline */}
               <button
@@ -77,9 +84,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* 🍎 Sisi Kanan: Visual dan Badges (hidden md:block untuk menyembunyikan di mobile & menampilkan di tablet+) */}
+          {/*  Sisi Kanan: Visual dan Badges (hidden md:block untuk menyembunyikan di mobile & menampilkan di tablet+) */}
           <div className="lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden md:flex">
-            
             {/* Gambar Dokter */}
             <img
               src={HEALTH_MODEL_URL}
