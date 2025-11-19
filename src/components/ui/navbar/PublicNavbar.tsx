@@ -1,19 +1,14 @@
-"use client";
-import { useState } from "react";
-import {
-  PaperAirplaneIcon,
-  MoonIcon,
-  SunIcon,
-  Bars3Icon,
-} from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { useTheme } from "next-themes";
+'use client';
+import { useState } from 'react';
+import { PaperAirplaneIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 function PublicNavbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -23,10 +18,7 @@ function PublicNavbar() {
           <div className="flex mx-auto justify-between w-5/6 ">
             <div className="flex items-center gap-16 my-6 lg:my-8">
               <div>
-                <Link
-                  href="/"
-                  className="flex gap-1 font-bold items-center text-foreground"
-                >
+                <Link href="/" className="flex gap-1 font-bold items-center text-foreground">
                   <PaperAirplaneIcon className="h-6 w-6 text-primary" />
 
                   <div className="flex items-center gap-1.5 font-[1000] leading-none"></div>
@@ -50,29 +42,28 @@ function PublicNavbar() {
               {/* primary */}
               <div className="hidden lg:flex gap-8">
                 <a
-                  href="/fitur"
+                  href="/feature"
                   className="hover:text-primary transition-colors"
                 >
-                  Fitur
+                  Feature
                 </a>
                 <a
-                  href="/chatbot"
+                  href="/about"
                   className="hover:text-primary transition-colors"
                 >
-                  Chatbot
+                  About
                 </a>
                 <a
-                  href="/tentang"
+                  href="/pricing"
                   className="hover:text-primary transition-colors"
                 >
-                  Tentang
+                  Pricing
                 </a>
-
                 <a
-                  href="/hubungikami"
+                  href="/contact"
                   className="hover:text-primary transition-colors"
                 >
-                  Kontak
+                  Contact Us
                 </a>
               </div>
             </div>
@@ -85,7 +76,7 @@ function PublicNavbar() {
                   className="p-2 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors focus:ring-2 focus:ring-ring"
                   aria-label="Toggle Theme"
                 >
-                  {theme === "dark" ? (
+                  {theme === 'dark' ? (
                     <SunIcon className="h-6 w-6 text-yellow-400" />
                   ) : (
                     // Di Light Mode, ikon Moon harus terlihat seperti foreground
@@ -128,7 +119,7 @@ function PublicNavbar() {
         <div
           className={`fixed z-40 w-full bg-background overflow-hidden flex flex-col lg:hidden gap-12 
             origin-top duration-700 shadow-xl ${
-              !toggleMenu ? "h-0" : "h-full p-6" // Tambahkan padding saat terbuka
+              !toggleMenu ? 'h-0' : 'h-full p-6' // Tambahkan padding saat terbuka
             }`}
         >
           <div className="px-8">
@@ -136,22 +127,13 @@ function PublicNavbar() {
               <a href="/feature" className="border-l-4 border-primary pl-2">
                 Features
               </a>
-              <a
-                href="/pricing"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/pricing" className="border-l-4 border-transparent hover:border-border pl-2">
                 Pricing
               </a>
-              <a
-                href="/about"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/about" className="border-l-4 border-transparent hover:border-border pl-2">
                 About
               </a>
-              <a
-                href="/contact"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/contact" className="border-l-4 border-transparent hover:border-border pl-2">
                 Contact Us
               </a>
 
