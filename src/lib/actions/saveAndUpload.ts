@@ -4,7 +4,6 @@ import { auth } from '@/auth';
 
 export type UploadState = { url: string | null; error: string | null };
 
-// Validate required environment variables early for clearer errors
 const REGION = process.env.AWS_REGION;
 const ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 const SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
@@ -23,6 +22,7 @@ const s3Client = new S3Client({
   },
 });
 
+// Handler Function Upload to S3
 export async function uploadImageToS3(file: File): Promise<string> {
   if (!BUCKET) {
     throw new Error('S3 bucket name is not configured.');
@@ -36,14 +36,10 @@ export async function uploadImageToS3(file: File): Promise<string> {
     Key: fileName,
     Body: buffer,
     ContentType: file.type,
-    // Removed ACL as it's often restricted by default
   });
 
   try {
     await s3Client.send(command);
-
-    // For now, we'll construct a public URL
-    // Note: This will only work if your bucket allows public access to objects
     const url = `https://${BUCKET}.s3.${REGION}.amazonaws.com/${fileName}`;
     return url;
   } catch (error) {
@@ -58,6 +54,7 @@ export async function uploadImageToS3(file: File): Promise<string> {
   }
 }
 
+//Handler for Processing image to upload it into S3
 export async function processImageFile(imageFile: File | null): Promise<string | undefined> {
   const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -77,7 +74,8 @@ export async function processImageFile(imageFile: File | null): Promise<string |
   return await uploadImageToS3(imageFile);
 }
 
-export async function saveUploadedS3ImageToDb(imageFile: File) {
+// Save the uploaded image to DB by the url. ( but it still in user profile later you need to change this. )
+export async function saveUploadedS3ImageToUser(imageFile: File) {
   try {
     // Validate auth session
     const session = await auth();
@@ -103,19 +101,5 @@ export async function saveUploadedS3ImageToDb(imageFile: File) {
     const message = error instanceof Error ? error.message : 'Gagal mengupload dan menyimpan foto.';
     console.error('saveUploadedS3ImageToDb error:', message);
     throw new Error(message);
-  }
-}
-
-export async function uploadWithOriginalAction(_prev: UploadState, formData: FormData): Promise<UploadState> {
-  try {
-    const file = formData.get('file');
-    if (!(file instanceof File)) {
-      return { url: null, error: 'File is required' };
-    }
-    const url = await saveUploadedS3ImageToDb(file);
-    return { url, error: null };
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : 'Upload failed';
-    return { url: null, error: msg };
   }
 }
