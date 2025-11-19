@@ -120,7 +120,7 @@ const HeroSection = () => {
         </div>
 
         {/* Kategori Bar di Bawah */}
-        <div className="absolute bottom-0 left-0 w-full bg-primary py-3">
+        {/* <div className="absolute bottom-0 left-0 w-full bg-primary py-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex space-x-6 md:space-x-10 overflow-x-auto whitespace-nowrap text-primary-foreground font-semibold">
               {categories.map((category, index) => (
@@ -134,7 +134,7 @@ const HeroSection = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </AnimatedBackground>
   );

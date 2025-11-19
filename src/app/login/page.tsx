@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loginSchema } from "@/lib/validation/auth";
 import { FloatingText } from "@/components/ui/floating-text";
+import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,48 +41,50 @@ export default function LoginPage() {
   }
 
   return (
-    <div
-      style={{ maxWidth: 360, margin: "40px auto", fontFamily: "system-ui" }}
-    >
-      <h1>Login</h1>
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
-      {formError && <p style={{ color: "crimson" }}>{formError}</p>}
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: 12 }}
+    <AnimatedBackground>
+      <div
+        style={{ maxWidth: 360, margin: "40px auto", fontFamily: "system-ui" }}
       >
-        <label>
-          Email
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            required
-            style={{ width: "100%" }}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            required
-            style={{ width: "100%" }}
-          />
-        </label>
-
-        <button
-          disabled={loading}
-          type="submit"
-          style={{ padding: "8px 12px" }}
+        <h1>Login</h1>
+        {error && <p style={{ color: "crimson" }}>{error}</p>}
+        {formError && <p style={{ color: "crimson" }}>{formError}</p>}
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", gap: 12 }}
         >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-      <p style={{ marginTop: 12 }}>
-        No account? <a href="/register">Register</a>
-      </p>
-    </div>
+          <label>
+            Email
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              required
+              style={{ width: "100%" }}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              required
+              style={{ width: "100%" }}
+            />
+          </label>
+
+          <button
+            disabled={loading}
+            type="submit"
+            style={{ padding: "8px 12px" }}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+        <p style={{ marginTop: 12 }}>
+          No account? <a href="/register">Register</a>
+        </p>
+      </div>
+    </AnimatedBackground>
   );
 }
