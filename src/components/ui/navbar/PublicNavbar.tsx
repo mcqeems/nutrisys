@@ -17,8 +17,8 @@ function PublicNavbar() {
   };
 
   return (
-    <div className="app">
-      <nav className="bg-background text-foreground border-border">
+    <div className="fixed top-0 inset-x-0 z-50 bg-transparent ">
+      <nav className="bg-transparent text-foreground border-border">
         <div className="max-w-7xl mx-auto">
           <div className="flex mx-auto justify-between w-5/6 ">
             <div className="flex items-center gap-16 my-6 lg:my-8">
@@ -50,28 +50,29 @@ function PublicNavbar() {
               {/* primary */}
               <div className="hidden lg:flex gap-8">
                 <a
-                  href="/feature"
+                  href="/fitur"
                   className="hover:text-primary transition-colors"
                 >
-                  Feature
+                  Fitur
                 </a>
                 <a
-                  href="/about"
+                  href="/chatbot"
                   className="hover:text-primary transition-colors"
                 >
-                  About
+                  Chatbot
                 </a>
                 <a
-                  href="/pricing"
+                  href="/tentang"
                   className="hover:text-primary transition-colors"
                 >
-                  Pricing
+                  Tentang
                 </a>
+
                 <a
-                  href="/contact"
+                  href="/hubungikami"
                   className="hover:text-primary transition-colors"
                 >
-                  Contact Us
+                  Kontak
                 </a>
               </div>
             </div>
