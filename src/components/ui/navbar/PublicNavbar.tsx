@@ -42,28 +42,28 @@ function PublicNavbar() {
               {/* primary */}
               <div className="hidden lg:flex gap-8">
                 <a
-                  href="/feature"
+                  href="/fitur"
                   className="hover:text-primary transition-colors"
                 >
-                  Feature
+                  Fitur
                 </a>
                 <a
-                  href="/about"
+                  href="/chatbot"
                   className="hover:text-primary transition-colors"
                 >
-                  About
+                  Chatbot
                 </a>
                 <a
-                  href="/pricing"
+                  href="/tentang"
                   className="hover:text-primary transition-colors"
                 >
-                  Pricing
+                Tentang
                 </a>
                 <a
-                  href="/contact"
+                  href="/hubungikami"
                   className="hover:text-primary transition-colors"
                 >
-                  Contact Us
+                  Hubungki Kami
                 </a>
               </div>
             </div>
@@ -124,17 +124,17 @@ function PublicNavbar() {
         >
           <div className="px-8">
             <div className="flex flex-col gap-8 font-bold tracking-wider">
-              <a href="/feature" className="border-l-4 border-primary pl-2">
-                Features
+              <a href="/fitur" className="border-l-4 border-primary pl-2">
+                Fitur
               </a>
-              <a href="/pricing" className="border-l-4 border-transparent hover:border-border pl-2">
-                Pricing
+              <a href="/chatbot" className="border-l-4 border-transparent hover:border-border pl-2">
+                Chatbot
               </a>
-              <a href="/about" className="border-l-4 border-transparent hover:border-border pl-2">
-                About
+              <a href="/tentang" className="border-l-4 border-transparent hover:border-border pl-2">
+                Tentang
               </a>
-              <a href="/contact" className="border-l-4 border-transparent hover:border-border pl-2">
-                Contact Us
+              <a href="/hubungikami" className="border-l-4 border-transparent hover:border-border pl-2">
+                Hubungi Kami
               </a>
 
               {/* Mobile Auth Links */}
