@@ -1,28 +1,22 @@
-"use client";
-import {
-  Leaf,
-  Apple,
-  CheckCircle,
-  ChevronRight,
-  Scale,
-  Clock,
-} from "lucide-react";
-import { FloatingText } from "@/components/ui/floating-text";
-import { AnimatedBackground } from "@/components/ui/animated-background";
-import TextType from "@/components/TextType";
-import { SmoothButton } from "@/components/ui/button";
+'use client';
+import { Leaf, Apple, ChevronRight, Scale, Clock } from 'lucide-react';
+import { FloatingText } from '@/components/ui/floating-text';
+import { AnimatedBackground } from '@/components/ui/animated-background';
+import TextType from '@/components/TextType';
+import { SmoothButton } from '@/components/ui/button';
+import Image from 'next/image';
 
-const HEALTH_MODEL_URL = "/dokter.png";
+const HEALTH_MODEL_URL = '/dokter.png';
 
 const HeroSection = () => {
   const categories = [
-    "Diet Plans",
-    "Supplements",
-    "Recipe Ideas",
-    "Meal Prep",
-    "Hydration",
-    "Weight Management",
-    "Fitness Tips",
+    'Diet Plans',
+    'Supplements',
+    'Recipe Ideas',
+    'Meal Prep',
+    'Hydration',
+    'Weight Management',
+    'Fitness Tips',
   ];
 
   return (
@@ -42,7 +36,7 @@ const HeroSection = () => {
               {/* Judul Utama */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
                 <TextType
-                  text={["Rencana Nutrisi", "Khusus Untukmu"]}
+                  text={['Rencana Nutrisi', 'Khusus Untukmu']}
                   typingSpeed={40}
                   pauseDuration={1500}
                   showCursor={true}
@@ -51,7 +45,7 @@ const HeroSection = () => {
                 <span
                   className="block title-accent-span"
                   style={{
-                    color: "var(--color-primary)",
+                    color: 'var(--color-primary)',
                   }}
                 >
                   Partner Kesehatan Nutrisi Harian Anda
@@ -60,8 +54,8 @@ const HeroSection = () => {
 
               {/* Deskripsi */}
               <p className="text-muted-foreground max-w-lg text-lg mx-auto lg:mx-0">
-                Hitung kalori, lacak makro, dan temukan rencana makan yang
-                dipersonalisasi. Mulai perjalanan kesehatan Anda hari ini.
+                Hitung kalori, lacak makro, dan temukan rencana makan yang dipersonalisasi. Mulai perjalanan kesehatan
+                Anda hari ini.
               </p>
 
               {/* Buttons */}
@@ -92,24 +86,20 @@ const HeroSection = () => {
             {/*  Sisi Kanan: Visual dan Badges (hidden md:block untuk menyembunyikan di mobile & menampilkan di tablet+) */}
             <div className="lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden md:flex">
               {/* Gambar Dokter */}
-              <img
+              <Image
                 src={HEALTH_MODEL_URL}
                 alt="Healthy food bowl with fresh ingredients"
-                className="relative z-10 w-11/12 max-w-sm sm:max-w-md h-auto object-cover rounded-full shadow-2xl"
+                className="relative z-10 w-11/12 object-cover rounded-full shadow-2xl"
+                width={500}
+                height={500}
               />
               {/* Badge 1 */}
               <div className="absolute top-1/4 left-4 sm:left-0">
-                <FloatingText
-                  icon={<Scale className="h-5 w-5 text-primary" />}
-                  title="Track Calories"
-                />
+                <FloatingText icon={<Scale className="h-5 w-5 text-primary" />} title="Track Calories" />
               </div>
               {/* Badge 2 */}
               <div className="absolute bottom-1/4 right-4 sm:right-0 px-30">
-                <FloatingText
-                  icon={<Clock className="h-5 w-5 text-primary" />}
-                  title="Quick Meals"
-                />
+                <FloatingText icon={<Clock className="h-5 w-5 text-primary" />} title="Quick Meals" />
               </div>
               {/* Logo Lingkaran */}
               <div className="absolute top-0 right-4 sm:right-0 p-3 rounded-full bg-primary/10 border border-border shadow-lg">
