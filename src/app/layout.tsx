@@ -1,16 +1,13 @@
 import type { Metadata } from 'next';
-// import { Geist, Geist_Mono } from "next/font/google";
+import { Source_Sans_3 } from 'next/font/google';
 import './globals.css';
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const sourceSans3 = Source_Sans_3({
+  variable: '--font-source-sans-3',
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Nutrisys',
@@ -24,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      > */}
-      <body>{children}</body>
+      <body className={sourceSans3.className}>{children}</body>
     </html>
   );
 }
