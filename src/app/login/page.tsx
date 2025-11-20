@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { loginSchema } from '@/lib/validation/auth';
 import Image from 'next/image';
 import { LoaderCircle } from 'lucide-react';
-import { AnimatedBackground } from '@/components/ui/animated-background';
 
 export default function LoginPage() {
   const router = useRouter();
