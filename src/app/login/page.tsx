@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { loginSchema } from '@/lib/validation/auth';
 import Image from 'next/image';
 import { LoaderCircle } from 'lucide-react';
+import { AnimatedBackground } from '@/components/ui/animated-background';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-background">
+    <div className="flex justify-center items-center h-screen">
       <div className="w-full md:max-w-[500px] max-w-full md:mx-auto mx-4 p-8 rounded-xl bg-card shadow-lg border border-border">
         {/* Logo and Brand */}
         <div className="flex flex-col items-center mb-8">

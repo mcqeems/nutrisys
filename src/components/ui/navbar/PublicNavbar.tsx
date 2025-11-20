@@ -41,28 +41,16 @@ function PublicNavbar() {
               </div>
               {/* primary */}
               <div className="hidden lg:flex gap-8">
-                <a
-                  href="/fitur"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/fitur" className="hover:text-primary transition-colors">
                   Fitur
                 </a>
-                <a
-                  href="/chatbot"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/chatbot" className="hover:text-primary transition-colors">
                   Chatbot
                 </a>
-                <a
-                  href="/tentang"
-                  className="hover:text-primary transition-colors"
-                >
-                Tentang
+                <a href="/tentang" className="hover:text-primary transition-colors">
+                  Tentang
                 </a>
-                <a
-                  href="/hubungikami"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/hubungikami" className="hover:text-primary transition-colors">
                   Hubungki Kami
                 </a>
               </div>
@@ -77,10 +65,10 @@ function PublicNavbar() {
                   aria-label="Toggle Theme"
                 >
                   {theme === 'dark' ? (
-                    <SunIcon className="h-6 w-6 text-yellow-400" />
+                    <SunIcon suppressHydrationWarning className="h-6 w-6 text-yellow-400" />
                   ) : (
                     // Di Light Mode, ikon Moon harus terlihat seperti foreground
-                    <MoonIcon className="h-6 w-6 text-foreground" />
+                    <MoonIcon suppressHydrationWarning className="h-6 w-6 text-foreground" />
                   )}
                 </button>
 
