@@ -1,5 +1,5 @@
 'use server';
-import { saveUploadedS3ImageToUser } from '@/lib/actions/saveAndUpload';
+import { saveUploadedS3ImageToUser } from '@/lib/actions/postUserImage';
 
 export type UploadState = { url: string | null; error: string | null };
 

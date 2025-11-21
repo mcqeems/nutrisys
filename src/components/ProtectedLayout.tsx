@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Flex, Box, IconButton, Text, Popover, Portal, Button, Separator } from '@chakra-ui/react';
+import { Container, Flex, Box, IconButton, Text, Popover, Portal, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState } from 'react';
@@ -142,6 +142,15 @@ export default function ProtectedLayout({
                         </Box>
                         <Flex direction="column" gap="2">
                           <Button
+                            colorPalette="blue"
+                            onClick={() => {
+                              router.push('/user');
+                            }}
+                          >
+                            <PencilIcon />
+                            Personalisasi
+                          </Button>
+                          <Button
                             loading={logoutLoading}
                             loadingText="Logout"
                             spinnerPlacement="start"
@@ -153,15 +162,6 @@ export default function ProtectedLayout({
                           >
                             <DoorOpenIcon />
                             Logout
-                          </Button>
-                          <Button
-                            colorPalette="blue"
-                            onClick={() => {
-                              router.push('/user');
-                            }}
-                          >
-                            <PencilIcon />
-                            Personalisasi
                           </Button>
                         </Flex>
                       </Popover.Body>
