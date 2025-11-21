@@ -1,13 +1,11 @@
-// types/feature.ts
 
 import { LucideIcon } from "lucide-react";
 
-// Tipe data dasar untuk satu fitur
 export interface Feature {
   id: number;
   title: string;
   description: string;
-  icon: LucideIcon; // Menggunakan LucideIcon untuk tipe data icon
+  icon: LucideIcon; 
   color: string;
   details: string[];
 }
@@ -21,7 +19,6 @@ export interface FeatureCardProps {
   style: React.CSSProperties;
 }
 
-// Tipe data untuk langkah-langkah penggunaan
 export interface Step {
   step: string;
   title: string;
