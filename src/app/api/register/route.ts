@@ -25,6 +25,12 @@ export async function POST(req: Request) {
       select: { id: true, email: true, name: true },
     });
 
+    await prisma.user_info.create({
+      data: {
+        user_id: user.id,
+      },
+    });
+
     return NextResponse.json({ user }, { status: 201 });
   } catch (err) {
     console.error('Register error', err);
