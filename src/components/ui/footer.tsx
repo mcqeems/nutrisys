@@ -27,11 +27,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border mt-16">
+    <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        {/* === Grid Utama Footer === */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          {/* 1. Logo & Deskripsi Singkat */}
+          {/* logo & deskripsi */}
           <div className="col-span-2 lg:col-span-2 space-y-4">
             <Link
               href="/"
@@ -65,7 +64,7 @@ export function Footer() {
             </p>
           </div>
 
-          {/* 2. Navigasi Cepat */}
+          {/* Navigasi Cepat */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 border-b border-primary/20 pb-1">
               Navigasi
@@ -84,7 +83,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 3. Sumber Daya */}
+          {/* Sumber Daya */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 border-b border-primary/20 pb-1">
               Sumber Daya
@@ -103,7 +102,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 4. Tautan Sosial */}
+          {/* tautan Sosial */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="text-lg font-semibold text-foreground mb-4 border-b border-primary/20 pb-1">
               Ikuti Kami
