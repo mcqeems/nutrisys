@@ -16,7 +16,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     <>
       <Suspense fallback={<Loading />}>
         <Provider defaultTheme="light">
-          <ProtectedLayout>{children}</ProtectedLayout>
+          <ProtectedLayout userData={session.user}>{children}</ProtectedLayout>
         </Provider>
       </Suspense>
     </>
