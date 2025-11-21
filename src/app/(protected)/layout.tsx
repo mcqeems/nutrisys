@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { Provider } from '@/components/ui/provider';
 import { Suspense } from 'react';
 import Loading from './loading';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
@@ -14,7 +15,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <Provider defaultTheme="light">{children}</Provider>
+        <Provider defaultTheme="light">
+          <ProtectedLayout>{children}</ProtectedLayout>
+        </Provider>
       </Suspense>
     </>
   );
