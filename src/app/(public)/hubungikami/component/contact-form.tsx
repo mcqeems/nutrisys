@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/butons";
 import { Card } from "@/components/ui/card";
 
@@ -14,32 +14,6 @@ export default function ContactForm() {
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (formRef.current) {
-      observer.observe(formRef.current);
-      const inputs = formRef.current.querySelectorAll("input, textarea");
-      inputs.forEach((input, index) => {
-        const htmlInput = input as HTMLElement;
-        htmlInput.style.animationDelay = `${index * 0.1}s`;
-        observer.observe(input);
-      });
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -59,8 +33,8 @@ export default function ContactForm() {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-      <Card className="p-8 border-2 border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-colors duration-300">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <Card className="p-8 border-2 border-border/50 bg-card/50 hover:border-primary/30">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
           Kirim Pesan Kami
         </h2>
@@ -88,10 +62,6 @@ export default function ContactForm() {
                   ? "border-primary shadow-lg shadow-primary/20 scale-[1.02]"
                   : "border-border hover:border-primary/50"
               }`}
-              style={{
-                animation: "slideInField 0.6s ease-out forwards",
-                opacity: 0,
-              }}
             />
           </div>
 
@@ -117,10 +87,6 @@ export default function ContactForm() {
                   ? "border-primary shadow-lg shadow-primary/20 scale-[1.02]"
                   : "border-border hover:border-primary/50"
               }`}
-              style={{
-                animation: "slideInField 0.6s ease-out 0.1s forwards",
-                opacity: 0,
-              }}
             />
           </div>
         </div>
@@ -140,17 +106,12 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             onFocus={() => setFocusedField("subject")}
-            onBlur={() => setFocusedField(null)}
             placeholder="Subjek pesan Anda"
             className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-background/80 focus:outline-none ${
               focusedField === "subject"
                 ? "border-primary shadow-lg shadow-primary/20 scale-[1.02]"
                 : "border-border hover:border-primary/50"
             }`}
-            style={{
-              animation: "slideInField 0.6s ease-out 0.2s forwards",
-              opacity: 0,
-            }}
           />
         </div>
 
@@ -178,7 +139,6 @@ export default function ContactForm() {
             }`}
             style={{
               animation: "slideInField 0.6s ease-out 0.3s forwards",
-              opacity: 0,
             }}
           />
         </div>
@@ -188,7 +148,6 @@ export default function ContactForm() {
           className="mt-8"
           style={{
             animation: "slideInField 0.6s ease-out 0.4s forwards",
-            opacity: 0,
           }}
         >
           <Button
@@ -207,27 +166,6 @@ export default function ContactForm() {
           </Card>
         )}
       </Card>
-
-      <style jsx>{`
-        @keyframes slideInField {
-          from {
-            opacity: 0;
-            transform: translateX(-1rem);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .form-group {
-          animation: slideInField 0.6s ease-out forwards;
-        }
-
-        .animate-visible {
-          animation: slideInField 0.6s ease-out forwards !important;
-        }
-      `}</style>
     </form>
   );
 }

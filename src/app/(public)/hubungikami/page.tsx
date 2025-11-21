@@ -2,21 +2,14 @@
 
 import ContactForm from "./component/contact-form";
 import ContactHeader from "./component/contact-header";
-import ContactInfo from "./component/contact-info";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-backgroundtext-foreground">
       <ContactHeader />
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-3 gap-12 items-start">
-          <div className="lg:col-span-2">
-            <ContactForm />
-          </div>
-          <div className="lg:col-span-1">
-            <ContactInfo />
-          </div>
-        </div>
+
+      <div className="container mx-auto py-16 px-4 md:px-8 lg:px-16 space-y-16">
+        <ContactForm />
       </div>
     </main>
   );
