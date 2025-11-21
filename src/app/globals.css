@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,7 +39,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-family-sans-stack-headline: 'Stack Sans Headline', sans-serif;
+  --font-family-sans-stack-headline: "Stack Sans Headline", sans-serif;
 }
 
 /* =================================================================== */
@@ -103,24 +103,25 @@
 /* =================================================================== */
 .dark {
   /* Latar Belakang dan Teks Dasar */
-  --background: oklch(0.147 0.004 49.25);
+  --background: oklch(0.147 0.004 150); /* Dark Greenish Gray */
   --foreground: oklch(0.985 0.001 106.423);
-  --card: oklch(0.216 0.006 56.043);
+
+  --card: oklch(0.216 0.02 150); /* Dark Green Card */
   --card-foreground: oklch(0.985 0.001 106.423);
-  --popover: oklch(0.216 0.006 56.043);
+  --popover: oklch(0.216 0.02 150);
   --popover-foreground: oklch(0.985 0.001 106.423);
 
-  /* HIJAU UTAMA (Primary Green - Terang) */
+  /* HIJAU UTAMA (Primary Green - Terang) - Sudah OK (150) */
   --primary: oklch(0.65 0.1 150);
-  --primary-foreground: oklch(0.147 0.004 49.25); /* Text Gelap */
+  --primary-foreground: oklch(0.147 0.004 150); /* Text Dark Green */
 
-  /* Warna Sekunder */
-  --secondary: oklch(0.268 0.007 34.298);
+  /* Warna Sekunder: Pindahkan Hue ke 150 (Hijau) */
+  --secondary: oklch(0.268 0.02 150); /* Darker Green */
   --secondary-foreground: oklch(0.985 0.001 106.423);
 
-  /* Muted / Abu-abu */
-  --muted: oklch(0.268 0.007 34.298);
-  --muted-foreground: oklch(0.709 0.01 56.259);
+  /* Muted / Abu-abu: Pindahkan Hue ke 150 (Hijau) */
+  --muted: oklch(0.268 0.02 150);
+  --muted-foreground: oklch(0.709 0.01 150); /* Lighter Greenish Gray */
 
   /* HIJAU PENENKANAN (Accent Green - Gelap) */
   --accent: oklch(0.25 0.03 150);
@@ -152,8 +153,8 @@
 }
 
 @font-face {
-  font-family: 'Stack Sans Headline';
-  src: url('/Fonts/StackSansHeadline-VariableFont_wght.ttf') format('truetype');
+  font-family: "Stack Sans Headline";
+  src: url("/Fonts/StackSansHeadline-VariableFont_wght.ttf") format("truetype");
   font-weight: 200 700;
   font-style: normal;
   font-display: swap;
@@ -181,4 +182,33 @@
 }
 .hoverText:hover {
   transform: translateY(-2px);
+}
+
+/* ANIMASI BACKGROUND */
+/* Animasi untuk Floating Text */
+@keyframes text-float {
+  0% {
+    transform: translateY(0) translateX(0) translateZ(0) skewX(-5deg);
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-50vh) translateX(25px) translateZ(0) skewX(-5deg);
+  }
+  100% {
+    transform: translateY(-100vh) translateX(0) translateZ(0) skewX(-5deg);
+    opacity: 0;
+  }
+}
+/* Animasi untuk Orbs Latar Belakang */
+@keyframes orb-pulse {
+  0%,
+  100% {
+    opacity: 0.9; /* Opasitas puncak lebih rendah */
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6; /* Opasitas terendah lebih rendah */
+    transform: scale(1.05);
+  }
 }
