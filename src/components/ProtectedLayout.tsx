@@ -23,6 +23,7 @@ export default function ProtectedLayout({
   children: ReactNode;
   userData: UserData | undefined;
 }) {
+  const session = userData;
   const router = useRouter();
   const pathname = usePathname();
   const [logoutLoading, setLogoutLoading] = useState(false);
@@ -117,9 +118,9 @@ export default function ProtectedLayout({
               <Popover.Root>
                 <Popover.Trigger asChild>
                   <IconButton aria-label="User Menu" rounded="full" bg={greenColor} _hover={{ bg: greenColorHover }}>
-                    {userData?.image ? (
+                    {session?.image ? (
                       <Image
-                        src={userData.image}
+                        src={session.image}
                         alt="Profile Picture"
                         width={40}
                         height={40}
@@ -137,8 +138,8 @@ export default function ProtectedLayout({
                       <Popover.Body>
                         <Box mb="2">
                           <Popover.Title fontWeight="bold">User Info</Popover.Title>
-                          <Text>Nama: {userData?.name || 'N/A'}</Text>
-                          <Text>Email: {userData?.email || 'N/A'}</Text>
+                          <Text>Nama: {session?.name || 'N/A'}</Text>
+                          <Text>Email: {session?.email || 'N/A'}</Text>
                         </Box>
                         <Flex direction="column" gap="2">
                           <Button

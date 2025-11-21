@@ -4,6 +4,20 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/prisma';
 import { verifyPassword } from '@/lib/auth/password';
 import { loginSchema } from '@/lib/validation/auth';
+import { getPresignedUrl } from '@/lib/actions/postUserImage';
+
+// Helper to convert S3 key to presigned URL
+async function getImageUrl(imageKey: string | null): Promise<string | null> {
+  if (!imageKey) return null;
+  // If it's already a full URL, return it
+  if (imageKey.startsWith('http')) return imageKey;
+  // Otherwise, generate presigned URL from S3 key
+  try {
+    return await getPresignedUrl(imageKey);
+  } catch {
+    return null;
+  }
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -33,8 +47,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const valid = await verifyPassword(password, user.passwordHash);
         if (!valid) return null;
 
-        // Return minimal user object
-        return { id: user.id, name: user.name, email: user.email, image: user.image ?? undefined };
+        // Convert S3 key to presigned URL
+        const imageUrl = await getImageUrl(user.image);
+
+        // Return minimal user object with presigned URL
+        return { id: user.id, name: user.name, email: user.email, image: imageUrl };
       },
     }),
   ],

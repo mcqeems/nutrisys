@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/home/almagribi/Repo/Project/nutrisys/src/generated/prisma",
+      "value": "D:\\Project\\TECHCOMFEST\\nutrisys\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -33,12 +33,12 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/almagribi/Repo/Project/nutrisys/prisma/schema.prisma",
+    "sourceFilePath": "D:\\Project\\TECHCOMFEST\\nutrisys\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",

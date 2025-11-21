@@ -8,7 +8,13 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    remotePatterns: [new URL('https://nutrisys.s3.ap-southeast-2.amazonaws.com/images/**')],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'elasticbeanstalk-ap-southeast-1-812125550400.s3.ap-southeast-1.amazonaws.com',
+        pathname: '/images/**',
+      },
+    ],
   },
 };
 

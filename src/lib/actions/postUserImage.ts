@@ -1,4 +1,5 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { prisma } from '@/prisma';
 import { auth } from '@/auth';
 
@@ -40,8 +41,8 @@ export async function uploadImageToS3(file: File): Promise<string> {
 
   try {
     await s3Client.send(command);
-    const url = `https://${BUCKET}.s3.${REGION}.amazonaws.com/${fileName}`;
-    return url;
+    // Return the S3 key instead of public URL
+    return fileName;
   } catch (error) {
     console.error('Error uploading to S3:', error);
 
@@ -51,6 +52,27 @@ export async function uploadImageToS3(file: File): Promise<string> {
     }
 
     throw new Error('Failed to upload image.');
+  }
+}
+
+// Generate pre-signed URL for private S3 object
+export async function getPresignedUrl(key: string): Promise<string> {
+  if (!BUCKET) {
+    throw new Error('S3 bucket name is not configured.');
+  }
+
+  const command = new GetObjectCommand({
+    Bucket: BUCKET,
+    Key: key,
+  });
+
+  try {
+    // URL expires in 1 hour (3600 seconds)
+    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
+    return signedUrl;
+  } catch (error) {
+    console.error('Error generating presigned URL:', error);
+    throw new Error('Failed to generate image URL.');
   }
 }
 
@@ -74,7 +96,7 @@ export async function processImageFile(imageFile: File | null): Promise<string |
   return await uploadImageToS3(imageFile);
 }
 
-// Save the uploaded image to DB by the url. ( but it still in user profile later you need to change this. )
+// Save the uploaded image to DB by the S3 key
 export async function saveUploadedS3ImageToUser(imageFile: File) {
   try {
     // Validate auth session
@@ -84,19 +106,21 @@ export async function saveUploadedS3ImageToUser(imageFile: File) {
       throw new Error('Tidak terautentikasi. Silakan login terlebih dahulu.');
     }
 
-    // Validate and upload file
-    const url = await processImageFile(imageFile);
-    if (!url) {
+    // Validate and upload file (returns S3 key, not URL)
+    const s3Key = await processImageFile(imageFile);
+    if (!s3Key) {
       throw new Error('File tidak ditemukan.');
     }
 
-    // Save URL to user profile
+    // Save S3 key to user profile
     await prisma.user.update({
       where: { email },
-      data: { image: url },
+      data: { image: s3Key },
     });
 
-    return url;
+    // Return presigned URL for immediate display
+    const presignedUrl = await getPresignedUrl(s3Key);
+    return presignedUrl;
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Gagal mengupload dan menyimpan foto.';
     console.error('saveUploadedS3ImageToDb error:', message);
