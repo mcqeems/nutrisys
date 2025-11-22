@@ -48,7 +48,6 @@ export type User_infoMinAggregateOutputType = {
   food_allergy: string | null
   medical_history: string | null
   created_at: Date | null
-  userId: string | null
 }
 
 export type User_infoMaxAggregateOutputType = {
@@ -61,7 +60,6 @@ export type User_infoMaxAggregateOutputType = {
   food_allergy: string | null
   medical_history: string | null
   created_at: Date | null
-  userId: string | null
 }
 
 export type User_infoCountAggregateOutputType = {
@@ -74,7 +72,6 @@ export type User_infoCountAggregateOutputType = {
   food_allergy: number
   medical_history: number
   created_at: number
-  userId: number
   _all: number
 }
 
@@ -101,7 +98,6 @@ export type User_infoMinAggregateInputType = {
   food_allergy?: true
   medical_history?: true
   created_at?: true
-  userId?: true
 }
 
 export type User_infoMaxAggregateInputType = {
@@ -114,7 +110,6 @@ export type User_infoMaxAggregateInputType = {
   food_allergy?: true
   medical_history?: true
   created_at?: true
-  userId?: true
 }
 
 export type User_infoCountAggregateInputType = {
@@ -127,7 +122,6 @@ export type User_infoCountAggregateInputType = {
   food_allergy?: true
   medical_history?: true
   created_at?: true
-  userId?: true
   _all?: true
 }
 
@@ -227,7 +221,6 @@ export type User_infoGroupByOutputType = {
   food_allergy: string | null
   medical_history: string | null
   created_at: Date | null
-  userId: string | null
   _count: User_infoCountAggregateOutputType | null
   _avg: User_infoAvgAggregateOutputType | null
   _sum: User_infoSumAggregateOutputType | null
@@ -263,7 +256,6 @@ export type user_infoWhereInput = {
   food_allergy?: Prisma.StringNullableFilter<"user_info"> | string | null
   medical_history?: Prisma.StringNullableFilter<"user_info"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_info"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_info"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -277,7 +269,6 @@ export type user_infoOrderByWithRelationInput = {
   food_allergy?: Prisma.SortOrderInput | Prisma.SortOrder
   medical_history?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -294,7 +285,6 @@ export type user_infoWhereUniqueInput = Prisma.AtLeast<{
   food_allergy?: Prisma.StringNullableFilter<"user_info"> | string | null
   medical_history?: Prisma.StringNullableFilter<"user_info"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_info"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_info"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "user_id">
 
@@ -308,7 +298,6 @@ export type user_infoOrderByWithAggregationInput = {
   food_allergy?: Prisma.SortOrderInput | Prisma.SortOrder
   medical_history?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.user_infoCountOrderByAggregateInput
   _avg?: Prisma.user_infoAvgOrderByAggregateInput
   _max?: Prisma.user_infoMaxOrderByAggregateInput
@@ -329,11 +318,9 @@ export type user_infoScalarWhereWithAggregatesInput = {
   food_allergy?: Prisma.StringNullableWithAggregatesFilter<"user_info"> | string | null
   medical_history?: Prisma.StringNullableWithAggregatesFilter<"user_info"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"user_info"> | Date | string | null
-  userId?: Prisma.StringNullableWithAggregatesFilter<"user_info"> | string | null
 }
 
 export type user_infoCreateInput = {
-  user_id: string
   gender?: string | null
   height?: number | null
   weight?: number | null
@@ -354,11 +341,9 @@ export type user_infoUncheckedCreateInput = {
   food_allergy?: string | null
   medical_history?: string | null
   created_at?: Date | string | null
-  userId?: string | null
 }
 
 export type user_infoUpdateInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -379,7 +364,6 @@ export type user_infoUncheckedUpdateInput = {
   food_allergy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   medical_history?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_infoCreateManyInput = {
@@ -392,11 +376,9 @@ export type user_infoCreateManyInput = {
   food_allergy?: string | null
   medical_history?: string | null
   created_at?: Date | string | null
-  userId?: string | null
 }
 
 export type user_infoUpdateManyMutationInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -416,7 +398,6 @@ export type user_infoUncheckedUpdateManyInput = {
   food_allergy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   medical_history?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type User_infoListRelationFilter = {
@@ -439,7 +420,6 @@ export type user_infoCountOrderByAggregateInput = {
   food_allergy?: Prisma.SortOrder
   medical_history?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_infoAvgOrderByAggregateInput = {
@@ -458,7 +438,6 @@ export type user_infoMaxOrderByAggregateInput = {
   food_allergy?: Prisma.SortOrder
   medical_history?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_infoMinOrderByAggregateInput = {
@@ -471,7 +450,6 @@ export type user_infoMinOrderByAggregateInput = {
   food_allergy?: Prisma.SortOrder
   medical_history?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_infoSumOrderByAggregateInput = {
@@ -523,7 +501,6 @@ export type user_infoUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type user_infoCreateWithoutUserInput = {
-  user_id: string
   gender?: string | null
   height?: number | null
   weight?: number | null
@@ -535,7 +512,6 @@ export type user_infoCreateWithoutUserInput = {
 
 export type user_infoUncheckedCreateWithoutUserInput = {
   id?: number
-  user_id: string
   gender?: string | null
   height?: number | null
   weight?: number | null
@@ -584,12 +560,10 @@ export type user_infoScalarWhereInput = {
   food_allergy?: Prisma.StringNullableFilter<"user_info"> | string | null
   medical_history?: Prisma.StringNullableFilter<"user_info"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_info"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_info"> | string | null
 }
 
 export type user_infoCreateManyUserInput = {
   id?: number
-  user_id: string
   gender?: string | null
   height?: number | null
   weight?: number | null
@@ -600,7 +574,6 @@ export type user_infoCreateManyUserInput = {
 }
 
 export type user_infoUpdateWithoutUserInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -612,7 +585,6 @@ export type user_infoUpdateWithoutUserInput = {
 
 export type user_infoUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -624,7 +596,6 @@ export type user_infoUncheckedUpdateWithoutUserInput = {
 
 export type user_infoUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weight?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -646,7 +617,6 @@ export type user_infoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   food_allergy?: boolean
   medical_history?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_info$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_info"]>
 
@@ -660,7 +630,6 @@ export type user_infoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   food_allergy?: boolean
   medical_history?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_info$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_info"]>
 
@@ -674,7 +643,6 @@ export type user_infoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   food_allergy?: boolean
   medical_history?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_info$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_info"]>
 
@@ -688,10 +656,9 @@ export type user_infoSelectScalar = {
   food_allergy?: boolean
   medical_history?: boolean
   created_at?: boolean
-  userId?: boolean
 }
 
-export type user_infoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "gender" | "height" | "weight" | "blood_type" | "food_allergy" | "medical_history" | "created_at" | "userId", ExtArgs["result"]["user_info"]>
+export type user_infoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "gender" | "height" | "weight" | "blood_type" | "food_allergy" | "medical_history" | "created_at", ExtArgs["result"]["user_info"]>
 export type user_infoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.user_info$userArgs<ExtArgs>
 }
@@ -717,7 +684,6 @@ export type $user_infoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     food_allergy: string | null
     medical_history: string | null
     created_at: Date | null
-    userId: string | null
   }, ExtArgs["result"]["user_info"]>
   composites: {}
 }
@@ -1151,7 +1117,6 @@ export interface user_infoFieldRefs {
   readonly food_allergy: Prisma.FieldRef<"user_info", 'String'>
   readonly medical_history: Prisma.FieldRef<"user_info", 'String'>
   readonly created_at: Prisma.FieldRef<"user_info", 'DateTime'>
-  readonly userId: Prisma.FieldRef<"user_info", 'String'>
 }
     
 

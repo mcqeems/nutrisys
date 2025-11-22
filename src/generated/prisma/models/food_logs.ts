@@ -40,7 +40,6 @@ export type Food_logsMinAggregateOutputType = {
   log_date: Date | null
   input_type: string | null
   image_url: string | null
-  userId: string | null
 }
 
 export type Food_logsMaxAggregateOutputType = {
@@ -49,7 +48,6 @@ export type Food_logsMaxAggregateOutputType = {
   log_date: Date | null
   input_type: string | null
   image_url: string | null
-  userId: string | null
 }
 
 export type Food_logsCountAggregateOutputType = {
@@ -59,7 +57,6 @@ export type Food_logsCountAggregateOutputType = {
   input_type: number
   image_url: number
   description: number
-  userId: number
   _all: number
 }
 
@@ -78,7 +75,6 @@ export type Food_logsMinAggregateInputType = {
   log_date?: true
   input_type?: true
   image_url?: true
-  userId?: true
 }
 
 export type Food_logsMaxAggregateInputType = {
@@ -87,7 +83,6 @@ export type Food_logsMaxAggregateInputType = {
   log_date?: true
   input_type?: true
   image_url?: true
-  userId?: true
 }
 
 export type Food_logsCountAggregateInputType = {
@@ -97,7 +92,6 @@ export type Food_logsCountAggregateInputType = {
   input_type?: true
   image_url?: true
   description?: true
-  userId?: true
   _all?: true
 }
 
@@ -194,7 +188,6 @@ export type Food_logsGroupByOutputType = {
   input_type: string
   image_url: string | null
   description: runtime.JsonValue | null
-  userId: string | null
   _count: Food_logsCountAggregateOutputType | null
   _avg: Food_logsAvgAggregateOutputType | null
   _sum: Food_logsSumAggregateOutputType | null
@@ -227,7 +220,6 @@ export type food_logsWhereInput = {
   input_type?: Prisma.StringFilter<"food_logs"> | string
   image_url?: Prisma.StringNullableFilter<"food_logs"> | string | null
   description?: Prisma.JsonNullableFilter<"food_logs">
-  userId?: Prisma.StringNullableFilter<"food_logs"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -238,7 +230,6 @@ export type food_logsOrderByWithRelationInput = {
   input_type?: Prisma.SortOrder
   image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -252,7 +243,6 @@ export type food_logsWhereUniqueInput = Prisma.AtLeast<{
   input_type?: Prisma.StringFilter<"food_logs"> | string
   image_url?: Prisma.StringNullableFilter<"food_logs"> | string | null
   description?: Prisma.JsonNullableFilter<"food_logs">
-  userId?: Prisma.StringNullableFilter<"food_logs"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
@@ -263,7 +253,6 @@ export type food_logsOrderByWithAggregationInput = {
   input_type?: Prisma.SortOrder
   image_url?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.food_logsCountOrderByAggregateInput
   _avg?: Prisma.food_logsAvgOrderByAggregateInput
   _max?: Prisma.food_logsMaxOrderByAggregateInput
@@ -281,11 +270,9 @@ export type food_logsScalarWhereWithAggregatesInput = {
   input_type?: Prisma.StringWithAggregatesFilter<"food_logs"> | string
   image_url?: Prisma.StringNullableWithAggregatesFilter<"food_logs"> | string | null
   description?: Prisma.JsonNullableWithAggregatesFilter<"food_logs">
-  userId?: Prisma.StringNullableWithAggregatesFilter<"food_logs"> | string | null
 }
 
 export type food_logsCreateInput = {
-  user_id: string
   log_date?: Date | string | null
   input_type: string
   image_url?: string | null
@@ -300,11 +287,9 @@ export type food_logsUncheckedCreateInput = {
   input_type: string
   image_url?: string | null
   description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  userId?: string | null
 }
 
 export type food_logsUpdateInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   log_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -319,7 +304,6 @@ export type food_logsUncheckedUpdateInput = {
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type food_logsCreateManyInput = {
@@ -329,11 +313,9 @@ export type food_logsCreateManyInput = {
   input_type: string
   image_url?: string | null
   description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  userId?: string | null
 }
 
 export type food_logsUpdateManyMutationInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   log_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -347,7 +329,6 @@ export type food_logsUncheckedUpdateManyInput = {
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Food_logsListRelationFilter = {
@@ -367,7 +348,6 @@ export type food_logsCountOrderByAggregateInput = {
   input_type?: Prisma.SortOrder
   image_url?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type food_logsAvgOrderByAggregateInput = {
@@ -380,7 +360,6 @@ export type food_logsMaxOrderByAggregateInput = {
   log_date?: Prisma.SortOrder
   input_type?: Prisma.SortOrder
   image_url?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type food_logsMinOrderByAggregateInput = {
@@ -389,7 +368,6 @@ export type food_logsMinOrderByAggregateInput = {
   log_date?: Prisma.SortOrder
   input_type?: Prisma.SortOrder
   image_url?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type food_logsSumOrderByAggregateInput = {
@@ -439,7 +417,6 @@ export type food_logsUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type food_logsCreateWithoutUserInput = {
-  user_id: string
   log_date?: Date | string | null
   input_type: string
   image_url?: string | null
@@ -448,7 +425,6 @@ export type food_logsCreateWithoutUserInput = {
 
 export type food_logsUncheckedCreateWithoutUserInput = {
   id?: number
-  user_id: string
   log_date?: Date | string | null
   input_type: string
   image_url?: string | null
@@ -491,12 +467,10 @@ export type food_logsScalarWhereInput = {
   input_type?: Prisma.StringFilter<"food_logs"> | string
   image_url?: Prisma.StringNullableFilter<"food_logs"> | string | null
   description?: Prisma.JsonNullableFilter<"food_logs">
-  userId?: Prisma.StringNullableFilter<"food_logs"> | string | null
 }
 
 export type food_logsCreateManyUserInput = {
   id?: number
-  user_id: string
   log_date?: Date | string | null
   input_type: string
   image_url?: string | null
@@ -504,7 +478,6 @@ export type food_logsCreateManyUserInput = {
 }
 
 export type food_logsUpdateWithoutUserInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   log_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -513,7 +486,6 @@ export type food_logsUpdateWithoutUserInput = {
 
 export type food_logsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   log_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -522,7 +494,6 @@ export type food_logsUncheckedUpdateWithoutUserInput = {
 
 export type food_logsUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   log_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   input_type?: Prisma.StringFieldUpdateOperationsInput | string
   image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -538,7 +509,6 @@ export type food_logsSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   input_type?: boolean
   image_url?: boolean
   description?: boolean
-  userId?: boolean
   user?: boolean | Prisma.food_logs$userArgs<ExtArgs>
 }, ExtArgs["result"]["food_logs"]>
 
@@ -549,7 +519,6 @@ export type food_logsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   input_type?: boolean
   image_url?: boolean
   description?: boolean
-  userId?: boolean
   user?: boolean | Prisma.food_logs$userArgs<ExtArgs>
 }, ExtArgs["result"]["food_logs"]>
 
@@ -560,7 +529,6 @@ export type food_logsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   input_type?: boolean
   image_url?: boolean
   description?: boolean
-  userId?: boolean
   user?: boolean | Prisma.food_logs$userArgs<ExtArgs>
 }, ExtArgs["result"]["food_logs"]>
 
@@ -571,10 +539,9 @@ export type food_logsSelectScalar = {
   input_type?: boolean
   image_url?: boolean
   description?: boolean
-  userId?: boolean
 }
 
-export type food_logsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "log_date" | "input_type" | "image_url" | "description" | "userId", ExtArgs["result"]["food_logs"]>
+export type food_logsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "log_date" | "input_type" | "image_url" | "description", ExtArgs["result"]["food_logs"]>
 export type food_logsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.food_logs$userArgs<ExtArgs>
 }
@@ -597,7 +564,6 @@ export type $food_logsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     input_type: string
     image_url: string | null
     description: runtime.JsonValue | null
-    userId: string | null
   }, ExtArgs["result"]["food_logs"]>
   composites: {}
 }
@@ -1028,7 +994,6 @@ export interface food_logsFieldRefs {
   readonly input_type: Prisma.FieldRef<"food_logs", 'String'>
   readonly image_url: Prisma.FieldRef<"food_logs", 'String'>
   readonly description: Prisma.FieldRef<"food_logs", 'Json'>
-  readonly userId: Prisma.FieldRef<"food_logs", 'String'>
 }
     
 

@@ -3,35 +3,55 @@
 import { Container, Flex, Box, IconButton, Text, Popover, Portal, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { useColorMode, useColorModeValue } from './ui/color-mode';
 import { BellIcon, CircleUserIcon, DoorOpenIcon, MoonIcon, PencilIcon, SunIcon } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 
-interface UserData {
-  id?: string;
-  name?: string | null;
-  email?: string | null;
-  image?: string | null;
+interface UserInfo {
+  id: number;
+  user_id: string;
+  gender?: string | null;
+  height?: number | null;
+  weight?: number | null;
+  blood_type?: string | null;
+  food_allergy?: string | null;
+  medical_history?: string | null;
+  created_at: string;
+  user: {
+    name: string;
+    email: string;
+    image?: string | null;
+  };
 }
 
-export default function ProtectedLayout({
-  children,
-  userData,
-}: {
-  children: ReactNode;
-  userData: UserData | undefined;
-}) {
-  const session = userData;
+export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const [session, setSession] = useState<UserInfo | null>(null);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const { toggleColorMode, colorMode } = useColorMode();
   const greenColor = useColorModeValue('green.500', 'green.400');
   const greenColorHover = useColorModeValue('green.400', 'green.500');
   const greenBox = useColorModeValue('green.200', 'green.800');
   const greenLogo = useColorModeValue('green.600', 'green.400');
+
+  useEffect(() => {
+    async function fetchUserData(): Promise<void> {
+      try {
+        const response = await fetch('/api/user');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSession(data.data);
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    }
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -60,7 +80,7 @@ export default function ProtectedLayout({
             <Flex direction="row" gap="6">
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/dashboard" className="p-2 hoverText text-hover-light">
-                  Dashboard
+                  <Text fontWeight={600}>Dashboard</Text>
                 </Link>
                 {pathname === '/dashboard' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -68,7 +88,7 @@ export default function ProtectedLayout({
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/target" className="p-2 hoverText text-hover-light">
-                  Target
+                  <Text fontWeight={600}>Target</Text>
                 </Link>
                 {pathname === '/target' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -76,7 +96,7 @@ export default function ProtectedLayout({
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/journal" className="p-2 hoverText text-hover-light">
-                  Jurnal
+                  <Text fontWeight={600}>Wellness Jurnal</Text>
                 </Link>
                 {pathname === '/journal' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -84,7 +104,7 @@ export default function ProtectedLayout({
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/chatbot" className="p-2 hoverText text-hover-light">
-                  Chatbot
+                  <Text fontWeight={600}>AI Chat</Text>
                 </Link>
                 {pathname === '/chatbot' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -92,7 +112,7 @@ export default function ProtectedLayout({
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/analyze" className="p-2 hoverText text-hover-light">
-                  Analisis Nutrisi
+                  <Text fontWeight={600}>Analisis Nutrisi</Text>
                 </Link>
                 {pathname === '/analyze' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -124,9 +144,9 @@ export default function ProtectedLayout({
                     _hover={{ bg: greenColorHover }}
                     overflow="hidden"
                   >
-                    {session?.image ? (
+                    {session?.user?.image ? (
                       <Image
-                        src={session.image}
+                        src={session.user.image}
                         alt="Profile Picture"
                         width={40}
                         height={40}
@@ -145,8 +165,8 @@ export default function ProtectedLayout({
                       <Popover.Body>
                         <Box mb="2">
                           <Popover.Title fontWeight="bold">User Info</Popover.Title>
-                          <Text>Nama: {session?.name || 'N/A'}</Text>
-                          <Text>Email: {session?.email || 'N/A'}</Text>
+                          <Text>Nama: {session?.user.name || 'N/A'}</Text>
+                          <Text>Email: {session?.user.name || 'N/A'}</Text>
                         </Box>
                         <Flex direction="column" gap="2">
                           <Button

@@ -39,7 +39,6 @@ export type SummaryMinAggregateOutputType = {
   user_id: string | null
   description: string | null
   generated_at: Date | null
-  userId: string | null
 }
 
 export type SummaryMaxAggregateOutputType = {
@@ -47,7 +46,6 @@ export type SummaryMaxAggregateOutputType = {
   user_id: string | null
   description: string | null
   generated_at: Date | null
-  userId: string | null
 }
 
 export type SummaryCountAggregateOutputType = {
@@ -55,7 +53,6 @@ export type SummaryCountAggregateOutputType = {
   user_id: number
   description: number
   generated_at: number
-  userId: number
   _all: number
 }
 
@@ -73,7 +70,6 @@ export type SummaryMinAggregateInputType = {
   user_id?: true
   description?: true
   generated_at?: true
-  userId?: true
 }
 
 export type SummaryMaxAggregateInputType = {
@@ -81,7 +77,6 @@ export type SummaryMaxAggregateInputType = {
   user_id?: true
   description?: true
   generated_at?: true
-  userId?: true
 }
 
 export type SummaryCountAggregateInputType = {
@@ -89,7 +84,6 @@ export type SummaryCountAggregateInputType = {
   user_id?: true
   description?: true
   generated_at?: true
-  userId?: true
   _all?: true
 }
 
@@ -184,7 +178,6 @@ export type SummaryGroupByOutputType = {
   user_id: string
   description: string | null
   generated_at: Date | null
-  userId: string | null
   _count: SummaryCountAggregateOutputType | null
   _avg: SummaryAvgAggregateOutputType | null
   _sum: SummarySumAggregateOutputType | null
@@ -215,7 +208,6 @@ export type summaryWhereInput = {
   user_id?: Prisma.StringFilter<"summary"> | string
   description?: Prisma.StringNullableFilter<"summary"> | string | null
   generated_at?: Prisma.DateTimeNullableFilter<"summary"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"summary"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -224,7 +216,6 @@ export type summaryOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   generated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -236,7 +227,6 @@ export type summaryWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.summaryWhereInput | Prisma.summaryWhereInput[]
   description?: Prisma.StringNullableFilter<"summary"> | string | null
   generated_at?: Prisma.DateTimeNullableFilter<"summary"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"summary"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "user_id">
 
@@ -245,7 +235,6 @@ export type summaryOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   generated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.summaryCountOrderByAggregateInput
   _avg?: Prisma.summaryAvgOrderByAggregateInput
   _max?: Prisma.summaryMaxOrderByAggregateInput
@@ -261,11 +250,9 @@ export type summaryScalarWhereWithAggregatesInput = {
   user_id?: Prisma.StringWithAggregatesFilter<"summary"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"summary"> | string | null
   generated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"summary"> | Date | string | null
-  userId?: Prisma.StringNullableWithAggregatesFilter<"summary"> | string | null
 }
 
 export type summaryCreateInput = {
-  user_id: string
   description?: string | null
   generated_at?: Date | string | null
   user?: Prisma.UserCreateNestedOneWithoutSummaryInput
@@ -276,11 +263,9 @@ export type summaryUncheckedCreateInput = {
   user_id: string
   description?: string | null
   generated_at?: Date | string | null
-  userId?: string | null
 }
 
 export type summaryUpdateInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneWithoutSummaryNestedInput
@@ -291,7 +276,6 @@ export type summaryUncheckedUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type summaryCreateManyInput = {
@@ -299,11 +283,9 @@ export type summaryCreateManyInput = {
   user_id: string
   description?: string | null
   generated_at?: Date | string | null
-  userId?: string | null
 }
 
 export type summaryUpdateManyMutationInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -313,7 +295,6 @@ export type summaryUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SummaryListRelationFilter = {
@@ -331,7 +312,6 @@ export type summaryCountOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   generated_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type summaryAvgOrderByAggregateInput = {
@@ -343,7 +323,6 @@ export type summaryMaxOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   generated_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type summaryMinOrderByAggregateInput = {
@@ -351,7 +330,6 @@ export type summaryMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   generated_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type summarySumOrderByAggregateInput = {
@@ -401,14 +379,12 @@ export type summaryUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type summaryCreateWithoutUserInput = {
-  user_id: string
   description?: string | null
   generated_at?: Date | string | null
 }
 
 export type summaryUncheckedCreateWithoutUserInput = {
   id?: number
-  user_id: string
   description?: string | null
   generated_at?: Date | string | null
 }
@@ -447,32 +423,27 @@ export type summaryScalarWhereInput = {
   user_id?: Prisma.StringFilter<"summary"> | string
   description?: Prisma.StringNullableFilter<"summary"> | string | null
   generated_at?: Prisma.DateTimeNullableFilter<"summary"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"summary"> | string | null
 }
 
 export type summaryCreateManyUserInput = {
   id?: number
-  user_id: string
   description?: string | null
   generated_at?: Date | string | null
 }
 
 export type summaryUpdateWithoutUserInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type summaryUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type summaryUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -484,7 +455,6 @@ export type summarySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   user_id?: boolean
   description?: boolean
   generated_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.summary$userArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
@@ -493,7 +463,6 @@ export type summarySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   user_id?: boolean
   description?: boolean
   generated_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.summary$userArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
@@ -502,7 +471,6 @@ export type summarySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   user_id?: boolean
   description?: boolean
   generated_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.summary$userArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
@@ -511,10 +479,9 @@ export type summarySelectScalar = {
   user_id?: boolean
   description?: boolean
   generated_at?: boolean
-  userId?: boolean
 }
 
-export type summaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "description" | "generated_at" | "userId", ExtArgs["result"]["summary"]>
+export type summaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "description" | "generated_at", ExtArgs["result"]["summary"]>
 export type summaryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.summary$userArgs<ExtArgs>
 }
@@ -535,7 +502,6 @@ export type $summaryPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     user_id: string
     description: string | null
     generated_at: Date | null
-    userId: string | null
   }, ExtArgs["result"]["summary"]>
   composites: {}
 }
@@ -964,7 +930,6 @@ export interface summaryFieldRefs {
   readonly user_id: Prisma.FieldRef<"summary", 'String'>
   readonly description: Prisma.FieldRef<"summary", 'String'>
   readonly generated_at: Prisma.FieldRef<"summary", 'DateTime'>
-  readonly userId: Prisma.FieldRef<"summary", 'String'>
 }
     
 

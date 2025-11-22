@@ -1,5 +1,5 @@
 'use client';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import Image from 'next/image';
 import { uploadWithOriginalAction } from './actions';
 
@@ -10,6 +10,15 @@ export default function UserPage() {
     url: null,
     error: null,
   });
+
+  useEffect(() => {
+    if (state.url && !isPending) {
+      const timer = setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.url, isPending]);
 
   return (
     <div style={{ maxWidth: 480, margin: '40px auto', fontFamily: 'system-ui' }}>

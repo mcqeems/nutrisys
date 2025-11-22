@@ -110,8 +110,7 @@ model food_logs {
   input_type  String    @db.VarChar(50)
   image_url   String?   @db.VarChar(255)
   description Json?
-  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String?
+  user        User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -122,8 +121,7 @@ model journal_entries {
   mood       String?   @default("neutral") @db.VarChar(50)
   content    String
   ai_reply   String?
-  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String?
+  user       User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -134,8 +132,7 @@ model notifications {
   type       String?   @default("info") @db.VarChar(50)
   is_read    Boolean?  @default(false)
   created_at DateTime? @default(now()) @db.Timestamptz(6)
-  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String?
+  user       User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model summary {
@@ -143,8 +140,7 @@ model summary {
   user_id      String    @unique @db.VarChar(255)
   description  String?
   generated_at DateTime? @default(now()) @db.Timestamptz(6)
-  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String?
+  user         User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model user_info {
@@ -157,8 +153,7 @@ model user_info {
   food_allergy    String?
   medical_history String?
   created_at      DateTime? @default(now()) @db.Timestamptz(6)
-  user            User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId          String?
+  user            User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model user_targets {
@@ -169,6 +164,5 @@ model user_targets {
   end_date   DateTime  @db.Date
   status     String?   @default("active") @db.VarChar(50)
   created_at DateTime? @default(now()) @db.Timestamptz(6)
-  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String?
+  user       User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }

@@ -1433,8 +1433,7 @@ export const Food_logsScalarFieldEnum = {
   log_date: 'log_date',
   input_type: 'input_type',
   image_url: 'image_url',
-  description: 'description',
-  userId: 'userId'
+  description: 'description'
 } as const
 
 export type Food_logsScalarFieldEnum = (typeof Food_logsScalarFieldEnum)[keyof typeof Food_logsScalarFieldEnum]
@@ -1446,8 +1445,7 @@ export const Journal_entriesScalarFieldEnum = {
   entry_date: 'entry_date',
   mood: 'mood',
   content: 'content',
-  ai_reply: 'ai_reply',
-  userId: 'userId'
+  ai_reply: 'ai_reply'
 } as const
 
 export type Journal_entriesScalarFieldEnum = (typeof Journal_entriesScalarFieldEnum)[keyof typeof Journal_entriesScalarFieldEnum]
@@ -1459,8 +1457,7 @@ export const NotificationsScalarFieldEnum = {
   message: 'message',
   type: 'type',
   is_read: 'is_read',
-  created_at: 'created_at',
-  userId: 'userId'
+  created_at: 'created_at'
 } as const
 
 export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
@@ -1470,8 +1467,7 @@ export const SummaryScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   description: 'description',
-  generated_at: 'generated_at',
-  userId: 'userId'
+  generated_at: 'generated_at'
 } as const
 
 export type SummaryScalarFieldEnum = (typeof SummaryScalarFieldEnum)[keyof typeof SummaryScalarFieldEnum]
@@ -1486,8 +1482,7 @@ export const User_infoScalarFieldEnum = {
   blood_type: 'blood_type',
   food_allergy: 'food_allergy',
   medical_history: 'medical_history',
-  created_at: 'created_at',
-  userId: 'userId'
+  created_at: 'created_at'
 } as const
 
 export type User_infoScalarFieldEnum = (typeof User_infoScalarFieldEnum)[keyof typeof User_infoScalarFieldEnum]
@@ -1500,8 +1495,7 @@ export const User_targetsScalarFieldEnum = {
   start_date: 'start_date',
   end_date: 'end_date',
   status: 'status',
-  created_at: 'created_at',
-  userId: 'userId'
+  created_at: 'created_at'
 } as const
 
 export type User_targetsScalarFieldEnum = (typeof User_targetsScalarFieldEnum)[keyof typeof User_targetsScalarFieldEnum]

@@ -42,7 +42,6 @@ export type User_targetsMinAggregateOutputType = {
   end_date: Date | null
   status: string | null
   created_at: Date | null
-  userId: string | null
 }
 
 export type User_targetsMaxAggregateOutputType = {
@@ -53,7 +52,6 @@ export type User_targetsMaxAggregateOutputType = {
   end_date: Date | null
   status: string | null
   created_at: Date | null
-  userId: string | null
 }
 
 export type User_targetsCountAggregateOutputType = {
@@ -64,7 +62,6 @@ export type User_targetsCountAggregateOutputType = {
   end_date: number
   status: number
   created_at: number
-  userId: number
   _all: number
 }
 
@@ -85,7 +82,6 @@ export type User_targetsMinAggregateInputType = {
   end_date?: true
   status?: true
   created_at?: true
-  userId?: true
 }
 
 export type User_targetsMaxAggregateInputType = {
@@ -96,7 +92,6 @@ export type User_targetsMaxAggregateInputType = {
   end_date?: true
   status?: true
   created_at?: true
-  userId?: true
 }
 
 export type User_targetsCountAggregateInputType = {
@@ -107,7 +102,6 @@ export type User_targetsCountAggregateInputType = {
   end_date?: true
   status?: true
   created_at?: true
-  userId?: true
   _all?: true
 }
 
@@ -205,7 +199,6 @@ export type User_targetsGroupByOutputType = {
   end_date: Date
   status: string | null
   created_at: Date | null
-  userId: string | null
   _count: User_targetsCountAggregateOutputType | null
   _avg: User_targetsAvgAggregateOutputType | null
   _sum: User_targetsSumAggregateOutputType | null
@@ -239,7 +232,6 @@ export type user_targetsWhereInput = {
   end_date?: Prisma.DateTimeFilter<"user_targets"> | Date | string
   status?: Prisma.StringNullableFilter<"user_targets"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_targets"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_targets"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -251,7 +243,6 @@ export type user_targetsOrderByWithRelationInput = {
   end_date?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -266,7 +257,6 @@ export type user_targetsWhereUniqueInput = Prisma.AtLeast<{
   end_date?: Prisma.DateTimeFilter<"user_targets"> | Date | string
   status?: Prisma.StringNullableFilter<"user_targets"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_targets"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_targets"> | string | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
@@ -278,7 +268,6 @@ export type user_targetsOrderByWithAggregationInput = {
   end_date?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.user_targetsCountOrderByAggregateInput
   _avg?: Prisma.user_targetsAvgOrderByAggregateInput
   _max?: Prisma.user_targetsMaxOrderByAggregateInput
@@ -297,11 +286,9 @@ export type user_targetsScalarWhereWithAggregatesInput = {
   end_date?: Prisma.DateTimeWithAggregatesFilter<"user_targets"> | Date | string
   status?: Prisma.StringNullableWithAggregatesFilter<"user_targets"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"user_targets"> | Date | string | null
-  userId?: Prisma.StringNullableWithAggregatesFilter<"user_targets"> | string | null
 }
 
 export type user_targetsCreateInput = {
-  user_id: string
   name: string
   start_date: Date | string
   end_date: Date | string
@@ -318,11 +305,9 @@ export type user_targetsUncheckedCreateInput = {
   end_date: Date | string
   status?: string | null
   created_at?: Date | string | null
-  userId?: string | null
 }
 
 export type user_targetsUpdateInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -339,7 +324,6 @@ export type user_targetsUncheckedUpdateInput = {
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_targetsCreateManyInput = {
@@ -350,11 +334,9 @@ export type user_targetsCreateManyInput = {
   end_date: Date | string
   status?: string | null
   created_at?: Date | string | null
-  userId?: string | null
 }
 
 export type user_targetsUpdateManyMutationInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -370,7 +352,6 @@ export type user_targetsUncheckedUpdateManyInput = {
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type User_targetsListRelationFilter = {
@@ -391,7 +372,6 @@ export type user_targetsCountOrderByAggregateInput = {
   end_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_targetsAvgOrderByAggregateInput = {
@@ -406,7 +386,6 @@ export type user_targetsMaxOrderByAggregateInput = {
   end_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_targetsMinOrderByAggregateInput = {
@@ -417,7 +396,6 @@ export type user_targetsMinOrderByAggregateInput = {
   end_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type user_targetsSumOrderByAggregateInput = {
@@ -467,7 +445,6 @@ export type user_targetsUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type user_targetsCreateWithoutUserInput = {
-  user_id: string
   name: string
   start_date: Date | string
   end_date: Date | string
@@ -477,7 +454,6 @@ export type user_targetsCreateWithoutUserInput = {
 
 export type user_targetsUncheckedCreateWithoutUserInput = {
   id?: number
-  user_id: string
   name: string
   start_date: Date | string
   end_date: Date | string
@@ -522,12 +498,10 @@ export type user_targetsScalarWhereInput = {
   end_date?: Prisma.DateTimeFilter<"user_targets"> | Date | string
   status?: Prisma.StringNullableFilter<"user_targets"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"user_targets"> | Date | string | null
-  userId?: Prisma.StringNullableFilter<"user_targets"> | string | null
 }
 
 export type user_targetsCreateManyUserInput = {
   id?: number
-  user_id: string
   name: string
   start_date: Date | string
   end_date: Date | string
@@ -536,7 +510,6 @@ export type user_targetsCreateManyUserInput = {
 }
 
 export type user_targetsUpdateWithoutUserInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -546,7 +519,6 @@ export type user_targetsUpdateWithoutUserInput = {
 
 export type user_targetsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -556,7 +528,6 @@ export type user_targetsUncheckedUpdateWithoutUserInput = {
 
 export type user_targetsUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -574,7 +545,6 @@ export type user_targetsSelect<ExtArgs extends runtime.Types.Extensions.Internal
   end_date?: boolean
   status?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_targets$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_targets"]>
 
@@ -586,7 +556,6 @@ export type user_targetsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   end_date?: boolean
   status?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_targets$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_targets"]>
 
@@ -598,7 +567,6 @@ export type user_targetsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   end_date?: boolean
   status?: boolean
   created_at?: boolean
-  userId?: boolean
   user?: boolean | Prisma.user_targets$userArgs<ExtArgs>
 }, ExtArgs["result"]["user_targets"]>
 
@@ -610,10 +578,9 @@ export type user_targetsSelectScalar = {
   end_date?: boolean
   status?: boolean
   created_at?: boolean
-  userId?: boolean
 }
 
-export type user_targetsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "name" | "start_date" | "end_date" | "status" | "created_at" | "userId", ExtArgs["result"]["user_targets"]>
+export type user_targetsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "name" | "start_date" | "end_date" | "status" | "created_at", ExtArgs["result"]["user_targets"]>
 export type user_targetsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.user_targets$userArgs<ExtArgs>
 }
@@ -637,7 +604,6 @@ export type $user_targetsPayload<ExtArgs extends runtime.Types.Extensions.Intern
     end_date: Date
     status: string | null
     created_at: Date | null
-    userId: string | null
   }, ExtArgs["result"]["user_targets"]>
   composites: {}
 }
@@ -1069,7 +1035,6 @@ export interface user_targetsFieldRefs {
   readonly end_date: Prisma.FieldRef<"user_targets", 'DateTime'>
   readonly status: Prisma.FieldRef<"user_targets", 'String'>
   readonly created_at: Prisma.FieldRef<"user_targets", 'DateTime'>
-  readonly userId: Prisma.FieldRef<"user_targets", 'String'>
 }
     
 
