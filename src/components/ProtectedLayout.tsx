@@ -35,7 +35,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const greenColor = useColorModeValue('green.500', 'green.400');
   const greenColorHover = useColorModeValue('green.400', 'green.500');
   const greenBox = useColorModeValue('green.200', 'green.800');
-  const greenLogo = useColorModeValue('green.600', 'green.400');
+  const greenLogo = useColorModeValue('green.500', 'green.400');
 
   useEffect(() => {
     async function fetchUserData(): Promise<void> {
@@ -80,7 +80,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
             <Flex direction="row" gap="6">
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/dashboard" className="p-2 hoverText text-hover-light">
-                  <Text fontWeight={600}>Dashboard</Text>
+                  <Text fontWeight={500}>Dashboard</Text>
                 </Link>
                 {pathname === '/dashboard' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -88,7 +88,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/target" className="p-2 hoverText text-hover-light">
-                  <Text fontWeight={600}>Target</Text>
+                  <Text fontWeight={500}>Target</Text>
                 </Link>
                 {pathname === '/target' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -96,7 +96,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/journal" className="p-2 hoverText text-hover-light">
-                  <Text fontWeight={600}>Wellness Jurnal</Text>
+                  <Text fontWeight={500}>Wellness Jurnal</Text>
                 </Link>
                 {pathname === '/journal' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -104,7 +104,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/chatbot" className="p-2 hoverText text-hover-light">
-                  <Text fontWeight={600}>AI Chat</Text>
+                  <Text fontWeight={500}>AI Chat</Text>
                 </Link>
                 {pathname === '/chatbot' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
@@ -112,7 +112,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
               </div>
               <div className="h-full flex flex-col justify-center items-center relative">
                 <Link href="/analyze" className="p-2 hoverText text-hover-light">
-                  <Text fontWeight={600}>Analisis Nutrisi</Text>
+                  <Text fontWeight={500}>Analisis Nutrisi</Text>
                 </Link>
                 {pathname === '/analyze' && (
                   <Box height="1" width="full" bg={greenColor} position="absolute" bottom="0" rounded="lg" />
