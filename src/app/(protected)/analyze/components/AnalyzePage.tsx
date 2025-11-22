@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useActionState } from 'react';
+import { useState, useActionState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -62,7 +62,24 @@ const initialState: AnalyzeState = {
 export default function AnalyzePage() {
   const [inputType, setInputType] = useState<'image' | 'text'>('image');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [session, setSession] = useState();
   const [state, formAction, isPending] = useActionState(analyzeFood, initialState);
+
+  useEffect(() => {
+    async function fetchFoodLogs(): Promise<void> {
+      try {
+        const response = await fetch('/api/food');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSession(data.data);
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    }
+    fetchFoodLogs();
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -200,7 +217,7 @@ export default function AnalyzePage() {
           </Box>
         )}
 
-        {state.data && (
+        {!!state.data && (
           <VStack gap={6} align="stretch" animation="fade-in 0.5s">
             <Heading size="lg" color="green.700">
               Hasil Analisis

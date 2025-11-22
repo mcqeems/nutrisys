@@ -1,19 +1,6 @@
 import { prisma } from '@/prisma';
 import { auth } from '@/auth';
-import { getPresignedUrl } from '@/lib/actions/postUserImage';
-
-// Helper to convert S3 key to presigned URL
-async function getImageUrl(imageKey: string | null | undefined): Promise<string | null> {
-  if (!imageKey) return null;
-  // If it's already a full URL, return it
-  if (imageKey.startsWith('http')) return imageKey;
-  // Otherwise, generate presigned URL from S3 key
-  try {
-    return await getPresignedUrl(imageKey);
-  } catch {
-    return null;
-  }
-}
+import { getImageUrl } from './getImageUrl';
 
 export default async function getUsersInfo() {
   const userAuth = await auth();
