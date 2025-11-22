@@ -67,8 +67,8 @@ export async function getPresignedUrl(key: string): Promise<string> {
   });
 
   try {
-    // URL expires in 1 hour (3600 seconds)
-    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
+    // URL expires in 7 days (604800 seconds)
+    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 604800 });
     return signedUrl;
   } catch (error) {
     console.error('Error generating presigned URL:', error);

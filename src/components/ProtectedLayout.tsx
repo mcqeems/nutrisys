@@ -117,14 +117,21 @@ export default function ProtectedLayout({
               </Link>
               <Popover.Root>
                 <Popover.Trigger asChild>
-                  <IconButton aria-label="User Menu" rounded="full" bg={greenColor} _hover={{ bg: greenColorHover }}>
+                  <IconButton
+                    aria-label="User Menu"
+                    rounded="full"
+                    bg={greenColor}
+                    _hover={{ bg: greenColorHover }}
+                    overflow="hidden"
+                  >
                     {session?.image ? (
                       <Image
                         src={session.image}
                         alt="Profile Picture"
                         width={40}
                         height={40}
-                        className="rounded-full"
+                        className="rounded-full object-cover"
+                        style={{ width: '40px', height: '40px' }}
                       />
                     ) : (
                       <CircleUserIcon />
