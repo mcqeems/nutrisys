@@ -3,19 +3,14 @@ import { Leaf, Apple, ChevronRight, Scale, Clock } from "lucide-react";
 import { FloatingText } from "@/components/ui/floating-text";
 import TextType from "@/components/TextType";
 import Image from "next/image";
+import AnimatedBackground from "./AnimatedBackground";
 
 const HEALTH_MODEL_URL = "/Logo/nutrisys.webp";
 
 const HeroSection = () => {
   return (
-    <div
-      className="min-h-screen text-foreground relative flex items-center justify-center 
-      bg-[url('/Background/bg_2.webp')] bg-cover bg-center filter 
-      dark:bg-black dark:filter-none dark:blur-0"
-    >
-      <div className="absolute inset-0 bg-white/75 z-1 dark:bg-background/90" />
-
-      {/* Container Utama Konten - Beri z-10 agar selalu di atas overlay */}
+    <div className="min-h-screen text-foreground relative flex items-center justify-center">
+      <AnimatedBackground />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full z-10">
         <div className="flex flex-col lg:flex-row items-center lg:pt-16">
           <div className="w-full lg:w-1/2 z-10 space-y-4 md:space-y-6 lg:space-y-8 pb-8 lg:pb-0 text-center lg:text-left">
