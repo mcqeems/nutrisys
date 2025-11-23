@@ -22,7 +22,7 @@ export default function NutritionLabel({ data }: { data: NutritionData }) {
           borderRight={{ base: 'none', xl: '1px solid black' }}
           borderBottom={{ base: '1px solid black', xl: 'none' }}
         >
-          <Heading size="5xl" fontWeight="900" lineHeight="0.8" mb={6} letterSpacing="-2px">
+          <Heading size="3xl" fontWeight="900" lineHeight="0.8" mb={6} letterSpacing="-2px">
             Informasi Nilai Gizi
           </Heading>
 
@@ -37,15 +37,15 @@ export default function NutritionLabel({ data }: { data: NutritionData }) {
             </Flex>
           </Box>
 
-          <Box borderBottom="10px solid black" pb={4} mb={4}>
+          <Box borderBottom="10px solid black" pb={4} mb={4} spaceY="2">
             <Text fontWeight="bold" fontSize="md">
               Jumlah Per Sajian
             </Text>
-            <Flex align="baseline" gap={2}>
-              <Text fontWeight="900" fontSize="6xl">
-                Energi Total
+            <Flex direction="row" justifyContent="space-between" align="baseline" gap={2}>
+              <Text fontWeight="900" fontSize="xl">
+                Energi Total:
               </Text>
-              <Text fontWeight="900" fontSize="6xl">
+              <Text fontWeight="900" fontSize="xl">
                 {calories} kkal
               </Text>
             </Flex>

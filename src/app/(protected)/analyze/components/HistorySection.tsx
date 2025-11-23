@@ -90,39 +90,42 @@ export default function HistorySection({
             scrollbarWidth: 'none',
           }}
         >
-          {foods.slice(0, 10).map((log) => (
-            <Card.Root
-              key={log.id}
-              minW="280px"
-              maxW="280px"
-              cursor="pointer"
-              onClick={() => onSelect(log)}
-              _hover={{ shadow: 'md', transform: 'translateY(-2px)' }}
-              transition="all 0.2s"
-              flexShrink={0}
-            >
-              <ChakraImage
-                src={log.image_url || '/food_mockup.webp'}
-                h="140px"
-                w="full"
-                objectFit="cover"
-                borderTopRadius="md"
-              />
-              <Card.Body p={3}>
-                <VStack align="start" gap={1}>
-                  <Heading size="sm" lineClamp={1}>
-                    {log.description.food_name}
-                  </Heading>
-                  <Text fontSize="xs" color="gray.500">
-                    {new Date(log.log_date).toLocaleDateString('id-ID', { dateStyle: 'medium' })}
-                  </Text>
-                  <Badge size="sm" colorPalette="green" variant="surface">
-                    {log.description.nutritional_facts.calories} kkal
-                  </Badge>
-                </VStack>
-              </Card.Body>
-            </Card.Root>
-          ))}
+          {[...foods]
+            .sort((a, b) => new Date(b.log_date).getTime() - new Date(a.log_date).getTime())
+            .slice(0, 10)
+            .map((log) => (
+              <Card.Root
+                key={log.id}
+                minW="280px"
+                maxW="280px"
+                cursor="pointer"
+                onClick={() => onSelect(log)}
+                _hover={{ shadow: 'md', transform: 'translateY(-2px)' }}
+                transition="all 0.2s"
+                flexShrink={0}
+              >
+                <ChakraImage
+                  src={log.image_url || '/food_mockup.webp'}
+                  h="140px"
+                  w="full"
+                  objectFit="cover"
+                  borderTopRadius="md"
+                />
+                <Card.Body p={3}>
+                  <VStack align="start" gap={1}>
+                    <Heading size="sm" lineClamp={1}>
+                      {log.description.food_name}
+                    </Heading>
+                    <Text fontSize="xs" color="gray.500">
+                      {new Date(log.log_date).toLocaleDateString('id-ID', { dateStyle: 'medium' })}
+                    </Text>
+                    <Badge size="sm" colorPalette="green" variant="surface">
+                      {log.description.nutritional_facts.calories} kkal
+                    </Badge>
+                  </VStack>
+                </Card.Body>
+              </Card.Root>
+            ))}
         </Flex>
 
         {showRight && (

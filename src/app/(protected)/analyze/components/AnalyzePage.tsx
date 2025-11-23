@@ -276,10 +276,6 @@ export default function AnalyzePage() {
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content maxW="5xl" maxH="90vh">
-            <Dialog.Header>
-              <Dialog.Title>Detail Analisis</Dialog.Title>
-              <Dialog.CloseTrigger />
-            </Dialog.Header>
             <Dialog.Body p={0}>
               {selectedLog && (
                 <Box p={6}>
