@@ -14,44 +14,15 @@ import {
   Tabs,
   Image as ChakraImage,
   Card,
-  Badge,
   Grid,
-  Separator,
+  Dialog,
+  Badge,
 } from '@chakra-ui/react';
-import { UploadCloudIcon, FileTextIcon, CameraIcon, ScanSearchIcon } from 'lucide-react';
-import { analyzeFood, AnalyzeState } from '../actions';
-
-// Define types for the response
-interface NutritionData {
-  food_name: string;
-  description: string;
-  origin: string;
-  portion_size: {
-    amount: number;
-    unit: string;
-  };
-  nutritional_facts: {
-    calories: number;
-    macronutrients: {
-      carbohydrates: number;
-      protein: number;
-      fat: number;
-    };
-    micronutrients: {
-      fiber: number;
-      sugar: number;
-      sodium: number;
-      cholesterol: number;
-      vitamins: Record<string, number>;
-      minerals: Record<string, number>;
-    };
-  };
-  health_analysis: {
-    summary: string;
-    recommended_for: string;
-    cautions: string;
-  };
-}
+import { UploadCloudIcon, FileTextIcon, CameraIcon, ScanSearchIcon, ClockIcon } from 'lucide-react';
+import { analyzeFood, AnalyzeState } from '../actions/actions';
+import HistorySection from './HistorySection';
+import AnalysisResult from './AnalysisResult';
+import { NutritionData, FoodLog } from '../types/types';
 
 const initialState: AnalyzeState = {
   success: false,
@@ -62,8 +33,10 @@ const initialState: AnalyzeState = {
 export default function AnalyzePage() {
   const [inputType, setInputType] = useState<'image' | 'text'>('image');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [session, setSession] = useState();
+  const [foods, setFoods] = useState<FoodLog[]>([]);
   const [state, formAction, isPending] = useActionState(analyzeFood, initialState);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [selectedLog, setSelectedLog] = useState<FoodLog | null>(null);
 
   useEffect(() => {
     async function fetchFoodLogs(): Promise<void> {
@@ -73,13 +46,13 @@ export default function AnalyzePage() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setSession(data.data);
+        setFoods(data.data || []);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
     }
     fetchFoodLogs();
-  }, []);
+  }, [state.success]); // Refresh when new analysis is successful
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -90,7 +63,7 @@ export default function AnalyzePage() {
   };
 
   return (
-    <Container maxW="4xl" py={8}>
+    <Container maxW="full" py={8}>
       <VStack gap={8} align="stretch">
         <Box textAlign="center">
           <Heading size="2xl" mb={2} color="green.600">
@@ -210,6 +183,15 @@ export default function AnalyzePage() {
           </Card.Body>
         </Card.Root>
 
+        {/* History Section */}
+        {foods && foods.length > 0 && (
+          <HistorySection
+            foods={foods}
+            onViewAll={() => setIsHistoryOpen(true)}
+            onSelect={(log) => setSelectedLog(log)}
+          />
+        )}
+
         {state.error && (
           <Box p={4} bg="red.100" color="red.700" rounded="md">
             <Text fontWeight="bold">Error:</Text>
@@ -218,102 +200,107 @@ export default function AnalyzePage() {
         )}
 
         {!!state.data && (
-          <VStack gap={6} align="stretch" animation="fade-in 0.5s">
+          <VStack gap={8} align="stretch" animation="fade-in 0.5s">
             <Heading size="lg" color="green.700">
-              Hasil Analisis
+              Hasil Analisis Baru
             </Heading>
-
-            <Card.Root variant="outline" borderColor="green.200" overflow="hidden">
-              <Box bg="green.50" p={4} borderBottomWidth="1px" borderColor="green.200">
-                <Flex justify="space-between" align="center" wrap="wrap" gap={2}>
-                  <Box>
-                    <Heading size="xl" color="green.800">
-                      {(state.data as NutritionData).food_name}
-                    </Heading>
-                    <Text color="gray.600">{(state.data as NutritionData).origin}</Text>
-                  </Box>
-                  <Badge colorPalette="green" size="lg" variant="solid">
-                    {(state.data as NutritionData).nutritional_facts.calories} kkal
-                  </Badge>
-                </Flex>
-              </Box>
-              <Card.Body>
-                <Text mb={6} fontSize="lg">
-                  {(state.data as NutritionData).description}
-                </Text>
-
-                <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} mb={6}>
-                  <StatBox
-                    label="Karbohidrat"
-                    value={`${(state.data as NutritionData).nutritional_facts.macronutrients.carbohydrates}g`}
-                    color="blue"
-                  />
-                  <StatBox
-                    label="Protein"
-                    value={`${(state.data as NutritionData).nutritional_facts.macronutrients.protein}g`}
-                    color="green"
-                  />
-                  <StatBox
-                    label="Lemak"
-                    value={`${(state.data as NutritionData).nutritional_facts.macronutrients.fat}g`}
-                    color="orange"
-                  />
-                </Grid>
-
-                <Separator my={4} />
-
-                <Heading size="md" mb={3}>
-                  Analisis Kesehatan
-                </Heading>
-                <VStack align="stretch" gap={3}>
-                  <InfoBox title="Ringkasan" content={(state.data as NutritionData).health_analysis.summary} />
-                  <InfoBox
-                    title="Direkomendasikan Untuk"
-                    content={(state.data as NutritionData).health_analysis.recommended_for}
-                  />
-                  <InfoBox
-                    title="Peringatan"
-                    content={(state.data as NutritionData).health_analysis.cautions}
-                    isWarning
-                  />
-                </VStack>
-              </Card.Body>
-            </Card.Root>
+            <AnalysisResult data={state.data as NutritionData} />
           </VStack>
         )}
       </VStack>
+
+      {/* History Modal */}
+      <Dialog.Root
+        open={isHistoryOpen}
+        onOpenChange={(e) => setIsHistoryOpen(e.open)}
+        size="xl"
+        scrollBehavior="inside"
+      >
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content maxW="4xl" maxH="85vh">
+            <Dialog.Header>
+              <Dialog.Title>Riwayat Analisis Makanan</Dialog.Title>
+              <Dialog.CloseTrigger />
+            </Dialog.Header>
+            <Dialog.Body>
+              <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4}>
+                {foods.map((log) => (
+                  <Card.Root
+                    key={log.id}
+                    cursor="pointer"
+                    onClick={() => {
+                      setSelectedLog(log);
+                      // Optional: Keep history open or close it?
+                      // Let's keep it open so user can go back easily, but the detail modal will overlay it.
+                    }}
+                    _hover={{ shadow: 'md', borderColor: 'green.400' }}
+                    transition="all 0.2s"
+                  >
+                    {log.image_url && (
+                      <ChakraImage src={log.image_url} h="150px" w="full" objectFit="cover" borderTopRadius="md" />
+                    )}
+                    <Card.Body p={4}>
+                      <VStack align="start" gap={2}>
+                        <Heading size="sm" lineClamp={1}>
+                          {log.description.food_name}
+                        </Heading>
+                        <Flex align="center" gap={2} color="gray.500" fontSize="xs">
+                          <ClockIcon size={12} />
+                          <Text>
+                            {new Date(log.log_date).toLocaleDateString('id-ID', {
+                              dateStyle: 'medium',
+                            })}
+                          </Text>
+                        </Flex>
+                        <Badge colorPalette="green" variant="surface">
+                          {log.description.nutritional_facts.calories} kkal
+                        </Badge>
+                      </VStack>
+                    </Card.Body>
+                  </Card.Root>
+                ))}
+              </Grid>
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
+
+      {/* Detail Modal */}
+      <Dialog.Root
+        open={!!selectedLog}
+        onOpenChange={(e) => !e.open && setSelectedLog(null)}
+        size="xl"
+        scrollBehavior="inside"
+      >
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content maxW="5xl" maxH="90vh">
+            <Dialog.Header>
+              <Dialog.Title>Detail Analisis</Dialog.Title>
+              <Dialog.CloseTrigger />
+            </Dialog.Header>
+            <Dialog.Body p={0}>
+              {selectedLog && (
+                <Box p={6}>
+                  {selectedLog.image_url && (
+                    <Box mb={6} display="flex" justifyContent="center">
+                      <ChakraImage
+                        src={selectedLog.image_url}
+                        maxH="300px"
+                        objectFit="contain"
+                        rounded="lg"
+                        shadow="md"
+                      />
+                    </Box>
+                  )}
+                  <AnalysisResult data={selectedLog.description} />
+                </Box>
+              )}
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </Container>
-  );
-}
-
-function StatBox({ label, value, color }: { label: string; value: string; color: string }) {
-  return (
-    <Box p={3} bg={`${color}.50`} rounded="lg" textAlign="center" border="1px solid" borderColor={`${color}.200`}>
-      <Text fontSize="sm" color="gray.600">
-        {label}
-      </Text>
-      <Text fontSize="2xl" fontWeight="bold" color={`${color}.600`}>
-        {value}
-      </Text>
-    </Box>
-  );
-}
-
-function InfoBox({ title, content, isWarning = false }: { title: string; content: string; isWarning?: boolean }) {
-  return (
-    <Box
-      p={3}
-      bg={isWarning ? 'orange.50' : 'gray.50'}
-      rounded="md"
-      borderLeft="4px solid"
-      borderColor={isWarning ? 'orange.400' : 'green.400'}
-    >
-      <Text fontWeight="bold" mb={1} color={isWarning ? 'orange.700' : 'gray.700'}>
-        {title}
-      </Text>
-      <Text fontSize="sm" color="gray.700">
-        {content}
-      </Text>
-    </Box>
   );
 }
