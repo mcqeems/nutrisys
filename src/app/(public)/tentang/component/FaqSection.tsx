@@ -65,9 +65,9 @@ function FaqSection() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 animate-[slide-up_0.8s_ease-out]">
               <h2 className="text-5xl md:text-4xl font-bold mb-4">
-                Frequently Asked{" "}
+                Seputar{" "}
                 <span className="text-linear animate-[pulse-glow_3s_ease-in-out_infinite]">
-                  Questions
+                  Nutrisys
                 </span>
               </h2>
 
@@ -81,7 +81,7 @@ function FaqSection() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="relative border border-border/50 p-4 text-xl rounded-xl bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] animate-[fade-in_0.6s_ease-out_backwards] group overflow-hidden"
+                  className="relative border border-border/90 px-4 py-2 text-xl rounded-xl bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] animate-[fade-in_0.6s_ease-out_backwards] group overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {/* Animated linear background on hover */}
@@ -92,7 +92,7 @@ function FaqSection() {
 
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-primary/10 to-transparent" />
 
-                  <AccordionTrigger className="relative text-left font-semibold hover:text-primary hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary">
+                  <AccordionTrigger className="relative text-left text-xl font-semibold hover:text-primary hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary">
                     <span className="flex items-center gap-3 group-hover:translate-x-2 transition-transform duration-300">
                       <span className="w-2 h-2 rounded-full bg-primary/50 group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
 
