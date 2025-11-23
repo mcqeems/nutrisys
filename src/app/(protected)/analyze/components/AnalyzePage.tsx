@@ -17,6 +17,7 @@ import {
   Grid,
   Dialog,
   Badge,
+  Skeleton,
 } from '@chakra-ui/react';
 import { UploadCloudIcon, FileTextIcon, CameraIcon, ScanSearchIcon, ClockIcon } from 'lucide-react';
 import { analyzeFood, AnalyzeState } from '../actions/actions';
@@ -34,6 +35,7 @@ export default function AnalyzePage() {
   const [inputType, setInputType] = useState<'image' | 'text'>('image');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [foods, setFoods] = useState<FoodLog[]>([]);
+  const [foodsLoading, setFoodsLoading] = useState(true);
   const [state, formAction, isPending] = useActionState(analyzeFood, initialState);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [selectedLog, setSelectedLog] = useState<FoodLog | null>(null);
@@ -47,6 +49,7 @@ export default function AnalyzePage() {
         }
         const data = await response.json();
         setFoods(data.data || []);
+        setFoodsLoading(false);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
@@ -184,12 +187,14 @@ export default function AnalyzePage() {
         </Card.Root>
 
         {/* History Section */}
-        {foods && foods.length > 0 && (
+        {foods && foods.length > 0 ? (
           <HistorySection
             foods={foods}
             onViewAll={() => setIsHistoryOpen(true)}
             onSelect={(log) => setSelectedLog(log)}
           />
+        ) : (
+          foodsLoading && <Skeleton height="200px" />
         )}
 
         {state.error && (

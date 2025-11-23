@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Flex, Box, IconButton, Text, Popover, Portal, Button } from '@chakra-ui/react';
+import { Container, Flex, Box, IconButton, Text, Popover, Portal, Button, Spinner } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect } from 'react';
@@ -30,6 +30,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [session, setSession] = useState<UserInfo | null>(null);
+  const [loadingUser, setLoadingUser] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const { toggleColorMode, colorMode } = useColorMode();
   const greenColor = useColorModeValue('green.500', 'green.400');
@@ -46,6 +47,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
         }
         const data = await response.json();
         setSession(data.data);
+        setLoadingUser(false);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
@@ -153,6 +155,8 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
                         className="rounded-full object-cover"
                         style={{ width: '40px', height: '40px' }}
                       />
+                    ) : loadingUser ? (
+                      <Spinner />
                     ) : (
                       <CircleUserIcon />
                     )}
