@@ -40,7 +40,7 @@ export default function AnalysisResult({ data }: { data: NutritionData }) {
               <Heading size="lg" color="green.700" mb={6}>
                 Analisis Kesehatan
               </Heading>
-              <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
+              <Flex direction="column" gap="4">
                 <InfoBox title="Ringkasan Nutrisi" content={data.health_analysis.summary} icon="🥗" />
                 <InfoBox
                   title="Direkomendasikan Untuk"
@@ -49,7 +49,7 @@ export default function AnalysisResult({ data }: { data: NutritionData }) {
                   colorScheme="blue"
                 />
                 <InfoBox title="Peringatan Kesehatan" content={data.health_analysis.cautions} isWarning icon="⚠️" />
-              </Grid>
+              </Flex>
             </Box>
           </VStack>
         </VStack>
