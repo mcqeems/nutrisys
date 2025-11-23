@@ -68,7 +68,7 @@ export function AnimatedBackground() {
     } as Transition,
   });
 
-  const smallDotAnim1 = getFloatAnimation(-50, 20, 5, 0);
+  const smallDotAnim1 = getFloatAnimation(5, -5, 5, 5);
   const smallDotAnim2 = getFloatAnimation(60, -15, 6, 1);
   const smallDotAnim3 = getFloatAnimation(-45, 25, 5.5, 0.5);
   const smallDotAnim4 = getFloatAnimation(55, -18, 6.5, 2);
@@ -76,7 +76,7 @@ export function AnimatedBackground() {
   const emojiAnim1 = getFloatAnimation(-70, 30, 7, 0.4);
   const emojiAnim2 = getFloatAnimation(65, -28, 6.5, 1.6);
   const emojiAnim3 = getFloatAnimation(-55, 22, 5.8, 0.9);
-  const emojiAnim4 = getFloatAnimation(75, -20, 7.5, 2.3);
+  const emojiAnim4 = getFloatAnimation(5, -5, 5, 5);
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">
@@ -187,22 +187,22 @@ export function AnimatedBackground() {
         className="absolute top-1/5 left-1/5 text-3xl" 
         animate={emojiAnim1}
       >
-        🥕
+        
       </motion.div>
       <motion.div
         className="absolute bottom-1/5 right-1/5 text-2xl" 
         animate={emojiAnim2}
       >
-        🥕
+        
       </motion.div>
       <motion.div
         className="absolute top-1/2 right-1/4 text-xl" 
         animate={emojiAnim3}
       >
-        🥕
+        
       </motion.div>
       <motion.div
-        className="absolute bottom-1/4 left-1/4 text-lg" // <-- Posisi Baru
+        className="absolute bottom-1/8 left-1/8 text-lg" // <-- Posisi Baru
         animate={emojiAnim4}
       >
         💧
