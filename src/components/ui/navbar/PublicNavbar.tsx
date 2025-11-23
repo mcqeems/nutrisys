@@ -18,8 +18,8 @@ function PublicNavbar() {
   };
 
   return (
-    <div className="fixed top-0 bg-background/10 inset-x-0 z-50 backdrop-blur">
-      <nav className="bg-transparent text-foreground border-border">
+    <div className="fixed top-0 bg-transparent backdrop-blur inset-x-0 z-50">
+      <nav className="bg-transparent text-foreground border-border/90">
         <div className="max-w-7xl mx-auto">
           <div className="flex mx-auto justify-between w-5/6 ">
             <div className="flex items-center gap-16 my-6 lg:my-8">
@@ -62,7 +62,7 @@ function PublicNavbar() {
                   Fitur
                 </a>
                 <a
-                  href="/chatbot"
+                  href="/chatbott"
                   className="hover:text-primary transition-colors"
                 >
                   Chatbot
@@ -135,9 +135,9 @@ function PublicNavbar() {
         </div>
         {/* mobile navigation */}
         <div
-          className={`fixed z-40 w-full bg-background overflow-hidden flex flex-col lg:hidden gap-12 
+          className={`fixed z-40 w-full bg-background/90 backdrop-blur overflow-hidden flex flex-col lg:hidden gap-12 
             origin-top duration-700 shadow-xl ${
-              !toggleMenu ? "h-0" : "h-full p-6" // Tambahkan padding saat terbuka
+              !toggleMenu ? "h-0" : " p-6" 
             }`}
         >
           <div className="px-8">
@@ -149,7 +149,7 @@ function PublicNavbar() {
                 Fitur
               </a>
               <a
-                href="/chatbot"
+                href="/chatbott"
                 className="border-l-4 border-transparent hover:border-border pl-2"
               >
                 Chatbot
@@ -171,8 +171,8 @@ function PublicNavbar() {
               <div className="mt-4 flex flex-col gap-4">
                 <Link
                   href="/login"
-                  className="w-full text-center rounded-lg border border-border py-2 px-6 
-                             hover:bg-accent hover:text-accent-foreground transition-colors"
+                  className="w-full text-center rounded-lg border border-primary py-2 px-6 
+                             bg-primary text-primary-foreground hover:opacity-80 transition-opacity"
                 >
                   Sign In
                 </Link>
