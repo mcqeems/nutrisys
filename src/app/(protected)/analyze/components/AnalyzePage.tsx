@@ -186,6 +186,15 @@ export default function AnalyzePage() {
           </Card.Body>
         </Card.Root>
 
+        {!!state.data && (
+          <VStack gap={8} align="stretch" animation="fade-in 0.5s">
+            <Heading size="lg" color="green.700">
+              Hasil Analisis Baru
+            </Heading>
+            <AnalysisResult data={state.data as NutritionData} />
+          </VStack>
+        )}
+
         {/* History Section */}
         {foods && foods.length > 0 ? (
           <HistorySection
@@ -202,15 +211,6 @@ export default function AnalyzePage() {
             <Text fontWeight="bold">Error:</Text>
             <Text>{state.error}</Text>
           </Box>
-        )}
-
-        {!!state.data && (
-          <VStack gap={8} align="stretch" animation="fade-in 0.5s">
-            <Heading size="lg" color="green.700">
-              Hasil Analisis Baru
-            </Heading>
-            <AnalysisResult data={state.data as NutritionData} />
-          </VStack>
         )}
       </VStack>
 
