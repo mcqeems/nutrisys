@@ -242,9 +242,13 @@ export default function AnalyzePage() {
                     _hover={{ shadow: 'md', borderColor: 'green.400' }}
                     transition="all 0.2s"
                   >
-                    {log.image_url && (
-                      <ChakraImage src={log.image_url} h="150px" w="full" objectFit="cover" borderTopRadius="md" />
-                    )}
+                    <ChakraImage
+                      src={log.image_url || '/food_mockup.webp'}
+                      h="150px"
+                      w="full"
+                      objectFit="cover"
+                      borderTopRadius="md"
+                    />
                     <Card.Body p={4}>
                       <VStack align="start" gap={2}>
                         <Heading size="sm" lineClamp={1}>
