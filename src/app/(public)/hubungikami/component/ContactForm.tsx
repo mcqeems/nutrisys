@@ -34,7 +34,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <Card className="p-8 border-2 border-border/50 bg-card/50 hover:border-primary/30">
+      <Card className="p-8 border-2 border-border bg-card/50 hover:border-primary/30">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
           Kirim Pesan Kami
         </h2>
