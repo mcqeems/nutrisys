@@ -1,20 +1,15 @@
-"use client";
-import { useState } from "react";
-import {
-  PaperAirplaneIcon,
-  MoonIcon,
-  SunIcon,
-  Bars3Icon,
-} from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import { PaperAirplaneIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 function PublicNavbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -24,16 +19,8 @@ function PublicNavbar() {
           <div className="flex mx-auto justify-between w-5/6 ">
             <div className="flex items-center gap-16 my-6 lg:my-8">
               <div>
-                <Link
-                  href="/"
-                  className="flex gap-1 font-bold items-center text-foreground"
-                >
-                  <Image
-                    src="/Logo/nutrisys.webp"
-                    width={30}
-                    height={30}
-                    alt="NutriSys Nutrition Analysis"
-                  />
+                <Link href="/" className="flex gap-1 font-bold items-center text-foreground">
+                  <Image src="/Logo/nutrisys.webp" width={30} height={30} alt="NutriSys Nutrition Analysis" />
 
                   <div className="flex items-center gap-1.5 font-[1000] leading-none"></div>
                   <div className="-mt-1 hidden text-xl sm:block">
@@ -55,28 +42,13 @@ function PublicNavbar() {
               </div>
               {/* primary */}
               <div className="hidden lg:flex gap-8">
-                <a
-                  href="/fitur"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/features" className="hover:text-primary transition-colors">
                   Fitur
                 </a>
-                <a
-                  href="/chatbott"
-                  className="hover:text-primary transition-colors"
-                >
-                  Chatbot
-                </a>
-                <a
-                  href="/tentang"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/about" className="hover:text-primary transition-colors">
                   Tentang
                 </a>
-                <a
-                  href="/hubungikami"
-                  className="hover:text-primary transition-colors"
-                >
+                <a href="/contact-us" className="hover:text-primary transition-colors">
                   Hubungi Kami
                 </a>
               </div>
@@ -90,17 +62,11 @@ function PublicNavbar() {
                   className="p-2 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors focus:ring-2 focus:ring-ring"
                   aria-label="Toggle Theme"
                 >
-                  {theme === "dark" ? (
-                    <SunIcon
-                      suppressHydrationWarning
-                      className="h-6 w-6 text-yellow-400"
-                    />
+                  {theme === 'dark' ? (
+                    <SunIcon suppressHydrationWarning className="h-6 w-6 text-yellow-400" />
                   ) : (
                     // Di Light Mode, ikon Moon harus terlihat seperti foreground
-                    <MoonIcon
-                      suppressHydrationWarning
-                      className="h-6 w-6 text-foreground"
-                    />
+                    <MoonIcon suppressHydrationWarning className="h-6 w-6 text-foreground" />
                   )}
                 </button>
 
@@ -136,34 +102,20 @@ function PublicNavbar() {
         {/* mobile navigation */}
         <div
           className={`fixed z-40 w-full bg-background/90 backdrop-blur overflow-hidden flex flex-col lg:hidden gap-12 
-            origin-top duration-700 shadow-xl ${
-              !toggleMenu ? "h-0" : " p-6" 
-            }`}
+            origin-top duration-700 shadow-xl ${!toggleMenu ? 'h-0' : ' p-6'}`}
         >
           <div className="px-8">
             <div className="flex flex-col gap-8 font-bold tracking-wider">
-              <a
-                href="/fitur"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/fitur" className="border-l-4 border-transparent hover:border-border pl-2">
                 Fitur
               </a>
-              <a
-                href="/chatbott"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/chatbott" className="border-l-4 border-transparent hover:border-border pl-2">
                 Chatbot
               </a>
-              <a
-                href="/tentang"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/tentang" className="border-l-4 border-transparent hover:border-border pl-2">
                 Tentang
               </a>
-              <a
-                href="/hubungikami"
-                className="border-l-4 border-transparent hover:border-border pl-2"
-              >
+              <a href="/hubungikami" className="border-l-4 border-transparent hover:border-border pl-2">
                 Hubungi Kami
               </a>
 

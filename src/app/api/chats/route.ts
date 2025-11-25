@@ -20,6 +20,8 @@ export async function GET() {
         { status: 404 }
       );
     }
+
+    return NextResponse.json({ data });
   } catch (error) {
     console.error('Error fetching chat logs:', error);
     return NextResponse.json({ error: 'Error fetching chat logs.' }, { status: 500 });
