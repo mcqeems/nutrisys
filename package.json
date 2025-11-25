@@ -26,6 +26,7 @@
     "dotenv": "^17.2.3",
     "gsap": "^3.13.0",
     "jscodeshift": "^17.3.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.553.0",
     "motion": "^12.23.24",
     "next": "16.0.1",
