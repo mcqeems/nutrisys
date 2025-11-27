@@ -10,15 +10,14 @@ interface FooterLink {
 
 // Data Tautan Navigasi Cepat
 const navLinks: FooterLink[] = [
-  { href: "/fitur", label: "Fitur Unggulan" },
-  { href: "/harga", label: "Harga & Paket" },
-  { href: "/tentang", label: "Tentang Kami" },
-  { href: "/kontak", label: "Hubungi Kami" },
+  { href: "/features", label: "Fitur Unggulan" },
+  { href: "/about", label: "Tentang Kami" },
+  { href: "/contact-us", label: "Hubungi Kami" },
 ];
 
 const resourceLinks: FooterLink[] = [
   { href: "/blog", label: "Blog Kesehatan" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/syarat", label: "Syarat & Ketentuan" },
   { href: "/privasi", label: "Kebijakan Privasi" },
 ];
