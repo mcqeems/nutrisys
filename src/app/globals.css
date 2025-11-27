@@ -212,3 +212,43 @@
     transform: scale(1.05);
   }
 }
+
+
+/* Animasi Pergerakan Atas-Bawah (Float) */
+@keyframes chatbot-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Animasi Shadow Glow (Light Mode) */
+@keyframes chatbot-shadow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.7); 
+    filter: brightness(1);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(var(--primary-rgb), 1); 
+    filter: brightness(1.1);
+  }
+}
+
+/* Animasi Chatbot Public*/
+.dark .chatbot-pulse-float {
+    animation: chatbot-float 3s ease-in-out infinite, chatbot-shadow-pulse-dark 3s ease-in-out infinite;
+}
+
+@keyframes chatbot-shadow-pulse-dark {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.5); 
+    filter: brightness(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.8); 
+    filter: brightness(1.2);
+  }
+}
+
+.chatbot-pulse-float {
+    animation: chatbot-float 3s ease-in-out infinite, chatbot-shadow-pulse 3s ease-in-out infinite;
+}
