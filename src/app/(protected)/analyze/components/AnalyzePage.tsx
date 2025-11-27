@@ -24,6 +24,7 @@ import { analyzeFood, AnalyzeState } from '../actions/actions';
 import HistorySection from './HistorySection';
 import AnalysisResult from './AnalysisResult';
 import { NutritionData, FoodLog } from '../types/types';
+import RandomAnimation from './RandomAnimation';
 
 const initialState: AnalyzeState = {
   success: false,
@@ -69,12 +70,17 @@ export default function AnalyzePage() {
     <Container maxW="full" py={8}>
       <VStack gap={8} align="stretch">
         <Box textAlign="center">
-          <Heading size="2xl" mb={2} color="green.600">
-            Smart Food Analyzer
-          </Heading>
-          <Text color="gray.500">
-            Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.
-          </Text>
+          <Flex direction="column" alignItems="center" justifyContent="center">
+            <Heading size="2xl" mb={2} color="green.600">
+              Smart Food Analyzer
+            </Heading>
+            <Text color="gray.500">
+              Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.
+            </Text>
+            <Box bg="transparent" w="full" maxW="200px" mt="4">
+              <RandomAnimation />
+            </Box>
+          </Flex>
         </Box>
 
         <Card.Root variant="elevated">
