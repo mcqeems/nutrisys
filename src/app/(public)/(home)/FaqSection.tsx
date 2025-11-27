@@ -50,7 +50,7 @@ function FaqSection() {
     },
   ];
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
+    <section className="py-16 md:py-24 relative overflow-hidden" id="faq">
       {/* Animated background elements */}
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
