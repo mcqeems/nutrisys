@@ -1,9 +1,12 @@
 'use client';
 
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
 import Book from './Book';
+import type { Journals } from '../types/types';
 
 export default function JournalPage() {
+  const [journals, setJournals] = useState();
   return (
     <Container>
       <Flex direction="column" alignItems="center" justifyContent="center" textAlign="center">

@@ -45,6 +45,7 @@ const RenderMessage = ({ content, isUser }: { content: string; isUser: boolean }
               color={isUser ? 'white' : linkColor}
               textDecoration="underline"
               _hover={{ color: isUser ? 'gray.200' : linkHover }}
+              transition="all"
             >
               {text}
             </ChakraLink>
@@ -297,6 +298,12 @@ export default function ChatbotPage() {
                   >
                     <Box whiteSpace="pre-wrap" lineHeight="tall">
                       <RenderMessage content={msg.message} isUser={msg.sender_type === 'user'} />
+                      <Text fontSize="14px" color={msg.sender_type === 'bot' ? 'gray.400' : 'gray.700'} textAlign="end">
+                        {new Date(msg.timestamp).toLocaleString('id-ID', {
+                          timeStyle: 'short',
+                          dateStyle: 'medium',
+                        })}
+                      </Text>
                     </Box>
                   </Box>
 
