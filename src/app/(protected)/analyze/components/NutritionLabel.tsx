@@ -8,7 +8,7 @@ export default function NutritionLabel({ data }: { data: NutritionData }) {
   return (
     <Box
       border="1px solid"
-      borderColor="gray.500"
+      borderColor="gray.400"
       bg="white"
       color="black"
       fontFamily="Helvetica, Arial, sans-serif"

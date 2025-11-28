@@ -1,4 +1,4 @@
-import { Card, VStack, Flex, Box, Text, Separator, Heading, Grid } from '@chakra-ui/react';
+import { Card, VStack, Flex, Box, Text, Separator, Heading } from '@chakra-ui/react';
 import NutritionLabel from './NutritionLabel';
 import { NutritionData } from '../types/types';
 
@@ -14,7 +14,7 @@ export default function AnalysisResult({ data }: { data: NutritionData }) {
                 <Heading size="3xl" mb={2} color="green.800">
                   {data.food_name}
                 </Heading>
-                <Text fontSize="xl" color="gray.500" fontWeight="medium">
+                <Text fontSize="xl" color="gray.400" fontWeight="medium">
                   {data.origin}
                 </Text>
               </Box>

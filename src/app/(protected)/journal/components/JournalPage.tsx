@@ -10,12 +10,24 @@ export default function JournalPage() {
         <Heading size="2xl" mb={2} color="green.600">
           Wellness Journal
         </Heading>
-        <Text color="gray.500">
+        <Text color="gray.400">
           Tulis catatan mengenai perkembangan kesehatan nutrisi anda dan dapatkan balasan dari Nutrisys AI.
         </Text>
+      </Flex>
+      <Flex
+        direction="column"
+        minHeight="400px"
+        rounded="lg"
+        border="2px dashed"
+        alignItems="center"
+        justifyContent="center"
+        borderColor="gray.400"
+        mt="2"
+      >
         <Box bg="transparent" w="full" maxW="200px" mt="4">
           <Book />
         </Box>
+        <Text color="gray.400">Belum ada catatan jurnal.</Text>
       </Flex>
     </Container>
   );

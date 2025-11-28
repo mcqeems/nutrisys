@@ -24,6 +24,7 @@ import { analyzeFood, AnalyzeState } from '../actions/actions';
 import HistorySection from './HistorySection';
 import AnalysisResult from './AnalysisResult';
 import { NutritionData, FoodLog } from '../types/types';
+import { useColorModeValue } from '@/components/ui/color-mode';
 import RandomAnimation from './RandomAnimation';
 
 const initialState: AnalyzeState = {
@@ -40,6 +41,8 @@ export default function AnalyzePage() {
   const [state, formAction, isPending] = useActionState(analyzeFood, initialState);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [selectedLog, setSelectedLog] = useState<FoodLog | null>(null);
+  const foodUploadColor = useColorModeValue('gray.50', 'gray.800');
+  const foodUploadColorHover = useColorModeValue('green.50', 'green.800');
 
   useEffect(() => {
     async function fetchFoodLogs(): Promise<void> {
@@ -74,7 +77,7 @@ export default function AnalyzePage() {
             <Heading size="2xl" mb={2} color="green.600">
               Smart Food Analyzer
             </Heading>
-            <Text color="gray.500">
+            <Text color="gray.400">
               Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.
             </Text>
             <Box bg="transparent" w="full" maxW="200px" mt="4">
@@ -114,8 +117,8 @@ export default function AnalyzePage() {
                       p={10}
                       w="full"
                       textAlign="center"
-                      bg="gray.50"
-                      _hover={{ borderColor: 'green.400', bg: 'green.50' }}
+                      bg={foodUploadColor}
+                      _hover={{ borderColor: 'green.400', bg: foodUploadColorHover }}
                       transition="all 0.2s"
                       position="relative"
                     >
@@ -137,7 +140,7 @@ export default function AnalyzePage() {
                       {previewUrl ? (
                         <VStack>
                           <ChakraImage src={previewUrl} maxH="300px" objectFit="contain" rounded="md" shadow="md" />
-                          <Text fontSize="sm" color="gray.500">
+                          <Text fontSize="sm" color="gray.400">
                             Klik untuk ganti foto
                           </Text>
                         </VStack>
@@ -145,7 +148,7 @@ export default function AnalyzePage() {
                         <VStack gap={2}>
                           <UploadCloudIcon size={48} color="#48BB78" />
                           <Text fontWeight="bold">Klik atau drag foto makanan di sini</Text>
-                          <Text fontSize="sm" color="gray.500">
+                          <Text fontSize="sm" color="gray.400">
                             Support JPG, PNG, WEBP (Max 2MB)
                           </Text>
                         </VStack>
@@ -260,7 +263,7 @@ export default function AnalyzePage() {
                         <Heading size="sm" lineClamp={1}>
                           {log.description.food_name}
                         </Heading>
-                        <Flex align="center" gap={2} color="gray.500" fontSize="xs">
+                        <Flex align="center" gap={2} color="gray.400" fontSize="xs">
                           <ClockIcon size={12} />
                           <Text>
                             {new Date(log.log_date).toLocaleDateString('id-ID', {

@@ -226,7 +226,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                       <Text fontWeight="bold" lineClamp={1}>
                         {session?.user.name || 'User'}
                       </Text>
-                      <Text fontSize="sm" color="gray.500" lineClamp={1}>
+                      <Text fontSize="sm" color="gray.400" lineClamp={1}>
                         {session?.user.email || ''}
                       </Text>
                     </Box>

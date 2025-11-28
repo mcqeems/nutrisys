@@ -10,7 +10,7 @@ export default function TargetPage() {
         <Heading size="2xl" mb={2} color="green.600">
           Target
         </Heading>
-        <Text color="gray.500">Buat target untuk membantu anda memenuhi tujuan anda.</Text>
+        <Text color="gray.400">Buat target untuk membantu anda memenuhi tujuan anda.</Text>
         <Box bg="transparent" w="full" maxW="200px" mt="4">
           <Target />
         </Box>

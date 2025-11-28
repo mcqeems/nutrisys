@@ -23,6 +23,7 @@ import { sendMessage, resetChat } from '../actions/actions';
 import type { ChatLogs } from '../types/types';
 import Loader from '@/components/Loader';
 import Chatbot from './Chatbot';
+import TypingIndicator from '@/components/TypingIndicator';
 
 const RenderMessage = ({ content, isUser }: { content: string; isUser: boolean }) => {
   const linkColor = useColorModeValue('blue.500', 'blue.300');
@@ -81,7 +82,7 @@ export default function ChatbotPage() {
   const botColor = useColorModeValue('gray.800', 'white');
   const botBorder = useColorModeValue('gray.100', 'gray.600');
   const onlineColor = useColorModeValue('green.600', 'green.300');
-  const emptyStateColor = useColorModeValue('gray.400', 'gray.500');
+  const emptyStateColor = useColorModeValue('gray.500', 'gray.400');
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -321,7 +322,7 @@ export default function ChatbotPage() {
                     borderWidth="1px"
                     borderColor={botBorder}
                   >
-                    <Spinner size="sm" color="green.500" />
+                    <TypingIndicator />
                   </Box>
                 </Flex>
               )}

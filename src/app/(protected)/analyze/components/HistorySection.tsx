@@ -55,7 +55,7 @@ export default function HistorySection({
   return (
     <VStack align="stretch" gap={4} position="relative">
       <Flex justify="space-between" align="center">
-        <Heading size="md" color="gray.600" display="flex" alignItems="center" gap={2}>
+        <Heading size="md" color="gray.400" display="flex" alignItems="center" gap={2}>
           <HistoryIcon size={20} /> Riwayat Terakhir
         </Heading>
       </Flex>
@@ -116,7 +116,7 @@ export default function HistorySection({
                     <Heading size="sm" lineClamp={1}>
                       {log.description.food_name}
                     </Heading>
-                    <Text fontSize="xs" color="gray.500">
+                    <Text fontSize="xs" color="gray.400">
                       {new Date(log.log_date).toLocaleDateString('id-ID', { dateStyle: 'medium' })}
                     </Text>
                     <Badge size="sm" colorPalette="green" variant="surface">
