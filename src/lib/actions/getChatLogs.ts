@@ -19,7 +19,7 @@ export default async function getChatLogs() {
 
     return response;
   } catch (error) {
-    console.error('Error fetching user info: ', error);
+    console.error('Error fetching User Chat Logs: ', error);
     return null;
   }
 }
