@@ -55,6 +55,33 @@ export async function uploadImageToS3(file: File): Promise<string> {
   }
 }
 
+export async function uploadBufferToS3(buffer: Buffer, mimeType: string): Promise<string> {
+  if (!BUCKET) {
+    throw new Error('S3 bucket name is not configured.');
+  }
+
+  const extension = mimeType.split('/')[1] || 'jpg';
+  const fileName = `images/${Date.now()}-camera.${extension}`;
+
+  const command = new PutObjectCommand({
+    Bucket: BUCKET,
+    Key: fileName,
+    Body: buffer,
+    ContentType: mimeType,
+  });
+
+  try {
+    await s3Client.send(command);
+    return fileName;
+  } catch (error) {
+    console.error('Error uploading to S3:', error);
+    if (error instanceof Error) {
+      console.error('Error details:', error.message);
+    }
+    throw new Error('Failed to upload image.');
+  }
+}
+
 // Generate pre-signed URL for private S3 object
 export async function getPresignedUrl(key: string): Promise<string> {
   if (!BUCKET) {

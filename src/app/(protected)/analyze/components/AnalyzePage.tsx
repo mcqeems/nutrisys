@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useActionState, useEffect } from 'react';
+import { useState, useActionState, useEffect, useRef, useCallback, MouseEvent } from 'react';
 import {
   Box,
   Button,
@@ -19,13 +19,23 @@ import {
   Badge,
   Skeleton,
 } from '@chakra-ui/react';
-import { UploadCloudIcon, FileTextIcon, CameraIcon, ScanSearchIcon, ClockIcon } from 'lucide-react';
+import {
+  UploadCloudIcon,
+  FileTextIcon,
+  CameraIcon,
+  ScanSearchIcon,
+  ClockIcon,
+  ApertureIcon,
+  AlertTriangle,
+} from 'lucide-react';
 import { analyzeFood, AnalyzeState } from '../actions/actions';
 import HistorySection from './HistorySection';
 import AnalysisResult from './AnalysisResult';
 import { NutritionData, FoodLog } from '../types/types';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import RandomAnimation from './RandomAnimation';
+import Webcam from 'react-webcam';
+import { isMobile } from 'react-device-detect';
 
 const initialState: AnalyzeState = {
   success: false,
@@ -34,15 +44,34 @@ const initialState: AnalyzeState = {
 };
 
 export default function AnalyzePage() {
-  const [inputType, setInputType] = useState<'image' | 'text'>('image');
+  const [inputType, setInputType] = useState<'image' | 'text' | 'camera'>('image');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [foods, setFoods] = useState<FoodLog[]>([]);
   const [foodsLoading, setFoodsLoading] = useState(true);
   const [state, formAction, isPending] = useActionState(analyzeFood, initialState);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [selectedLog, setSelectedLog] = useState<FoodLog | null>(null);
+  const [isCaptured, setIsCaptured] = useState(false);
+  const [capturedImage, setCapturedImage] = useState('');
+  const [fileError, setFileError] = useState<string | null>(null);
+  const webcamRef = useRef<Webcam>(null);
   const foodUploadColor = useColorModeValue('gray.50', 'gray.800');
   const foodUploadColorHover = useColorModeValue('green.50', 'green.800');
+  const videoConstraints = {
+    facingMode: isMobile ? { exact: 'environment' } : 'user',
+  };
+
+  const handleCaptureImage = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
+      const imageSrc = webcamRef.current?.getScreenshot?.();
+      if (imageSrc) {
+        setCapturedImage(imageSrc);
+        setIsCaptured(true);
+      }
+    },
+    [webcamRef]
+  );
 
   useEffect(() => {
     async function fetchFoodLogs(): Promise<void> {
@@ -63,7 +92,14 @@ export default function AnalyzePage() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    setFileError(null);
     if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setFileError('Ukuran file melebihi 2MB. Silakan unggah gambar yang lebih kecil.');
+        e.target.value = '';
+        setPreviewUrl(null);
+        return;
+      }
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -96,20 +132,45 @@ export default function AnalyzePage() {
             >
               <Tabs.List mb={4}>
                 <Tabs.Trigger value="image">
-                  <CameraIcon size={18} style={{ marginRight: '8px' }} />
+                  <CameraIcon className="hide-icon" size={18} style={{ marginRight: '8px' }} />
                   Upload Foto
                 </Tabs.Trigger>
+                <Tabs.Trigger value="camera">
+                  <CameraIcon className="hide-icon" size={18} style={{ marginRight: '8px' }} />
+                  Buka Kamera
+                </Tabs.Trigger>
                 <Tabs.Trigger value="text">
-                  <FileTextIcon size={18} style={{ marginRight: '8px' }} />
+                  <FileTextIcon className="hide-icon" size={18} style={{ marginRight: '8px' }} />
                   Input Teks
                 </Tabs.Trigger>
               </Tabs.List>
 
               <form action={formAction}>
                 <input type="hidden" name="inputType" value={inputType} />
+                <input type="hidden" name="cameraImage" value={capturedImage} />
 
                 <Tabs.Content value="image">
                   <VStack gap={6}>
+                    {fileError && (
+                      <Box
+                        p={4}
+                        bg="red.50"
+                        color="red.700"
+                        rounded="md"
+                        border="1px solid"
+                        borderColor="red.200"
+                        w="full"
+                        animation="fade-in 0.3s"
+                      >
+                        <Flex align="center" gap={3}>
+                          <AlertTriangle size={20} />
+                          <Text fontWeight="bold">File Terlalu Besar</Text>
+                        </Flex>
+                        <Text fontSize="sm" mt={1}>
+                          {fileError}
+                        </Text>
+                      </Box>
+                    )}
                     <Box
                       border="2px dashed"
                       borderColor="gray.300"
@@ -167,6 +228,59 @@ export default function AnalyzePage() {
                       <ScanSearchIcon /> Analisis Foto
                     </Button>
                   </VStack>
+                </Tabs.Content>
+
+                <Tabs.Content value="camera">
+                  {inputType === 'camera' && (
+                    <VStack gap={6}>
+                      {isCaptured ? (
+                        <Box position="relative" w="full">
+                          <ChakraImage src={capturedImage} w="full" rounded="md" />
+                          <Button
+                            size="sm"
+                            variant="surface"
+                            position="absolute"
+                            top={2}
+                            right={2}
+                            onClick={() => setIsCaptured(false)}
+                          >
+                            Retake
+                          </Button>
+                        </Box>
+                      ) : (
+                        <Webcam
+                          audio={false}
+                          ref={webcamRef}
+                          screenshotFormat={'image/jpeg'}
+                          videoConstraints={videoConstraints}
+                        />
+                      )}
+                      {isCaptured ? (
+                        <Button
+                          type="submit"
+                          colorPalette="green"
+                          size="lg"
+                          w="full"
+                          loading={isPending}
+                          loadingText="Menganalisis..."
+                        >
+                          <ScanSearchIcon /> Mulai Analisis
+                        </Button>
+                      ) : (
+                        <Button
+                          type="button"
+                          onClick={handleCaptureImage}
+                          colorPalette="green"
+                          size="lg"
+                          w="full"
+                          loading={isPending}
+                          loadingText="Menangkap Gambar..."
+                        >
+                          <ApertureIcon /> Tangkap Gambar
+                        </Button>
+                      )}
+                    </VStack>
+                  )}
                 </Tabs.Content>
 
                 <Tabs.Content value="text">

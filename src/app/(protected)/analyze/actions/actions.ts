@@ -3,7 +3,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { auth } from '@/auth';
 import { prisma } from '@/prisma';
-import { uploadImageToS3 } from '@/lib/actions/postUserImage';
+import { uploadImageToS3, uploadBufferToS3 } from '@/lib/actions/postUserImage';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
@@ -76,6 +76,7 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
   const inputType = formData.get('inputType') as string;
   const imageFile = formData.get('image') as File | null;
   const textInput = formData.get('text') as string | null;
+  const cameraImage = formData.get('cameraImage') as string | null;
 
   let s3Key: string | null = null;
   let geminiResponse = null;
@@ -106,6 +107,35 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
 
       const text = result.response.text();
       // Clean up markdown code blocks if present
+      const jsonString = text
+        .replace(/```json\n|\n```/g, '')
+        .replace(/```/g, '')
+        .trim();
+      geminiResponse = JSON.parse(jsonString);
+    } else if (inputType === 'camera' && cameraImage) {
+      const matches = cameraImage.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+      if (!matches || matches.length !== 3) {
+        return { error: 'Invalid camera image data' };
+      }
+      const mimeType = matches[1];
+      const base64Data = matches[2];
+      const buffer = Buffer.from(base64Data, 'base64');
+
+      // 1. Upload to S3
+      s3Key = await uploadBufferToS3(buffer, mimeType);
+
+      // 2. Prepare for Gemini
+      const result = await model.generateContent([
+        SYSTEM_PROMPT,
+        {
+          inlineData: {
+            data: base64Data,
+            mimeType: mimeType,
+          },
+        },
+      ]);
+
+      const text = result.response.text();
       const jsonString = text
         .replace(/```json\n|\n```/g, '')
         .replace(/```/g, '')
