@@ -115,7 +115,7 @@ export default function JournalPage() {
   const historyJournals = journals || [];
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container py={8}>
       <Flex direction="column" alignItems="center" justifyContent="center" textAlign="center" mb={10}>
         <Heading size="2xl" mb={2} color="green.600">
           Wellness Journal
@@ -125,7 +125,7 @@ export default function JournalPage() {
         </Text>
       </Flex>
 
-      <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={2}>
+      <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={2}>
         {/* Left Column: Latest Journal / Create Form */}
         <GridItem>
           <Box bg={sectionBg} p={6} rounded="xl" border={borderCardOuter} h="full" position="relative">
@@ -186,16 +186,30 @@ export default function JournalPage() {
                 ) : displayJournal ? (
                   <Flex direction="column" gap={4} flex={1}>
                     <Card.Root variant="elevated" flex={1} bg={cardBg}>
-                      <Card.Body>
-                        <Flex justify="space-between" mb={2}>
-                          <Badge colorPalette="blue">{displayJournal.mood}</Badge>
-                          <Text fontSize="xs" color="gray.400">
-                            {new Date(displayJournal.entry_date).toLocaleDateString('id-ID', {
-                              dateStyle: 'medium',
-                            })}
-                          </Text>
+                      <Card.Body position="relative">
+                        <Flex
+                          position="absolute"
+                          inset={0}
+                          alignItems="center"
+                          justifyContent="center"
+                          opacity={0.3}
+                          pointerEvents="none"
+                        >
+                          <Box w="150px">
+                            <Book />
+                          </Box>
                         </Flex>
-                        <Text whiteSpace="pre-wrap">{displayJournal.content}</Text>
+                        <Box position="relative" zIndex={1}>
+                          <Flex justify="space-between" mb={2}>
+                            <Badge colorPalette="blue">{displayJournal.mood}</Badge>
+                            <Text fontSize="xs" color="gray.400">
+                              {new Date(displayJournal.entry_date).toLocaleDateString('id-ID', {
+                                dateStyle: 'medium',
+                              })}
+                            </Text>
+                          </Flex>
+                          <Text whiteSpace="pre-wrap">{displayJournal.content}</Text>
+                        </Box>
                       </Card.Body>
                     </Card.Root>
 
