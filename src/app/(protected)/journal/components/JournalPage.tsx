@@ -36,7 +36,9 @@ export default function JournalPage() {
   const [selectedJournal, setSelectedJournal] = useState<Journals | null>(null);
 
   const cardBg = useColorModeValue('white', 'gray.800');
+  const cardBgGreen = useColorModeValue('green.50', 'green.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
+  const borderColorGreen = useColorModeValue('green.200', 'green.700');
   const sectionBg = useColorModeValue('gray.50', 'gray.900');
   const aiResponseBg = useColorModeValue('green.50', 'green.900');
   const borderCard = useColorModeValue('1px dashed rgba(0, 0, 0, 0.2)', '1px dashed rgba(255, 255, 255, 0.5)');
@@ -275,8 +277,8 @@ export default function JournalPage() {
                     <Card.Root
                       key={journal.id}
                       variant={isSelected ? 'elevated' : 'outline'}
-                      bg={isSelected ? 'green.50' : cardBg}
-                      borderColor={isSelected ? 'green.400' : 'transparent'}
+                      bg={isSelected ? cardBgGreen : cardBg}
+                      borderColor={isSelected ? borderColorGreen : borderColor}
                       borderWidth={isSelected ? '2px' : '1px'}
                       _hover={{ borderColor: 'green.400', cursor: 'pointer' }}
                       transition="all 0.2s"
