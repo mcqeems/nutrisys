@@ -64,9 +64,10 @@ function FaqSection() {
       <div className="container  mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-[slide-up_0.8s_ease-out]">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              <span className="bg-linear-to-br from-foreground to-primary bg-clip-text text-transparent">
-                Seputar Nutrisys
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Seputar{" "}
+              <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
+                Nutrisys
               </span>
             </h2>
 

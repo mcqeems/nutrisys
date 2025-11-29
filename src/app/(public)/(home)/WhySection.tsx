@@ -14,7 +14,7 @@ const features = [
     icon: Shield,
     title: "Data Aman & Privasi",
     description:
-      "Keamanan data Anda adalah prioritas utama kami dengan enkripsi end-to-end.",
+      "Keamanan data Anda adalah tanggung jawab dan prioritas utama kami dengan enkripsi end-to-end.",
     gradient: "from-chart-2/20 to-chart-1/20",
     iconColor: "text-chart-2",
   },
@@ -30,7 +30,7 @@ const features = [
     icon: Users,
     title: "Komunitas Aktif",
     description:
-      "Bergabung dengan ribuan pengguna yang berkomitmen untuk hidup lebih sehat.",
+      "Bergabung dengan ribuan pengguna yang berkomitmen untuk hidup lebih sehat dan teratur.",
     gradient: "from-chart-3/20 to-primary/20",
     iconColor: "text-chart-3",
   },
