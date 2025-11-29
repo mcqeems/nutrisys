@@ -60,7 +60,7 @@ const ScrollToTopButton = ({ isHorizontal = false }) => {
           className={baseClasses}
           aria-label="Scroll back to top"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ChevronUp className="w-7 h-7" />
         </motion.button>
       )}
     </AnimatePresence>
