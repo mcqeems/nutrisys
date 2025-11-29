@@ -33,6 +33,7 @@ export default function JournalPage() {
   const [newJournalContent, setNewJournalContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGeneratingAi, setIsGeneratingAi] = useState(false);
+  const [selectedJournal, setSelectedJournal] = useState<Journals | null>(null);
 
   const cardBg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
@@ -49,6 +50,13 @@ export default function JournalPage() {
         const data = await response.json();
         const sorted = (data.data || []).sort((a: Journals, b: Journals) => b.id - a.id);
         setJournals(sorted);
+        setSelectedJournal((prev) => {
+          if (prev) {
+            const found = sorted.find((j: Journals) => j.id === prev.id);
+            return found || sorted[0];
+          }
+          return sorted[0];
+        });
       }
     } catch (error) {
       console.error('Failed to fetch Journals: ', error);
@@ -71,6 +79,9 @@ export default function JournalPage() {
         setIsCreating(false);
         setNewJournalContent('');
         setNewJournalMood('');
+        // Fetch journals will update the list and set selected to the new one (since it's sorted first)
+        // But we need to make sure selectedJournal is cleared so it picks the first one
+        setSelectedJournal(null);
         fetchJournals();
       } else {
         toaster.create({ title: 'Gagal menyimpan jurnal', type: 'error' });
@@ -98,8 +109,8 @@ export default function JournalPage() {
     }
   };
 
-  const latestJournal = journals && journals.length > 0 ? journals[0] : null;
-  const historyJournals = journals && journals.length > 0 ? journals.slice(1) : [];
+  const displayJournal = selectedJournal || (journals && journals.length > 0 ? journals[0] : null);
+  const historyJournals = journals || [];
 
   return (
     <Container maxW="container.xl" py={8}>
@@ -170,19 +181,19 @@ export default function JournalPage() {
 
                 {isFetching ? (
                   <Skeleton height="300px" rounded="md" />
-                ) : latestJournal ? (
+                ) : displayJournal ? (
                   <Flex direction="column" gap={4} flex={1}>
                     <Card.Root variant="elevated" flex={1} bg={cardBg}>
                       <Card.Body>
                         <Flex justify="space-between" mb={2}>
-                          <Badge colorPalette="blue">{latestJournal.mood}</Badge>
+                          <Badge colorPalette="blue">{displayJournal.mood}</Badge>
                           <Text fontSize="xs" color="gray.400">
-                            {new Date(latestJournal.entry_date).toLocaleDateString('id-ID', {
+                            {new Date(displayJournal.entry_date).toLocaleDateString('id-ID', {
                               dateStyle: 'medium',
                             })}
                           </Text>
                         </Flex>
-                        <Text whiteSpace="pre-wrap">{latestJournal.content}</Text>
+                        <Text whiteSpace="pre-wrap">{displayJournal.content}</Text>
                       </Card.Body>
                     </Card.Root>
 
@@ -192,9 +203,9 @@ export default function JournalPage() {
                       </Heading>
                       <Card.Root variant="subtle" bg={aiResponseBg}>
                         <Card.Body border={borderCard} rounded="lg">
-                          {latestJournal.ai_reply ? (
+                          {displayJournal.ai_reply ? (
                             <Text fontSize="sm" fontStyle="italic">
-                              &quot;{latestJournal.ai_reply}&quot;
+                              &quot;{displayJournal.ai_reply}&quot;
                             </Text>
                           ) : (
                             <Flex direction="column" align="center" justify="center" py={4} gap={2}>
@@ -205,7 +216,7 @@ export default function JournalPage() {
                                 size="sm"
                                 variant="surface"
                                 colorPalette="green"
-                                onClick={() => handleGetAiReply(latestJournal)}
+                                onClick={() => handleGetAiReply(displayJournal)}
                                 loading={isGeneratingAi}
                               >
                                 <SparklesIcon size={16} /> Dapatkan Balasan AI
@@ -258,25 +269,37 @@ export default function JournalPage() {
               </VStack>
             ) : historyJournals.length > 0 ? (
               <VStack gap={4} align="stretch" maxH="600px" overflowY="auto" pr={2}>
-                {historyJournals.map((journal) => (
-                  <Card.Root key={journal.id} variant="outline" bg={cardBg} _hover={{ borderColor: 'green.400' }}>
-                    <Card.Body p={4}>
-                      <Flex justify="space-between" mb={2}>
-                        <Badge colorPalette="gray" variant="surface">
-                          {journal.mood}
-                        </Badge>
-                        <Text fontSize="xs" color="gray.400">
-                          {new Date(journal.entry_date).toLocaleDateString('id-ID', {
-                            dateStyle: 'medium',
-                          })}
+                {historyJournals.map((journal) => {
+                  const isSelected = displayJournal?.id === journal.id;
+                  return (
+                    <Card.Root
+                      key={journal.id}
+                      variant={isSelected ? 'elevated' : 'outline'}
+                      bg={isSelected ? 'green.50' : cardBg}
+                      borderColor={isSelected ? 'green.400' : 'transparent'}
+                      borderWidth={isSelected ? '2px' : '1px'}
+                      _hover={{ borderColor: 'green.400', cursor: 'pointer' }}
+                      transition="all 0.2s"
+                      onClick={() => setSelectedJournal(journal)}
+                    >
+                      <Card.Body p={4}>
+                        <Flex justify="space-between" mb={2}>
+                          <Badge colorPalette={isSelected ? 'green' : 'gray'} variant="surface">
+                            {journal.mood}
+                          </Badge>
+                          <Text fontSize="xs" color="gray.400">
+                            {new Date(journal.entry_date).toLocaleDateString('id-ID', {
+                              dateStyle: 'medium',
+                            })}
+                          </Text>
+                        </Flex>
+                        <Text lineClamp={2} fontSize="sm" fontWeight={isSelected ? 'medium' : 'normal'}>
+                          {journal.content}
                         </Text>
-                      </Flex>
-                      <Text lineClamp={2} fontSize="sm">
-                        {journal.content}
-                      </Text>
-                    </Card.Body>
-                  </Card.Root>
-                ))}
+                      </Card.Body>
+                    </Card.Root>
+                  );
+                })}
               </VStack>
             ) : (
               <Flex direction="column" align="center" justify="center" h="300px" color="gray.400">
