@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import getTarget from '@/lib/actions/getTarget';
 import { auth } from '@/auth';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     // Check if user is authenticated
     const session = await auth();
@@ -10,7 +10,11 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await getTarget();
+    const searchParams = request.nextUrl.searchParams;
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '15');
+
+    const data = await getTarget(page, limit);
 
     if (!data) {
       return NextResponse.json({ error: 'Targets not found' }, { status: 404 });

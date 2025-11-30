@@ -118,7 +118,7 @@ export default function JournalPage() {
 
   return (
     <Container py={8}>
-      <Heading size="2xl" mb={2} color={titleColor}>
+      <Heading size="3xl" mb={2} color={titleColor}>
         Wellness Journal
       </Heading>
       <Text color={titleColorMuted} mb="5">

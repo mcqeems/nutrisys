@@ -19,15 +19,7 @@ import {
   Badge,
   Skeleton,
 } from '@chakra-ui/react';
-import {
-  UploadCloudIcon,
-  FileTextIcon,
-  CameraIcon,
-  ScanSearchIcon,
-  ClockIcon,
-  ApertureIcon,
-  AlertTriangle,
-} from 'lucide-react';
+import { FileTextIcon, CameraIcon, ScanSearchIcon, ClockIcon, ApertureIcon, AlertTriangle } from 'lucide-react';
 import { analyzeFood, AnalyzeState } from '../actions/actions';
 import HistorySection from './HistorySection';
 import AnalysisResult from './AnalysisResult';
@@ -110,8 +102,8 @@ export default function AnalyzePage() {
 
   return (
     <Container maxW="full" py={8}>
-      <Heading size="2xl" mb={2} color={titleColor}>
-        Smart Food Analyzer
+      <Heading size="3xl" mb={2} color={titleColor}>
+        Analisis Nutrisi
       </Heading>
       <Text color={titleColorMuted} mb="4">
         Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.

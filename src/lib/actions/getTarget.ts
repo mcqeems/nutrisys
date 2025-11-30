@@ -1,7 +1,7 @@
 import { prisma } from '@/prisma';
 import { auth } from '@/auth';
 
-export default async function getTarget() {
+export default async function getTarget(page: number = 1, limit: number = 15) {
   const userAuth = await auth();
   const userId = userAuth?.user?.id;
 
@@ -15,6 +15,11 @@ export default async function getTarget() {
       where: {
         user_id: userId,
       },
+      orderBy: {
+        created_at: 'desc',
+      },
+      skip: (page - 1) * limit,
+      take: limit,
     });
 
     return response;
