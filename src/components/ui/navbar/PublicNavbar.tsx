@@ -1,137 +1,219 @@
-'use client';
-import { useState } from 'react';
-import { PaperAirplaneIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
+"use client";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import {
+  MoonIcon,
+  SunIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+
+interface NavLink {
+  name: string;
+  path: string;
+}
+
+const navLinks: NavLink[] = [
+  { name: "Fitur", path: "/features" },
+  { name: "Tentang", path: "/about" },
+  { name: "Artikel", path: "/article" },
+  { name: "Hubungi Kami", path: "/contact-us" },
+];
+
+const mobileLinks: NavLink[] = [
+  { name: "Fitur", path: "/features" },
+  { name: "Tentang", path: "/about" },
+  { name: "Artikel", path: "/article" },
+  { name: "Hubungi Kami", path: "/contact-us" },
+];
 
 function PublicNavbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const { theme, setTheme } = useTheme();
+  const currentPath = usePathname();
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  /**
+   * @param path - Path tautan yang diperiksa.
+   */
+  const getLinkClassName = (path: string): string => {
+    const isActive = currentPath === path;
+    const defaultClass =
+      "py-1 hover:text-primary transition-colors duration-200";
+
+    // Class untuk active link (Garis bawah untuk menandai)
+    const activeClass = "text-primary font-semibold border-b-2 border-primary";
+
+    return `${defaultClass} ${isActive ? activeClass : ""}`;
+  };
+
+  /**
+   * @param path - Path tautan yang diperiksa.
+   */
+  const getMobileLinkClassName = (path: string): string => {
+    const isActive = currentPath === path;
+
+    const defaultClass =
+      "border-l-4 border-transparent hover:border-primary pl-4 transition-all duration-300 rounded-r-md";
+
+    // Class untuk active link mobile (Garis kiri, teks, dan background primer)
+    const activeClass =
+      "border-l-4 border-primary text-primary font-bold bg-primary/10";
+
+    return `block py-3 ${defaultClass} ${isActive ? activeClass : ""}`;
   };
 
   return (
-    <div className="fixed top-0 bg-transparent backdrop-blur inset-x-0 z-50">
-      <nav className="bg-transparent text-foreground border-border/90">
+    <div className="fixed top-0 bg-transparent backdrop-blur-md inset-x-0 z-50 transition-colors duration-300">
+      <nav className="bg-transparent text-foreground border-b border-border/70">
         <div className="max-w-7xl mx-auto">
           <div className="flex mx-auto justify-between w-5/6 ">
-            <div className="flex items-center gap-16 my-6 lg:my-8">
+            {/* Logo Section */}
+            <div className="flex items-center gap-16 my-4 lg:my-6">
               <div>
-                <Link href="/" className="flex gap-1 font-bold items-center text-foreground">
-                  <Image src="/Logo/nutrisys.webp" width={30} height={30} alt="NutriSys Nutrition Analysis" />
+                <Link
+                  href="/"
+                  className="flex gap-1 font-bold items-center text-foreground"
+                >
+                  <Image
+                    src="/Logo/nutrisys.webp"
+                    width={30}
+                    height={30}
+                    alt="NutriSys Nutrition Analysis"
+                  />
 
                   <div className="flex items-center gap-1.5 font-[1000] leading-none"></div>
+
                   <div className="-mt-1 hidden text-xl sm:block">
                     <span className="text-foreground dark:text-foreground">
                       <span className="hoverText text-hover-primary">N</span>
+
                       <span className="hoverText text-hover-primary">u</span>
+
                       <span className="hoverText text-hover-primary">t</span>
+
                       <span className="hoverText text-hover-primary">r</span>
+
                       <span className="hoverText text-hover-primary">i</span>
                     </span>
 
                     <span className="text-primary dark:text-primary">
                       <span className="hoverText text-hover-light">S</span>
+
                       <span className="hoverText text-hover-light">y</span>
+
                       <span className="hoverText text-hover-light">s</span>
                     </span>
                   </div>
                 </Link>
               </div>
-              {/* primary */}
-              <div className="hidden lg:flex gap-8">
-                <a href="/features" className="hover:text-primary transition-colors">
-                  Fitur
-                </a>
-                <a href="/about" className="hover:text-primary transition-colors">
-                  Tentang
-                </a>
-                <a href="/contact-us" className="hover:text-primary transition-colors">
-                  Hubungi Kami
-                </a>
+
+              <div className="hidden lg:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    className={getLinkClassName(link.path)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
               </div>
             </div>
-            {/* secondary */}
-            <div className="flex gap-6">
-              <div className="flex items-center gap-4">
-                {/* Theme Toggle Button */}
-                <button
-                  onClick={toggleTheme}
-                  className="p-2 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors focus:ring-2 focus:ring-ring"
-                  aria-label="Toggle Theme"
-                >
-                  {theme === 'dark' ? (
-                    <SunIcon suppressHydrationWarning className="h-6 w-6 text-yellow-400" />
-                  ) : (
-                    // Di Light Mode, ikon Moon harus terlihat seperti foreground
-                    <MoonIcon suppressHydrationWarning className="h-6 w-6 text-foreground" />
-                  )}
-                </button>
 
-                <div className="hidden lg:block">
-                  {/* Sign In Button */}
-                  <Link
-                    href="/login"
-                    className="rounded-full mr-2 border-solid border-2 border-border py-2 px-6 
-                               hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    Sign In
-                  </Link>
-                  {/* Sign Up Button (Primary Button) */}
-                  <Link
-                    href="/register"
-                    className="rounded-full mr-2 border-solid border-2 border-primary py-2 px-6 
-                               bg-primary text-primary-foreground hover:opacity-80 transition-opacity"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
-              </div>
+            <div className="flex gap-4 items-center">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors focus:ring-2 focus:ring-ring"
+                aria-label="Toggle Theme"
+              >
+                {theme === "dark" ? (
+                  <SunIcon
+                    suppressHydrationWarning
+                    className="h-6 w-6 text-yellow-400"
+                  />
+                ) : (
+                  <MoonIcon
+                    suppressHydrationWarning
+                    className="h-6 w-6 text-foreground"
+                  />
+                )}
+              </button>
 
-              {/* Mobile navigation toggle */}
-              <div className="lg:hidden flex items-center">
-                <button onClick={() => setToggleMenu(!toggleMenu)}>
-                  <Bars3Icon className="h-6 w-6 text-foreground" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* mobile navigation */}
-        <div
-          className={`fixed z-40 w-full bg-background/90 backdrop-blur overflow-hidden flex flex-col lg:hidden gap-12 
-            origin-top duration-700 shadow-xl ${!toggleMenu ? 'h-0' : ' p-6'}`}
-        >
-          <div className="px-8">
-            <div className="flex flex-col gap-8 font-bold tracking-wider">
-              <a href="/fitur" className="border-l-4 border-transparent hover:border-border pl-2">
-                Fitur
-              </a>
-              <a href="/chatbott" className="border-l-4 border-transparent hover:border-border pl-2">
-                Chatbot
-              </a>
-              <a href="/tentang" className="border-l-4 border-transparent hover:border-border pl-2">
-                Tentang
-              </a>
-              <a href="/hubungikami" className="border-l-4 border-transparent hover:border-border pl-2">
-                Hubungi Kami
-              </a>
-
-              {/* Mobile Auth Links */}
-              <div className="mt-4 flex flex-col gap-4">
+              <div className="hidden lg:flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="w-full text-center rounded-lg border border-primary py-2 px-6 
-                             bg-primary text-primary-foreground hover:opacity-80 transition-opacity"
+                  className="rounded-full border border-border py-2 px-6 
+                               hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="w-full text-center rounded-lg border border-primary py-2 px-6 
-                             bg-primary text-primary-foreground hover:opacity-80 transition-opacity"
+                  className="rounded-full border border-primary py-2 px-6 
+                               bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-300"
+                >
+                  Sign Up
+                </Link>
+              </div>
+
+              <div className="lg:hidden flex items-center">
+                <button
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                  aria-label="Toggle menu"
+                  className="p-2 rounded-full hover:bg-accent transition-colors"
+                >
+                  {toggleMenu ? (
+                    <XMarkIcon className="h-6 w-6 text-foreground" />
+                  ) : (
+                    <Bars3Icon className="h-6 w-6 text-foreground" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 📱 Mobile Navigation Menu */}
+        <div
+          className={`fixed inset-x-0 top-[68px] lg:hidden z-40 bg-background/95 backdrop-blur-lg 
+            overflow-hidden transition-all duration-500 ease-in-out shadow-lg border-b border-border
+            ${!toggleMenu ? "max-h-0" : "max-h-screen"}`}
+        >
+          <div className="p-4 pb-8">
+            <div className="flex flex-col gap-1 font-medium tracking-wider">
+              {mobileLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  className={getMobileLinkClassName(link.path)}
+                  onClick={() => setToggleMenu(false)} // Tutup menu setelah klik
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              {/* Mobile Auth Links */}
+              <div className="mt-6 pt-4 border-t border-border flex flex-col gap-4">
+                <Link
+                  href="/login"
+                  className="w-full text-center rounded-lg border border-border py-3 px-6 
+                             bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                  onClick={() => setToggleMenu(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className="w-full text-center rounded-lg border border-primary py-3 px-6 
+                             bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                  onClick={() => setToggleMenu(false)}
                 >
                   Sign Up
                 </Link>
