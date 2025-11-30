@@ -77,24 +77,7 @@ export default function FeatureSection() {
       color: "from-orange-500 to-red-500",
       details: ["Grafik interaktif", "Export laporan", "Insight mingguan"],
     },
-    {
-      id: 5,
-      title: "Notifikasi Pintar",
-      description:
-        "Pengingat minum air, makan snack sehat, dan aktivitas fisik di waktu yang tepat",
-      icon: Bell,
-      color: "from-indigo-500 to-blue-500",
-      details: ["Reminder personal", "Jadwal fleksibel", "Push notification"],
-    },
-    {
-      id: 6,
-      title: "Keamanan Data",
-      description:
-        "Enkripsi end-to-end dan compliance dengan standar internasional untuk privasi Anda",
-      icon: Lock,
-      color: "from-teal-500 to-cyan-500",
-      details: ["Enkripsi 256-bit", "GDPR compliant", "Backup otomatis"],
-    },
+    
   ];
 
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
@@ -146,10 +129,7 @@ export default function FeatureSection() {
             </ul>
 
             {/* Arrow indicator */}
-            <div className="pt-2 flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
-              <span className="text-sm font-semibold">Pelajari lebih</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
+    
           </div>
         </div>
       </div>
@@ -158,9 +138,10 @@ export default function FeatureSection() {
 
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section className="py-10 px-4 sm:px-6 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
           {featuresData.map((feature, index) => (
             <FeatureCard
               key={feature.id}
