@@ -23,7 +23,17 @@ import TargetAnimation from './Target';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import type { TargetTypes, Target } from '../types/types';
 import { useState, useEffect } from 'react';
-import { PlusIcon, MoreVertical, CalendarIcon, Trash2, PauseCircle, PlayCircle, FileText } from 'lucide-react';
+import {
+  PlusIcon,
+  MoreVertical,
+  CalendarIcon,
+  Trash2,
+  PauseCircle,
+  PlayCircle,
+  FileText,
+  PauseIcon,
+  HourglassIcon,
+} from 'lucide-react';
 import { createTarget } from '@/lib/actions/createTarget';
 import { updateTargetStatus } from '@/lib/actions/updateTargetStatus';
 import { deleteTarget } from '@/lib/actions/deleteTarget';
@@ -220,7 +230,17 @@ export default function TargetPage() {
                   zIndex={1}
                   pointerEvents="none"
                 >
-                  <TargetAnimation />
+                  {item.status === 'Aktif' ? (
+                    <TargetAnimation />
+                  ) : item.status === 'Selesai' ? (
+                    <Box p="6">
+                      <PauseIcon size="100px" />
+                    </Box>
+                  ) : (
+                    <Box p="6">
+                      <HourglassIcon size="100px" />
+                    </Box>
+                  )}
                 </Box>
 
                 {/* Actions Menu */}
