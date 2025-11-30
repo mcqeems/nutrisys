@@ -18,7 +18,7 @@ export default function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999]">
+    <div className="fixed bottom-4 right-2 z-[9999]">
       {isOpen && (
         <div className="mb-3 animate-slide-in-up absolute bottom-full right-0">
           <ChatbotWindow onClose={closeChat} />
