@@ -41,9 +41,10 @@ const WhyNutriSys = () => {
     <section className="relative py-24 px-4 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="bg-linear-to-br from-foreground to-primary bg-clip-text text-transparent">
-              Mengapa NutriSys?
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Mengapa {" "}
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
+              Nutrisys ?
             </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">

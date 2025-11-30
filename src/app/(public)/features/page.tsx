@@ -1,7 +1,7 @@
 "use client";
 
 import {  motion, Variants } from "framer-motion";
-import FeatureSection from "./component/FeatureSection";
+import FeatureSection from "../(home)/FeatureSection";
 import BenefitsSection from "./component/BenefitSection";
 import ComparisonTable from "../(home)/ComparisonTable";
 import HowToUseSection from "./component/HowToUse";
@@ -18,13 +18,8 @@ export default function FeaturesPage() {
   return (
     <div className="w-full pt-20 overflow-hidden">
       {/* hero section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <HeroSection />
-      </motion.div>
+      <HeroSection />
+
 
       {/* fitur section */}
       <motion.div
