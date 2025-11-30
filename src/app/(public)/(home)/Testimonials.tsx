@@ -152,10 +152,9 @@ const Testimonials = () => {
           logos={testimonialLogos}
           speed={50}
           direction="left"
-          // logoHeight dihilangkan agar Card menentukan tingginya
+          className="p-5"
           hoverSpeed={0}
           fadeOut
-          // Menggunakan warna latar belakang yang terdeteksi secara dinamis
           fadeOutColor={fadeColor}
           ariaLabel="Testimonial Loop"
         />

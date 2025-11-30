@@ -11,7 +11,7 @@ const benefits = [
 
 const CTASection = () => {
   return (
-    <section className="relative py-24 px-4 overflow-hiddena bg-background">
+    <section className="relative pb-24 px-4 overflow-hiddena bg-background">
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className="backdrop-blur-xl bg-card/80 rounded-3xl border-2 border-primary/30 shadow-2xl shadow-primary/20 p-8 md:p-12 lg:p-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -71,8 +71,8 @@ const CTASection = () => {
             <div className="space-y-6">
               {[
                 {
-                  value: "10K+",
-                  label: "Pengguna Aktif",
+                  value: "100%",
+                  label: "Pemakaian Gratis",
                   color: "from-primary to-accent",
                 },
                 {
