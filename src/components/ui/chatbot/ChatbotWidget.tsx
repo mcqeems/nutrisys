@@ -1,10 +1,10 @@
-
 "use client";
 
 import React, { useState } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import ChatbotWindow from "./ChatbotWindow";
 import ScrollToTopButton from "../scroll-to-top";
+import Chatbot from "@/app/(protected)/chatbot/components/Chatbot";
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -56,14 +56,9 @@ export default function ChatbotWidget() {
           >
             <div className="flex items-center space-x-3">
               <div className="bg-primary-foreground/20 p-2 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-primary-foreground"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                </svg>
+                <div className="w-7 h-7">
+                  <Chatbot />
+                </div>
               </div>
               <div>
                 <h3 className="text-lg font-bold">NutriSys AI</h3>
@@ -76,7 +71,6 @@ export default function ChatbotWidget() {
           </button>
         )}
 
-      
         <ScrollToTopButton isHorizontal={true} />
       </div>
     </div>
