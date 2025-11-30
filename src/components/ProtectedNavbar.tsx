@@ -50,6 +50,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
   const greenColor = useColorModeValue('green.500', 'green.400');
   const greenColorHover = useColorModeValue('green.400', 'green.500');
   const greenLogo = useColorModeValue('green.500', 'green.400');
+  const userInfoBgMobile = useColorModeValue('green.50', 'green.900');
 
   return (
     <>
@@ -208,7 +209,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
             <Drawer.Body>
               <VStack align="stretch" gap={4}>
                 {/* User Info Section */}
-                <Box p={4} bg="gray.50" rounded="md">
+                <Box p={4} bg={userInfoBgMobile} rounded="md">
                   <Flex align="center" gap={3}>
                     {session?.user?.image ? (
                       <Image
@@ -354,14 +355,19 @@ const MobileNavLink = ({
   onClose: () => void;
 }) => {
   const isActive = pathname === href;
+  const mobileMenuFocus = useColorModeValue('green.100', 'green.900');
+  const mobileMenuFocusActive = useColorModeValue('green.700', 'green.300');
+  const mobileMenuHover = useColorModeValue('green.100', 'green.800');
+
   return (
     <Link href={href} onClick={onClose}>
       <Box
         p={3}
         rounded="md"
-        bg={isActive ? 'green.100' : 'transparent'}
-        color={isActive ? 'green.700' : 'inherit'}
-        _hover={{ bg: 'gray.100' }}
+        bg={isActive ? mobileMenuFocus : 'transparent'}
+        color={isActive ? mobileMenuFocusActive : 'inherit'}
+        _hover={{ bg: mobileMenuHover }}
+        transition="all"
       >
         <Text fontWeight="medium">{label}</Text>
       </Box>
