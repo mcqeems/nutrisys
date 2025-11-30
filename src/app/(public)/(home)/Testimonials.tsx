@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Quote, Star } from "lucide-react";
+import LogoLoop from "./CardLoop"; 
+import { useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -53,12 +55,74 @@ const testimonials = [
   },
 ];
 
-const Testimonials = () => {
-  return (
-    <section className="relative py-24 px-4 overflow-hidden bg-secondary">
 
-      <div className="relative z-10 max-w-7xl mx-auto ">
-        {/* Section Header */}
+const testimonialLogos = testimonials.map((testimonial, index) => ({
+  node: (
+    <Card
+      key={index}
+      className="w-[320px] h-full p-6 flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 bg-card border border-border/70"
+    >
+      <div className="flex-1 mb-4">
+        <Quote className="w-6 h-6 text-primary mb-3 opacity-70" />
+        <p className="text-sm italic text-foreground/80 leading-relaxed mb-4">
+          "{testimonial.content}"
+        </p>
+      </div>
+
+      <div className="flex text-amber-400 mb-4">
+        {[...Array(testimonial.rating)].map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-current" />
+        ))}
+      </div>
+
+      <div className="flex items-center gap-3 mt-auto">
+        <Avatar className="w-12 h-12">
+          <AvatarFallback className="bg-primary/20 text-primary text-2xl">
+            {testimonial.initials}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <div className="text-base font-semibold text-foreground">
+            {testimonial.name}
+          </div>
+          <div className="text-sm text-muted-foreground">
+            {testimonial.role}
+          </div>
+        </div>
+      </div>
+    </Card>
+  ),
+  title: testimonial.name,
+}));
+
+
+const Testimonials = () => {
+  const [fadeColor, setFadeColor] = useState(); 
+
+  useEffect(() => {
+    const updateFadeColor = () => {
+      const rootStyle = getComputedStyle(document.documentElement);
+      let backgroundValue = rootStyle.getPropertyValue("--background").trim();
+
+      if (!backgroundValue || backgroundValue.includes("oklch")) {
+        const isDark = document.documentElement.classList.contains("dark");
+        backgroundValue = isDark ? "rgb(30, 38, 38)" : "rgb(255, 255, 255)";
+      }
+    };
+
+    updateFadeColor();
+
+    const observer = new MutationObserver(updateFadeColor);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <section className="relative pt-24 lg:px-100 overflow-hidden bg-background">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-4">
             <Quote className="w-4 h-4 text-primary" />
@@ -79,76 +143,22 @@ const Testimonials = () => {
             hidup sehat mereka
           </p>
         </div>
+      </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="group p-6 bg-card/50 backdrop-blur-sm border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Quote Icon */}
-              <div className="mb-4 text-primary/20 group-hover:text-primary/40 transition-colors">
-                <Quote className="w-8 h-8" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-
-              {/* Content */}
-              <p className="text-foreground/90 mb-6 leading-relaxed">
-                "{testimonial.content}"
-              </p>
-
-              {/* User Info */}
-              <div className="flex items-center gap-3 pt-4 border-t border-border/50">
-                <Avatar className="h-10 w-10 border-2 border-primary/20 group-hover:border-primary/40 transition-colors">
-                  <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                    {testimonial.initials}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Bottom Stats */}
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto animate-fade-in"
-          style={{ animationDelay: "0.6s" }}
-        >
-          <div className="text-center p-6 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/10">
-            <div className="text-3xl font-bold text-primary mb-1">4.9</div>
-            <div className="text-sm text-muted-foreground">
-              Rating Rata-rata
-            </div>
-          </div>
-          <div className="text-center p-6 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/10">
-            <div className="text-3xl font-bold text-primary mb-1">10K+</div>
-            <div className="text-sm text-muted-foreground">Ulasan Positif</div>
-          </div>
-          <div className="text-center p-6 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/10">
-            <div className="text-3xl font-bold text-primary mb-1">98%</div>
-            <div className="text-sm text-muted-foreground">Kepuasan</div>
-          </div>
-          <div className="text-center p-6 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/10">
-            <div className="text-3xl font-bold text-primary mb-1">15K+</div>
-            <div className="text-sm text-muted-foreground">Pengguna Aktif</div>
-          </div>
-        </div>
+      <div
+        className="h-[450px] relative overflow-hidden"
+      >
+        <LogoLoop
+          logos={testimonialLogos}
+          speed={50}
+          direction="left"
+          // logoHeight dihilangkan agar Card menentukan tingginya
+          hoverSpeed={0}
+          fadeOut
+          // Menggunakan warna latar belakang yang terdeteksi secara dinamis
+          fadeOutColor={fadeColor}
+          ariaLabel="Testimonial Loop"
+        />
       </div>
     </section>
   );

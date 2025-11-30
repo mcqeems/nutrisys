@@ -3,7 +3,7 @@
 import {  motion, Variants } from "framer-motion";
 import FeatureSection from "./component/FeatureSection";
 import BenefitsSection from "./component/BenefitSection";
-import ComparisonTable from "./component/ComparisonTable";
+import ComparisonTable from "../(home)/ComparisonTable";
 import HowToUseSection from "./component/HowToUse";
 import HeroSection from "./component/HeroSection";
 import ScrollToTopButton from "@/components/ui/scroll-to-top";

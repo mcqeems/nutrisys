@@ -21,8 +21,11 @@ export default function ComparisonTable() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground animate-fade-in-up">
-            NutriSys vs. Metode Tradisional
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Nutrisys vs. Metode {" "}
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
+              Tradisional
+            </span>
           </h2>
           <p
             className="text-lg text-muted-foreground animate-fade-in-up"

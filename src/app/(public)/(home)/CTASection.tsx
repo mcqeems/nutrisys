@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/butons";
 import { ArrowRight, Check } from "lucide-react";
+import Link from "next/link"
 
 const benefits = [
   "Analisis nutrisi real-time",
@@ -10,8 +11,7 @@ const benefits = [
 
 const CTASection = () => {
   return (
-    <section className="relative py-24 px-4 overflow-hiddena bg-secondary">
-
+    <section className="relative py-24 px-4 overflow-hiddena bg-background">
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className="backdrop-blur-xl bg-card/80 rounded-3xl border-2 border-primary/30 shadow-2xl shadow-primary/20 p-8 md:p-12 lg:p-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -53,16 +53,17 @@ const CTASection = () => {
               </ul>
 
               {/* button */}
-              <Button
-                size="lg"
-                className="group w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg font-bold rounded-xl transition-all hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
-              >
-                Daftar Gratis Sekarang
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-              </Button>
-
+              <Link href="/register" passHref legacyBehavior>
+                <Button
+                  size="lg"
+                  className="group w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg font-bold rounded-xl transition-all hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
+                >
+                  Daftar Gratis Sekarang
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </Button>
+              </Link>
               <p className="text-sm text-muted-foreground mt-4">
-                ✨ Gratis 14 hari trial • Tidak perlu kartu kredit
+                ✨ Gratis Pemakaian  • Tidak perlu berbayar
               </p>
             </div>
 
