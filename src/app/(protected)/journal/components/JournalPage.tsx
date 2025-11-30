@@ -176,8 +176,15 @@ export default function JournalPage() {
                   <Heading size="md" color={titleCardColor}>
                     Jurnal Terakhir
                   </Heading>
-                  <IconButton variant="outline" size="sm" onClick={() => setIsCreating(true)} aria-label="Add Journal">
+                  <IconButton
+                    p="4"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsCreating(true)}
+                    aria-label="Add Journal"
+                  >
                     <PlusIcon />
+                    Buat Jurnal
                   </IconButton>
                 </Flex>
 
