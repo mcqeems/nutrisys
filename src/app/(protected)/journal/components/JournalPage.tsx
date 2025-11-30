@@ -43,7 +43,9 @@ export default function JournalPage() {
   const aiResponseBg = useColorModeValue('green.50', 'green.900');
   const borderCard = useColorModeValue('1px dashed rgba(0, 0, 0, 0.2)', '1px dashed rgba(255, 255, 255, 0.5)');
   const borderCardOuter = useColorModeValue('1px solid rgba(0, 0, 0, 0.2)', '1px solid rgba(255, 255, 255, 0.3)');
-  const titleColor = useColorModeValue('gray.700', 'gray.400');
+  const titleCardColor = useColorModeValue('gray.700', 'gray.400');
+  const titleColor = useColorModeValue('green.600', 'green.500');
+  const titleColorMuted = useColorModeValue('gray.500', 'gray.300');
 
   async function fetchJournals() {
     try {
@@ -116,14 +118,12 @@ export default function JournalPage() {
 
   return (
     <Container py={8}>
-      <Flex direction="column" alignItems="center" justifyContent="center" textAlign="center" mb={10}>
-        <Heading size="2xl" mb={2} color="green.600">
-          Wellness Journal
-        </Heading>
-        <Text color="gray.400">
-          Tulis catatan mengenai perkembangan kesehatan nutrisi anda dan dapatkan balasan dari Nutrisys AI.
-        </Text>
-      </Flex>
+      <Heading size="2xl" mb={2} color={titleColor}>
+        Wellness Journal
+      </Heading>
+      <Text color={titleColorMuted} mb="5">
+        Tulis catatan mengenai perkembangan kesehatan nutrisi anda dan dapatkan balasan dari Nutrisys AI.
+      </Text>
 
       <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={2}>
         {/* Left Column: Latest Journal / Create Form */}
@@ -173,7 +173,7 @@ export default function JournalPage() {
             ) : (
               <VStack align="stretch" gap={4} h="full">
                 <Flex justify="space-between" align="center">
-                  <Heading size="md" color={titleColor}>
+                  <Heading size="md" color={titleCardColor}>
                     Jurnal Terakhir
                   </Heading>
                   <IconButton variant="outline" size="sm" onClick={() => setIsCreating(true)} aria-label="Add Journal">
@@ -214,7 +214,7 @@ export default function JournalPage() {
                     </Card.Root>
 
                     <Box>
-                      <Heading size="sm" mb={2} color={titleColor}>
+                      <Heading size="sm" mb={2} color={titleCardColor}>
                         Pesan AI:
                       </Heading>
                       <Card.Root variant="subtle" bg={aiResponseBg}>
@@ -273,7 +273,7 @@ export default function JournalPage() {
         {/* Right Column: History */}
         <GridItem>
           <Box bg={sectionBg} p={6} rounded="xl" border={borderCardOuter} h="full" minH="500px">
-            <Heading size="md" mb={4} color={titleColor}>
+            <Heading size="md" mb={4} color={titleCardColor}>
               Riwayat Jurnal
             </Heading>
 

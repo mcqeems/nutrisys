@@ -57,6 +57,9 @@ export default function AnalyzePage() {
   const webcamRef = useRef<Webcam>(null);
   const foodUploadColor = useColorModeValue('gray.50', 'gray.800');
   const foodUploadColorHover = useColorModeValue('green.50', 'green.800');
+  const titleColor = useColorModeValue('green.600', 'green.500');
+  const titleColorMuted = useColorModeValue('gray.500', 'gray.300');
+  const borderCardColor = useColorModeValue('gray.300', 'gray.600');
   const videoConstraints = {
     facingMode: isMobile ? { exact: 'environment' } : 'user',
   };
@@ -107,21 +110,13 @@ export default function AnalyzePage() {
 
   return (
     <Container maxW="full" py={8}>
+      <Heading size="2xl" mb={2} color={titleColor}>
+        Smart Food Analyzer
+      </Heading>
+      <Text color={titleColorMuted} mb="4">
+        Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.
+      </Text>
       <VStack gap={8} align="stretch">
-        <Box textAlign="center">
-          <Flex direction="column" alignItems="center" justifyContent="center">
-            <Heading size="2xl" mb={2} color="green.600">
-              Smart Food Analyzer
-            </Heading>
-            <Text color="gray.400">
-              Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.
-            </Text>
-            <Box bg="transparent" w="full" maxW="200px" mt="4">
-              <RandomAnimation />
-            </Box>
-          </Flex>
-        </Box>
-
         <Card.Root variant="elevated">
           <Card.Body>
             <Tabs.Root
@@ -173,7 +168,7 @@ export default function AnalyzePage() {
                     )}
                     <Box
                       border="2px dashed"
-                      borderColor="gray.300"
+                      borderColor={borderCardColor}
                       rounded="xl"
                       p={10}
                       w="full"
@@ -207,7 +202,11 @@ export default function AnalyzePage() {
                         </VStack>
                       ) : (
                         <VStack gap={2}>
-                          <UploadCloudIcon size={48} color="#48BB78" />
+                          <Flex direction="column" alignItems="center" justifyContent="center">
+                            <Box bg="transparent" w="full" maxW="200px" mt="4">
+                              <RandomAnimation />
+                            </Box>
+                          </Flex>
                           <Text fontWeight="bold">Klik atau drag foto makanan di sini</Text>
                           <Text fontSize="sm" color="gray.400">
                             Support JPG, PNG, WEBP (Max 2MB)
