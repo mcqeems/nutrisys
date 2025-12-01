@@ -97,7 +97,7 @@ export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoad
               </Text>
             </Box>
             <Link href="/user">
-              <Button size="sm" colorPalette="yellow" variant="solid">
+              <Button w={{ base: 'full', md: 'auto' }} size="sm" colorPalette="yellow" variant="solid">
                 Lengkapi Profil
               </Button>
             </Link>
@@ -219,7 +219,12 @@ export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoad
         )}
       </Box>
       <Box textAlign="center">
-        <Button colorPalette={summary ? 'blue' : 'green'} onClick={onGenerate} loading={isLoading}>
+        <Button
+          w={{ base: 'full', md: 'auto' }}
+          colorPalette={summary ? 'blue' : 'green'}
+          onClick={onGenerate}
+          loading={isLoading}
+        >
           <Sparkles size={16} />
           {summary ? 'Refresh' : 'Mulai'}
         </Button>

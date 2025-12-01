@@ -197,7 +197,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                           colorPalette="red"
                           onClick={() => {
                             setLogoutLoading(true);
-                            signOut();
+                            signOut({ callbackUrl: '/' });
                           }}
                         >
                           <DoorOpenIcon />
@@ -320,7 +320,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                     variant="solid"
                     onClick={() => {
                       setLogoutLoading(true);
-                      signOut();
+                      signOut({ callbackUrl: '/' });
                     }}
                   >
                     <DoorOpenIcon />

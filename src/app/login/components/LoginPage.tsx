@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { loginSchema } from '@/lib/validation/auth';
 import Image from 'next/image';
 import { LoaderCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -104,9 +105,15 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-muted-foreground mt-6">
           No account?{' '}
-          <a href="/register" className="text-primary hover:underline font-medium">
+          <Link href="/register" className="text-primary hover:underline font-medium">
             Register
-          </a>
+          </Link>
+        </p>
+        <p className="text-center text-sm text-muted-foreground mt-2">
+          Go back?{' '}
+          <Link href="/" className="text-primary hover:underline font-medium">
+            Home
+          </Link>
         </p>
       </div>
     </div>

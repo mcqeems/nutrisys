@@ -176,7 +176,7 @@ export default function TargetPage() {
   };
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container maxW="container.xl" py={8} minH="800px">
       <Flex
         justify="space-between"
         align={{ base: 'start', md: 'center' }}
@@ -281,7 +281,7 @@ export default function TargetPage() {
             </Card.Root>
           ))
         ) : (
-          <Flex alignItems="center" justifyContent="center" w="full" minH="600px">
+          <Flex alignItems="center" justifyContent="center" w="full">
             <Box w="300px">
               <TargetAnimation />
               <Text color={titleColorMuted} textAlign="center">
