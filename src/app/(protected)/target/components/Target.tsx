@@ -8,12 +8,19 @@ export default function Target({ loop = false }: { loop?: boolean }) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      lottieRef.current?.pause();
-    }, 3000);
+    function pauseAnimation() {
+      if (loop === false) {
+        const timer = setTimeout(() => {
+          lottieRef.current?.pause();
+        }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+        return () => clearTimeout(timer);
+      } else {
+        return null;
+      }
+    }
+    pauseAnimation();
+  }, [loop]);
 
   return <Lottie lottieRef={lottieRef} animationData={TargetLottie} loop={loop} />;
 }
