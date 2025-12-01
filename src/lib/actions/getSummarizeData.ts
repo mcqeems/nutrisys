@@ -36,6 +36,7 @@ export interface SummarizeData {
     end_date: Date;
     status: string | null;
   }>;
+  date_now: Date;
 }
 
 export async function getSummarizeData(): Promise<SummarizeData | null> {
@@ -109,6 +110,8 @@ export async function getSummarizeData(): Promise<SummarizeData | null> {
       chat_logs: chat_logs || [],
       journal_entries: journal_entries || [],
       user_targets: user_targets || [],
+      // Get current time in Jakarta timezone (UTC+7)
+      date_now: new Date(Date.now() + 7 * 60 * 60 * 1000),
     };
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
