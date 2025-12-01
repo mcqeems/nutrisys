@@ -134,7 +134,12 @@ export default function DashboardPage() {
 
       {/* AI Summary */}
       <Box mb={6}>
-        <AISummaryCard summary={data.summary} onGenerate={handleGenerateSummary} isLoading={isGeneratingSummary} />
+        <AISummaryCard
+          summary={data.summary}
+          onGenerate={handleGenerateSummary}
+          isLoading={isGeneratingSummary}
+          userInfo={data.userInfo}
+        />
       </Box>
 
       {/* Stats Row */}

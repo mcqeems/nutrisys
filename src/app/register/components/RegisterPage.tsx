@@ -40,9 +40,9 @@ export default function RegisterPage() {
     const loginRes = await signIn('credentials', { email, password, redirect: false });
     setLoading(false);
     if (loginRes?.error) {
-      router.push('/login');
+      router.push('/register');
     } else {
-      router.push('/');
+      router.push('/login');
     }
   }
 
