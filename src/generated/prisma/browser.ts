@@ -77,3 +77,8 @@ export type user_info = Prisma.user_infoModel
  * 
  */
 export type user_targets = Prisma.user_targetsModel
+/**
+ * Model articles
+ * 
+ */
+export type articles = Prisma.articlesModel

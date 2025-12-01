@@ -166,3 +166,12 @@ model user_targets {
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   user       User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
+
+model articles {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  description String?   @db.VarChar(255)
+  content     String?
+  image_path  String?   @db.VarChar(255)
+  created_at  DateTime? @default(now()) @db.Timestamptz(6)
+}

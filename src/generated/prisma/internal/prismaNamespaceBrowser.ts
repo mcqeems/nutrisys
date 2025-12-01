@@ -60,7 +60,8 @@ export const ModelName = {
   notifications: 'notifications',
   summary: 'summary',
   user_info: 'user_info',
-  user_targets: 'user_targets'
+  user_targets: 'user_targets',
+  articles: 'articles'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -230,6 +231,18 @@ export const User_targetsScalarFieldEnum = {
 } as const
 
 export type User_targetsScalarFieldEnum = (typeof User_targetsScalarFieldEnum)[keyof typeof User_targetsScalarFieldEnum]
+
+
+export const ArticlesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  content: 'content',
+  image_path: 'image_path',
+  created_at: 'created_at'
+} as const
+
+export type ArticlesScalarFieldEnum = (typeof ArticlesScalarFieldEnum)[keyof typeof ArticlesScalarFieldEnum]
 
 
 export const SortOrder = {
