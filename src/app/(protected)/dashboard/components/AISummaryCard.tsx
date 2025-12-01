@@ -86,9 +86,9 @@ export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoad
       {/* Warning if user info is incomplete */}
       {isUserInfoIncomplete && (
         <Box bg={warningBg} border="1px solid" borderColor={warningBorder} borderRadius="md" p={4} mb={4}>
-          <Flex align="center" gap={3}>
+          <Flex direction={{ base: 'column', md: 'row' }} align="center" gap={3}>
             <AlertTriangle size={20} color="var(--chakra-colors-yellow-500)" />
-            <Box flex={1}>
+            <Box textAlign={{ base: 'center', md: 'start' }} flex={1}>
               <Text fontWeight="medium" color={warningText} fontSize="sm">
                 Data profil anda belum lengkap
               </Text>

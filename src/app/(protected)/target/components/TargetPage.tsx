@@ -177,14 +177,20 @@ export default function TargetPage() {
 
   return (
     <Container maxW="container.xl" py={8}>
-      <Flex justify="space-between" align="center" mb={8}>
+      <Flex
+        justify="space-between"
+        align={{ base: 'start', md: 'center' }}
+        mb={8}
+        direction={{ base: 'column', md: 'row' }}
+        gap={4}
+      >
         <Box>
           <Heading size="3xl" mb={2} color={titleColor}>
-            Targeting
+            Target
           </Heading>
           <Text color={titleColorMuted}>Tantang dirimu dengan membuat target!</Text>
         </Box>
-        <Button colorPalette="green" onClick={() => setIsDialogOpen(true)}>
+        <Button colorPalette="green" onClick={() => setIsDialogOpen(true)} w={{ base: 'full', md: 'auto' }}>
           <PlusIcon size={16} /> Buat Target
         </Button>
       </Flex>
@@ -275,8 +281,8 @@ export default function TargetPage() {
             </Card.Root>
           ))
         ) : (
-          <Flex alignItems="center" justifyContent="center" w="full">
-            <Box w="200px">
+          <Flex alignItems="center" justifyContent="center" w="full" minH="600px">
+            <Box w="300px">
               <TargetAnimation />
               <Text color={titleColorMuted} textAlign="center">
                 Anda belum mempunyai target.

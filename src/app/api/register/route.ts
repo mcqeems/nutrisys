@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         message: `Selamat datang di Nutrisys, ${
           name || 'Pengguna'
         }! 🎉 Mulai perjalanan kesehatan Anda dengan menganalisis makanan, membuat jurnal, dan menetapkan target kesehatan.`,
-        type: 'success',
+        type: 'Success',
         is_read: false,
       },
     });
