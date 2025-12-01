@@ -2,8 +2,11 @@
 
 import { Box, Text, Button, Flex } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
-import { Sparkles, AlertTriangle } from 'lucide-react';
+import { Sparkles, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { useState, useRef, useEffect } from 'react';
 
 interface AISummaryCardProps {
   summary: string | null;
@@ -20,6 +23,11 @@ interface AISummaryCardProps {
 }
 
 export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo }: AISummaryCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showExpandButton, setShowExpandButton] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const MAX_HEIGHT = 300; // Maximum height in pixels before showing "Read more"
+
   const cardBg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const mutedColor = useColorModeValue('gray.500', 'gray.400');
@@ -27,6 +35,17 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
   const warningBg = useColorModeValue('yellow.50', 'yellow.900');
   const warningBorder = useColorModeValue('yellow.400', 'yellow.600');
   const warningText = useColorModeValue('yellow.800', 'yellow.200');
+  const headingColor = useColorModeValue('green.700', 'green.300');
+  const linkColor = useColorModeValue('blue.600', 'blue.300');
+  const fadeGradient = useColorModeValue('linear(to-t, green.50, transparent)', 'linear(to-t, green.900, transparent)');
+
+  // Check if content exceeds max height
+  useEffect(() => {
+    if (contentRef.current && summary) {
+      const contentHeight = contentRef.current.scrollHeight;
+      setShowExpandButton(contentHeight > MAX_HEIGHT);
+    }
+  }, [summary]);
 
   // Check if user info is incomplete
   const isUserInfoIncomplete =
@@ -63,9 +82,111 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
         </Box>
       )}
 
-      <Box bg={summaryBg} p={4} borderRadius="md" minH="100px" mb={4} border="2px dashed" borderColor={borderColor}>
+      <Box
+        bg={summaryBg}
+        p={4}
+        borderRadius="md"
+        minH="100px"
+        mb={4}
+        border="2px dashed"
+        borderColor={borderColor}
+        position="relative"
+      >
         {summary ? (
-          <Text fontSize="sm">{summary}</Text>
+          <>
+            <Box
+              ref={contentRef}
+              fontSize="sm"
+              lineHeight="tall"
+              maxH={isExpanded ? 'none' : `${MAX_HEIGHT}px`}
+              overflow="hidden"
+              transition="max-height 0.4s ease-in-out"
+              css={{
+                '& h2': {
+                  fontSize: '1.25rem',
+                  fontWeight: 'bold',
+                  color: headingColor,
+                  marginTop: '0.5rem',
+                  marginBottom: '0.75rem',
+                },
+                '& h3': {
+                  fontSize: '1rem',
+                  fontWeight: 'semibold',
+                  color: headingColor,
+                  marginTop: '1rem',
+                  marginBottom: '0.5rem',
+                },
+                '& p': {
+                  marginBottom: '0.5rem',
+                },
+                '& ul, & ol': {
+                  paddingLeft: '1.5rem',
+                  marginBottom: '0.75rem',
+                },
+                '& li': {
+                  marginBottom: '0.25rem',
+                },
+                '& strong': {
+                  fontWeight: 'bold',
+                },
+                '& em': {
+                  fontStyle: 'italic',
+                  color: mutedColor,
+                },
+                '& hr': {
+                  marginTop: '1rem',
+                  marginBottom: '0.5rem',
+                  borderColor: borderColor,
+                },
+                '& a': {
+                  color: linkColor,
+                  textDecoration: 'underline',
+                },
+              }}
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{summary}</ReactMarkdown>
+            </Box>
+
+            {/* Gradient fade overlay when collapsed */}
+            {showExpandButton && !isExpanded && (
+              <Box
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                h="60px"
+                bgGradient={fadeGradient}
+                pointerEvents="none"
+                borderBottomRadius="md"
+              />
+            )}
+
+            {/* Expand/Collapse button */}
+            {showExpandButton && (
+              <Flex justify="center" mt={isExpanded ? 3 : 0} position="relative" zIndex={1}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  colorPalette="green"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  transition="all 0.2s"
+                  _hover={{ transform: 'translateY(2px)' }}
+                >
+                  {isExpanded ? (
+                    <>
+                      <ChevronUp size={16} />
+                      Sembunyikan
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown size={16} />
+                      Baca Selengkapnya
+                    </>
+                  )}
+                </Button>
+              </Flex>
+            )}
+          </>
         ) : (
           <Text fontSize="sm" color={mutedColor} textAlign="center" py={4}>
             Belum ada rangkuman. Klik tombol dibawah untuk memulai.

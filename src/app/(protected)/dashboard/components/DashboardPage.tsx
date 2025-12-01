@@ -9,6 +9,7 @@ import NotificationsCard from './NotificationsCard';
 import AISummaryCard from './AISummaryCard';
 import StatsCard from './StatsCard';
 import { toaster } from '@/components/ui/toaster';
+import { generateAISummary } from '@/lib/actions/generateAISummary';
 
 interface DashboardData {
   user: {
@@ -88,8 +89,13 @@ export default function DashboardPage() {
   const handleGenerateSummary = async () => {
     setIsGeneratingSummary(true);
     try {
-      // TODO: Implement AI summary generation
-      toaster.create({ title: 'Fitur ini akan segera hadir!', type: 'info' });
+      const result = await generateAISummary();
+      if (result.success && result.summary) {
+        setData((prev) => ({ ...prev, summary: result.summary! }));
+        toaster.create({ title: result.message, type: 'success' });
+      } else {
+        toaster.create({ title: result.message || 'Gagal membuat rangkuman', type: 'error' });
+      }
     } catch (error) {
       toaster.create({ title: 'Gagal membuat rangkuman', type: 'error' });
       console.error(error);
