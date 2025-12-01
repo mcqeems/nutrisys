@@ -4,7 +4,7 @@ import TargetLottie from './target.json';
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import { useEffect, useRef } from 'react';
 
-export default function Target() {
+export default function Target({ loop = false }: { loop?: boolean }) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   useEffect(() => {
@@ -15,5 +15,5 @@ export default function Target() {
     return () => clearTimeout(timer);
   }, []);
 
-  return <Lottie lottieRef={lottieRef} animationData={TargetLottie} loop={false} />;
+  return <Lottie lottieRef={lottieRef} animationData={TargetLottie} loop={loop} />;
 }
