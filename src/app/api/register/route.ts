@@ -31,6 +31,18 @@ export async function POST(req: Request) {
       },
     });
 
+    // Create welcome notification for new user
+    await prisma.notifications.create({
+      data: {
+        user_id: user.id,
+        message: `Selamat datang di Nutrisys, ${
+          name || 'Pengguna'
+        }! 🎉 Mulai perjalanan kesehatan Anda dengan menganalisis makanan, membuat jurnal, dan menetapkan target kesehatan.`,
+        type: 'success',
+        is_read: false,
+      },
+    });
+
     return NextResponse.json({ user }, { status: 201 });
   } catch (err) {
     console.error('Register error', err);

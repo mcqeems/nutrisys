@@ -28,9 +28,9 @@ export async function updateTargetStatus(id: number, status: string) {
     });
 
     revalidatePath('/target');
-    return { success: true, message: 'Status updated successfully' };
+    return { success: true, message: 'Status berhasil diperbarui' };
   } catch (error) {
     console.error('Error updating target status:', error);
-    return { success: false, message: 'Failed to update status' };
+    return { success: false, message: 'Gagal memperbarui status' };
   }
 }

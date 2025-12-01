@@ -4,6 +4,7 @@ import { Container, Box } from '@chakra-ui/react';
 import { ReactNode, useState, useEffect } from 'react';
 import { useColorModeValue } from './ui/color-mode';
 import ProtectedNavbar from './ProtectedNavbar';
+import { NotificationProvider } from '@/context/NotificationContext';
 
 interface UserInfo {
   id: number;
@@ -45,13 +46,13 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <>
+    <NotificationProvider>
       <Container>
         <Box w="full" p="4" my="1.5" bg={greenBox} rounded="2xl" shadow="lg" border="green" borderWidth="medium">
           <ProtectedNavbar session={session} loadingUser={loadingUser} />
           {children}
         </Box>
       </Container>
-    </>
+    </NotificationProvider>
   );
 }

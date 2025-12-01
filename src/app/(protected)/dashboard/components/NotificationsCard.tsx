@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Text, Stack, Flex, IconButton } from '@chakra-ui/react';
+import { Box, Text, Stack, Flex, IconButton, Badge } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { Bell, ExternalLinkIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -22,14 +22,22 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const mutedColor = useColorModeValue('gray.500', 'gray.400');
   const bgBoxColor = useColorModeValue('green.50', 'green.900');
+  const unreadBorder = useColorModeValue('green.400', 'green.600');
+
+  const unreadCount = notifications.filter((n) => !n.is_read).length;
 
   return (
     <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6} h="full">
       <Flex direction="row" justifyContent="space-between">
         <Box>
-          <Text fontWeight="semibold" mb={2}>
-            Notifikasi:
-          </Text>
+          <Flex align="center" gap={2} mb={2}>
+            <Text fontWeight="semibold">Notifikasi:</Text>
+            {unreadCount > 0 && (
+              <Badge colorPalette="red" variant="solid" size="sm">
+                {unreadCount} baru
+              </Badge>
+            )}
+          </Flex>
           <Text fontSize="sm" color={mutedColor} mb={4}>
             Reminder kegiatan anda.
           </Text>
@@ -50,8 +58,12 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
               bg={notif.is_read ? 'transparent' : bgBoxColor}
               borderRadius="md"
               border="2px dashed"
-              borderColor={borderColor}
+              borderColor={notif.is_read ? borderColor : unreadBorder}
+              position="relative"
             >
+              {!notif.is_read && (
+                <Box position="absolute" top={2} right={2} w={2} h={2} bg="red.500" borderRadius="full" />
+              )}
               <Text fontSize="sm">{notif.message}</Text>
               <Text fontSize="xs" color={mutedColor}>
                 {new Date(notif.created_at).toLocaleDateString('id-ID')}

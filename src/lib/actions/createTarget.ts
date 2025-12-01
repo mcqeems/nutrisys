@@ -24,9 +24,9 @@ export async function createTarget(name: string, startDate: string, endDate: str
     });
 
     revalidatePath('/target');
-    return { success: true, message: 'Target created successfully' };
+    return { success: true, message: 'Target berhasil dibuat.' };
   } catch (error) {
     console.error('Error creating target:', error);
-    return { success: false, message: 'Failed to create target' };
+    return { success: false, message: 'Gagal membuat target.' };
   }
 }

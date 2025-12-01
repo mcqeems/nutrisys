@@ -18,6 +18,7 @@ import { useColorMode, useColorModeValue } from './ui/color-mode';
 import { BellIcon, CircleUserIcon, DoorOpenIcon, MoonIcon, PencilIcon, SunIcon, MenuIcon } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
+import { useNotifications } from '@/context/NotificationContext';
 
 interface UserInfo {
   id: number;
@@ -46,11 +47,13 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
   const pathname = usePathname();
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { unreadCount } = useNotifications();
   const { toggleColorMode, colorMode } = useColorMode();
   const greenColor = useColorModeValue('green.500', 'green.400');
   const greenColorHover = useColorModeValue('green.400', 'green.500');
   const greenLogo = useColorModeValue('green.500', 'green.400');
   const userInfoBgMobile = useColorModeValue('green.50', 'green.900');
+  const badgeBorderColor = useColorModeValue('white', 'gray.800');
 
   return (
     <>
@@ -104,15 +107,39 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
             {colorMode === 'light' ? <MoonIcon suppressHydrationWarning /> : <SunIcon suppressHydrationWarning />}
           </IconButton>
           <Link href="/notifications">
-            <IconButton
-              aria-label="Notifications"
-              rounded="full"
-              bg={greenColor}
-              _hover={{ bg: greenColorHover }}
-              size={{ base: 'sm', md: 'md' }}
-            >
-              <BellIcon />
-            </IconButton>
+            <Box position="relative">
+              <IconButton
+                aria-label="Notifications"
+                rounded="full"
+                bg={greenColor}
+                _hover={{ bg: greenColorHover }}
+                size={{ base: 'sm', md: 'md' }}
+              >
+                <BellIcon />
+              </IconButton>
+              {unreadCount > 0 && (
+                <Box
+                  position="absolute"
+                  top="-2px"
+                  right="-2px"
+                  bg="red.500"
+                  color="white"
+                  fontSize="xs"
+                  fontWeight="bold"
+                  borderRadius="full"
+                  minW="18px"
+                  h="18px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  px={1}
+                  border="2px solid"
+                  borderColor={badgeBorderColor}
+                >
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </Box>
+              )}
+            </Box>
           </Link>
 
           {/* Desktop User Menu */}

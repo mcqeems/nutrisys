@@ -54,9 +54,9 @@ export async function updateUserProfile(data: UserProfileData) {
     }
 
     revalidatePath('/user');
-    return { success: true, message: 'Profile updated successfully' };
+    return { success: true, message: 'Profil berhasil diperbarui.' };
   } catch (error) {
     console.error('Error updating profile:', error);
-    return { success: false, message: 'Failed to update profile' };
+    return { success: false, message: 'Profil gagal untuk diperbarui.' };
   }
 }

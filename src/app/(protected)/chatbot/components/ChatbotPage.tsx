@@ -9,7 +9,6 @@ import {
   Text,
   Flex,
   Container,
-  Spinner,
   Button,
   Link as ChakraLink,
   Dialog,

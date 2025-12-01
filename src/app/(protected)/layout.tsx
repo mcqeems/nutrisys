@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import Loading from './loading';
 import ProtectedLayout from '@/components/ProtectedLayout';
 import { auth } from '@/auth';
+import { Toaster } from '@/components/ui/toaster';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
@@ -17,6 +18,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       <Suspense fallback={<Loading />}>
         <Provider defaultTheme="light">
           <ProtectedLayout>{children}</ProtectedLayout>
+          <Toaster />
         </Provider>
       </Suspense>
     </>

@@ -264,7 +264,7 @@ export default function TargetPage() {
                             <FileText size={14} /> Set Menunggu
                           </Menu.Item>
                           <Menu.Item value="delete" color="red.500" onClick={() => handleDelete(item.id)}>
-                            <Trash2 size={14} /> Delete
+                            <Trash2 size={14} /> Hapus
                           </Menu.Item>
                         </Menu.Content>
                       </Menu.Positioner>

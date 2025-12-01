@@ -28,6 +28,7 @@ import { useColorModeValue } from '@/components/ui/color-mode';
 import RandomAnimation from './RandomAnimation';
 import Webcam from 'react-webcam';
 import { isMobile } from 'react-device-detect';
+import { toaster } from '@/components/ui/toaster';
 
 const initialState: AnalyzeState = {
   success: false,
@@ -84,6 +85,20 @@ export default function AnalyzePage() {
     }
     fetchFoodLogs();
   }, [state.success]); // Refresh when new analysis is successful
+
+  // Show toaster when analysis is successful
+  useEffect(() => {
+    if (state.success && state.data) {
+      toaster.create({
+        title: 'Analisis berhasil!',
+        description: 'Data nutrisi makanan Anda telah dianalisis.',
+        type: 'success',
+      });
+    }
+    if (state.error) {
+      toaster.create({ title: 'Gagal menganalisis', description: state.error, type: 'error' });
+    }
+  }, [state.success, state.error, state.data]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -249,7 +264,7 @@ export default function AnalyzePage() {
                       {isCaptured ? (
                         <Button
                           type="submit"
-                          colorPalette="green"
+                          colorPalette="blue"
                           size="lg"
                           w="full"
                           loading={isPending}

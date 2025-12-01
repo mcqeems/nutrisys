@@ -27,7 +27,7 @@ export async function deleteTarget(id: number) {
     });
 
     revalidatePath('/target');
-    return { success: true, message: 'Target deleted successfully' };
+    return { success: true, message: 'Target berhasil dihapus' };
   } catch (error) {
     console.error('Error deleting target:', error);
     return { success: false, message: 'Failed to delete target' };
