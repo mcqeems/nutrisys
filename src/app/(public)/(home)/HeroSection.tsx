@@ -1,11 +1,11 @@
-"use client";
-import { Leaf, Apple, ChevronRight, Scale, Clock } from "lucide-react";
-import { FloatingText } from "@/components/ui/floating-text";
-import TextType from "@/components/TextType";
-import Image from "next/image";
-import AnimatedBackground from "./AnimatedBackground";
+'use client';
+import { Leaf, Apple, ChevronRight, Scale, Clock } from 'lucide-react';
+import { FloatingText } from '@/components/ui/floating-text';
+import TextType from '@/components/TextType';
+import Image from 'next/image';
+import AnimatedBackground from './AnimatedBackground';
 
-const HEALTH_MODEL_URL = "/Logo/nutrisys.webp";
+const HEALTH_MODEL_URL = '/Logo/nutrisys-large.webp';
 
 const HeroSection = () => {
   return (
@@ -21,7 +21,7 @@ const HeroSection = () => {
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
               <TextType
-                text={["Rencana Nutrisi", "Khusus Untukmu"]}
+                text={['Rencana Nutrisi', 'Khusus Untukmu']}
                 typingSpeed={40}
                 pauseDuration={1500}
                 showCursor={true}
@@ -30,7 +30,7 @@ const HeroSection = () => {
               <span
                 className="block title-accent-span"
                 style={{
-                  color: "var(--color-primary)",
+                  color: 'var(--color-primary)',
                 }}
               >
                 Partner Kesehatan Nutrisi Harian Anda
@@ -38,8 +38,8 @@ const HeroSection = () => {
             </h1>
             {/* ... sisa konten ... */}
             <p className="text-muted-foreground max-w-lg text-lg mx-auto lg:mx-0">
-              Hitung kalori, lacak makro, dan temukan rencana makan yang
-              dipersonalisasi. Mulai perjalanan kesehatan Anda hari ini.
+              Hitung kalori, lacak makro, dan temukan rencana makan yang dipersonalisasi. Mulai perjalanan kesehatan
+              Anda hari ini.
             </p>
 
             <div className="flex space-x-4 pt-4 justify-center lg:justify-start">
@@ -64,27 +64,21 @@ const HeroSection = () => {
           </div>
 
           {/* sisi kanan logo & budget*/}
-          <div className="lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden md:flex">
+          <div className="lg:w-1/2 relative lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden lg:flex">
             <Image
               src={HEALTH_MODEL_URL}
               alt="Healthy food bowl with fresh ingredients"
-              className="relative z-10 w-11/12 object-cover rounded-full"
-              width={500}
-              height={500}
+              className="relative z-10 w-11/12 object-cover"
+              width={1000}
+              height={1000}
             />
             {/* Badge 1 */}
             <div className="absolute top-1/4 left-4 sm:left-0">
-              <FloatingText
-                icon={<Scale className="h-5 w-5 text-primary" />}
-                title="Track Calories"
-              />
+              <FloatingText icon={<Scale className="h-5 w-5 text-primary" />} title="Track Calories" />
             </div>
             {/* Badge 2 */}
             <div className="absolute bottom-1/4 right-4 sm:right-0 px-30">
-              <FloatingText
-                icon={<Clock className="h-5 w-5 text-primary" />}
-                title="Quick Meals"
-              />
+              <FloatingText icon={<Clock className="h-5 w-5 text-primary" />} title="Quick Meals" />
             </div>
             {/* Logo Lingkaran */}
             <div className="absolute top-0 right-4 sm:right-0 p-3 rounded-full bg-primary/10 border border-border shadow-lg">
