@@ -1,8 +1,9 @@
 'use client';
 
-import { Box, Text, Stack } from '@chakra-ui/react';
+import { Box, Text, Stack, Flex, IconButton } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
-import { Bell } from 'lucide-react';
+import { Bell, ExternalLinkIcon } from 'lucide-react';
+import Link from 'next/link';
 
 interface Notification {
   id: number;
@@ -24,12 +25,21 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
 
   return (
     <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6} h="full">
-      <Text fontWeight="semibold" mb={2}>
-        Notifikasi:
-      </Text>
-      <Text fontSize="sm" color={mutedColor} mb={4}>
-        Reminder kegiatan anda.
-      </Text>
+      <Flex direction="row" justifyContent="space-between">
+        <Box>
+          <Text fontWeight="semibold" mb={2}>
+            Notifikasi:
+          </Text>
+          <Text fontSize="sm" color={mutedColor} mb={4}>
+            Reminder kegiatan anda.
+          </Text>
+        </Box>
+        <Link href="/notifications">
+          <IconButton size="sm" variant="outline">
+            <ExternalLinkIcon />
+          </IconButton>
+        </Link>
+      </Flex>
 
       <Stack gap={3} maxH="350px" overflowY="auto">
         {notifications.length > 0 ? (

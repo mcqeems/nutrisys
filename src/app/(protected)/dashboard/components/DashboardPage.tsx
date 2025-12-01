@@ -119,7 +119,7 @@ export default function DashboardPage() {
   return (
     <Container maxW="container.xl" py={8}>
       {/* Greeting */}
-      <Heading size="2xl" mb={8}>
+      <Heading size="3xl" mb={8}>
         Selamat datang,{' '}
         <Text as="span" color={titleColor}>
           {data.user?.name || 'Pengguna'}

@@ -1,7 +1,8 @@
 'use client';
 
-import { Box, Flex, Text, Avatar, Badge, Grid } from '@chakra-ui/react';
+import { Box, Flex, Text, Avatar, Badge, Grid, Link, IconButton } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
+import { ExternalLinkIcon } from 'lucide-react';
 
 interface UserInfoCardProps {
   user: {
@@ -27,9 +28,16 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
 
   return (
     <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6}>
-      <Text fontWeight="semibold" mb={4}>
-        User Info
-      </Text>
+      <Flex direction="row" justifyContent="space-between">
+        <Text fontWeight="semibold" mb={4}>
+          User Info
+        </Text>
+        <Link href="/user">
+          <IconButton size="sm" variant="outline">
+            <ExternalLinkIcon />
+          </IconButton>
+        </Link>
+      </Flex>
 
       <Flex gap={6} mb={6} direction={{ base: 'column', md: 'row' }}>
         {/* Left: Avatar and basic info */}

@@ -34,10 +34,10 @@ export default function AISummaryCard({ summary, onGenerate, isLoading }: AISumm
           </Text>
         )}
       </Box>
-
       <Box textAlign="center">
-        <Button colorPalette="green" onClick={onGenerate} loading={isLoading}>
-          <Sparkles size={16} /> Mulai
+        <Button colorPalette={summary ? 'blue' : 'green'} onClick={onGenerate} loading={isLoading}>
+          <Sparkles size={16} />
+          {summary ? 'Refresh' : 'Mulai'}
         </Button>
       </Box>
     </Box>
