@@ -85,10 +85,10 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
         {/* Desktop Navigation */}
         <Flex direction="row" gap="6" display={{ base: 'none', md: 'flex' }}>
           <NavLink href="/dashboard" label="Dashboard" pathname={pathname} activeColor={greenColor} />
-          <NavLink href="/target" label="Target" pathname={pathname} activeColor={greenColor} />
-          <NavLink href="/journal" label="Wellness Jurnal" pathname={pathname} activeColor={greenColor} />
-          <NavLink href="/chatbot" label="AI Chat" pathname={pathname} activeColor={greenColor} />
           <NavLink href="/analyze" label="Analisis Nutrisi" pathname={pathname} activeColor={greenColor} />
+          <NavLink href="/chatbot" label="AI Chat" pathname={pathname} activeColor={greenColor} />
+          <NavLink href="/journal" label="Wellness Jurnal" pathname={pathname} activeColor={greenColor} />
+          <NavLink href="/target" label="Target" pathname={pathname} activeColor={greenColor} />
         </Flex>
 
         <Flex direction="row" gap="4" justifyContent="center" alignItems="center">
@@ -245,14 +245,8 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                     onClose={() => setIsDrawerOpen(false)}
                   />
                   <MobileNavLink
-                    href="/target"
-                    label="Target"
-                    pathname={pathname}
-                    onClose={() => setIsDrawerOpen(false)}
-                  />
-                  <MobileNavLink
-                    href="/journal"
-                    label="Wellness Jurnal"
+                    href="/analyze"
+                    label="Analisis Nutrisi"
                     pathname={pathname}
                     onClose={() => setIsDrawerOpen(false)}
                   />
@@ -263,8 +257,14 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                     onClose={() => setIsDrawerOpen(false)}
                   />
                   <MobileNavLink
-                    href="/analyze"
-                    label="Analisis Nutrisi"
+                    href="/journal"
+                    label="Wellness Jurnal"
+                    pathname={pathname}
+                    onClose={() => setIsDrawerOpen(false)}
+                  />
+                  <MobileNavLink
+                    href="/target"
+                    label="Target"
                     pathname={pathname}
                     onClose={() => setIsDrawerOpen(false)}
                   />

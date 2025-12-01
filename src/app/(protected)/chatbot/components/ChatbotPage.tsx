@@ -205,7 +205,7 @@ export default function ChatbotPage() {
             </Box>
             <VStack gap={0} align="start">
               <Text fontWeight="bold" fontSize="md" color={textColor}>
-                Nutrisys AI
+                NutriAI
               </Text>
               <Text fontSize="xs" color={onlineColor} fontWeight="medium">
                 Online
