@@ -25,7 +25,10 @@ export interface DashboardData {
     is_read: boolean | null;
     created_at: Date | null;
   }>;
-  summary: string | null;
+  summary: {
+    description: string | null;
+    generated_at: Date | null;
+  };
   stats: {
     totalAnalisis: number;
     totalPesan: number;
@@ -104,7 +107,10 @@ export async function getDashboard(): Promise<DashboardData | null> {
           }
         : null,
       notifications: notifications || [],
-      summary: summary?.description || null,
+      summary: {
+        description: summary?.description || null,
+        generated_at: summary?.generated_at || null,
+      },
       stats: {
         totalAnalisis: foodLogsCount,
         totalPesan: chatLogsCount,

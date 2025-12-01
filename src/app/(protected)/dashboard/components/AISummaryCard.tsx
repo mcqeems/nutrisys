@@ -10,6 +10,7 @@ import { useState, useRef, useEffect } from 'react';
 
 interface AISummaryCardProps {
   summary: string | null;
+  generatedAt?: Date | null;
   onGenerate: () => void;
   isLoading?: boolean;
   userInfo?: {
@@ -22,9 +23,10 @@ interface AISummaryCardProps {
   } | null;
 }
 
-export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo }: AISummaryCardProps) {
+export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoading, userInfo }: AISummaryCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showExpandButton, setShowExpandButton] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const MAX_HEIGHT = 300; // Maximum height in pixels before showing "Read more"
 
@@ -39,11 +41,12 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
   const linkColor = useColorModeValue('blue.600', 'blue.300');
   const fadeGradient = useColorModeValue('linear(to-t, green.50, transparent)', 'linear(to-t, green.900, transparent)');
 
-  // Check if content exceeds max height
+  // Check if content exceeds max height and measure full height
   useEffect(() => {
     if (contentRef.current && summary) {
-      const contentHeight = contentRef.current.scrollHeight;
-      setShowExpandButton(contentHeight > MAX_HEIGHT);
+      const fullHeight = contentRef.current.scrollHeight;
+      setContentHeight(fullHeight);
+      setShowExpandButton(fullHeight > MAX_HEIGHT);
     }
   }, [summary]);
 
@@ -51,14 +54,34 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
   const isUserInfoIncomplete =
     !userInfo || !userInfo.gender || !userInfo.height || !userInfo.weight || !userInfo.blood_type;
 
+  // Format generated date
+  const formattedDate = generatedAt
+    ? new Date(generatedAt).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : null;
+
   return (
     <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6}>
-      <Text fontWeight="semibold" mb={1}>
-        Rangkuman AI
-      </Text>
-      <Text fontSize="sm" color={mutedColor} mb={4}>
-        Dapatkan rangkuman AI lengkap untuk semua aktivitas anda di Nutrisys!
-      </Text>
+      <Flex direction="row" justifyContent="space-between" alignItems="flex-start" mb={4}>
+        <Box>
+          <Text fontWeight="semibold" mb={1}>
+            Rangkuman AI
+          </Text>
+          <Text fontSize="sm" color={mutedColor}>
+            Dapatkan rangkuman AI lengkap untuk semua aktivitas anda di Nutrisys!
+          </Text>
+        </Box>
+        {formattedDate && (
+          <Text fontSize="xs" color={mutedColor} whiteSpace="nowrap">
+            Terakhir: {formattedDate}
+          </Text>
+        )}
+      </Flex>
 
       {/* Warning if user info is incomplete */}
       {isUserInfoIncomplete && (
@@ -98,9 +121,9 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
               ref={contentRef}
               fontSize="sm"
               lineHeight="tall"
-              maxH={isExpanded ? 'none' : `${MAX_HEIGHT}px`}
+              maxH={isExpanded ? `${contentHeight}px` : `${MAX_HEIGHT}px`}
               overflow="hidden"
-              transition="max-height 0.4s ease-in-out"
+              transition="max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
               css={{
                 '& h2': {
                   fontSize: '1.25rem',
@@ -148,7 +171,7 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
             </Box>
 
             {/* Gradient fade overlay when collapsed */}
-            {showExpandButton && !isExpanded && (
+            {showExpandButton && (
               <Box
                 position="absolute"
                 bottom="0"
@@ -158,6 +181,8 @@ export default function AISummaryCard({ summary, onGenerate, isLoading, userInfo
                 bgGradient={fadeGradient}
                 pointerEvents="none"
                 borderBottomRadius="md"
+                opacity={isExpanded ? 0 : 1}
+                transition="opacity 0.3s ease-in-out"
               />
             )}
 

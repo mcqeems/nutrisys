@@ -32,7 +32,10 @@ interface DashboardData {
     is_read: boolean;
     created_at: string;
   }>;
-  summary: string | null;
+  summary: {
+    description: string | null;
+    generated_at: Date | null;
+  };
   stats: {
     totalAnalisis: number;
     totalPesan: number;
@@ -56,7 +59,10 @@ export default function DashboardPage() {
         created_at: '',
       },
     ],
-    summary: null,
+    summary: {
+      description: null,
+      generated_at: null,
+    },
     stats: {
       totalAnalisis: 0,
       totalPesan: 0,
@@ -91,7 +97,13 @@ export default function DashboardPage() {
     try {
       const result = await generateAISummary();
       if (result.success && result.summary) {
-        setData((prev) => ({ ...prev, summary: result.summary! }));
+        setData((prev) => ({
+          ...prev,
+          summary: {
+            description: result.summary.description,
+            generated_at: result.summary.generated_at,
+          },
+        }));
         toaster.create({ title: result.message, type: 'success' });
       } else {
         toaster.create({ title: result.message || 'Gagal membuat rangkuman', type: 'error' });
@@ -141,7 +153,8 @@ export default function DashboardPage() {
       {/* AI Summary */}
       <Box mb={6}>
         <AISummaryCard
-          summary={data.summary}
+          summary={data.summary.description}
+          generatedAt={data.summary.generated_at}
           onGenerate={handleGenerateSummary}
           isLoading={isGeneratingSummary}
           userInfo={data.userInfo}

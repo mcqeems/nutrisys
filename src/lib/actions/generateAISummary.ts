@@ -34,7 +34,6 @@ export async function generateAISummary() {
     const model = genAI.getGenerativeModel({
       model: 'gemini-2.5-flash',
       generationConfig: {
-        maxOutputTokens: 2500, // Medium length output
         temperature: 0.7, // Balanced creativity
       },
     });
@@ -96,7 +95,14 @@ ${dataContext}`;
       },
     });
 
-    return { success: true, summary: summaryText, message: 'Rangkuman berhasil dibuat!' };
+    return {
+      success: true,
+      summary: {
+        description: summaryText,
+        generated_at: new Date(),
+      },
+      message: 'Rangkuman berhasil dibuat!',
+    };
   } catch (error) {
     console.error('Error generating AI summary:', error);
     return { success: false, message: 'Gagal membuat rangkuman AI' };
