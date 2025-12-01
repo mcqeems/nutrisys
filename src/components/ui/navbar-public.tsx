@@ -1,11 +1,16 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { MoonIcon, SunIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import { Skeleton } from '../Skeleton';
+"use client";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import {
+  MoonIcon,
+  SunIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { Skeleton } from "./Skeleton";
 
 interface NavLink {
   name: string;
@@ -13,17 +18,17 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Fitur', path: '/features' },
-  { name: 'Tentang', path: '/about' },
-  { name: 'Artikel', path: '/article' },
-  { name: 'Hubungi Kami', path: '/contact-us' },
+  { name: "Fitur", path: "/features" },
+  { name: "Artikel", path: "/article" },
+  { name: "Tentang", path: "/about" },
+  { name: "Hubungi Kami", path: "/contact-us" },
 ];
 
 const mobileLinks: NavLink[] = [
-  { name: 'Fitur', path: '/features' },
-  { name: 'Tentang', path: '/about' },
-  { name: 'Artikel', path: '/article' },
-  { name: 'Hubungi Kami', path: '/contact-us' },
+  { name: "Fitur", path: "/features" },
+  { name: "Artikel", path: "/article" },
+  { name: "Tentang", path: "/about" },
+  { name: "Hubungi Kami", path: "/contact-us" },
 ];
 
 function PublicNavbar() {
@@ -33,13 +38,13 @@ function PublicNavbar() {
   const { theme, setTheme } = useTheme();
   const currentPath = usePathname();
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   useEffect(() => {
     const fetchUser = async function () {
       try {
-        const response = await fetch('/api/user');
+        const response = await fetch("/api/user");
         if (!response.ok) {
           return null;
         } else {
@@ -61,12 +66,13 @@ function PublicNavbar() {
    */
   const getLinkClassName = (path: string): string => {
     const isActive = currentPath === path;
-    const defaultClass = 'py-1 hover:text-primary transition-colors duration-200';
+    const defaultClass =
+      "py-1 hover:text-primary transition-colors duration-200";
 
     // Class untuk active link (Garis bawah untuk menandai)
-    const activeClass = 'text-primary font-semibold border-b-2 border-primary';
+    const activeClass = "text-primary font-semibold border-b-2 border-primary";
 
-    return `${defaultClass} ${isActive ? activeClass : ''}`;
+    return `${defaultClass} ${isActive ? activeClass : ""}`;
   };
 
   /**
@@ -76,12 +82,13 @@ function PublicNavbar() {
     const isActive = currentPath === path;
 
     const defaultClass =
-      'border-l-4 border-transparent hover:border-primary pl-4 transition-all duration-300 rounded-r-md';
+      "border-l-4 border-transparent hover:border-primary pl-4 transition-all duration-300 rounded-r-md";
 
     // Class untuk active link mobile (Garis kiri, teks, dan background primer)
-    const activeClass = 'border-l-4 border-primary text-primary font-bold bg-primary/10';
+    const activeClass =
+      "border-l-4 border-primary text-primary font-bold bg-primary/10";
 
-    return `block py-3 ${defaultClass} ${isActive ? activeClass : ''}`;
+    return `block py-3 ${defaultClass} ${isActive ? activeClass : ""}`;
   };
 
   return (
@@ -92,8 +99,16 @@ function PublicNavbar() {
             {/* Logo Section */}
             <div className="flex items-center gap-16 my-4 lg:my-6">
               <div>
-                <Link href="/" className="flex gap-1 font-bold items-center text-foreground">
-                  <Image src="/Logo/nutrisys.webp" width={30} height={30} alt="NutriSys Nutrition Analysis" />
+                <Link
+                  href="/"
+                  className="flex gap-1 font-bold items-center text-foreground"
+                >
+                  <Image
+                    src="/Logo/nutrisys.webp"
+                    width={30}
+                    height={30}
+                    alt="NutriSys Nutrition Analysis"
+                  />
 
                   <div className="flex items-center gap-1.5 font-[1000] leading-none"></div>
 
@@ -123,7 +138,11 @@ function PublicNavbar() {
 
               <div className="hidden lg:flex items-center gap-8">
                 {navLinks.map((link) => (
-                  <Link key={link.name} href={link.path} className={getLinkClassName(link.path)}>
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    className={getLinkClassName(link.path)}
+                  >
                     {link.name}
                   </Link>
                 ))}
@@ -137,10 +156,16 @@ function PublicNavbar() {
                 className="p-2 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors focus:ring-2 focus:ring-ring"
                 aria-label="Toggle Theme"
               >
-                {theme === 'dark' ? (
-                  <SunIcon suppressHydrationWarning className="h-6 w-6 text-yellow-400" />
+                {theme === "dark" ? (
+                  <SunIcon
+                    suppressHydrationWarning
+                    className="h-6 w-6 text-yellow-400"
+                  />
                 ) : (
-                  <MoonIcon suppressHydrationWarning className="h-6 w-6 text-foreground" />
+                  <MoonIcon
+                    suppressHydrationWarning
+                    className="h-6 w-6 text-foreground"
+                  />
                 )}
               </button>
 
@@ -196,7 +221,7 @@ function PublicNavbar() {
         <div
           className={`fixed inset-x-0 top-[68px] lg:hidden z-40 bg-background/95 backdrop-blur-lg 
             overflow-hidden transition-all duration-500 ease-in-out shadow-lg border-b border-border
-            ${!toggleMenu ? 'max-h-0' : 'max-h-screen'}`}
+            ${!toggleMenu ? "max-h-0" : "max-h-screen"}`}
         >
           <div className="p-4 pb-8">
             <div className="flex flex-col gap-1 font-medium tracking-wider">

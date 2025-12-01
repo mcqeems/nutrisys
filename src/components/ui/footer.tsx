@@ -10,16 +10,15 @@ interface FooterLink {
 
 // Data Tautan Navigasi Cepat
 const navLinks: FooterLink[] = [
+  { href: "/", label: "Beranda" },
   { href: "/features", label: "Fitur Unggulan" },
   { href: "/about", label: "Tentang Kami" },
   { href: "/contact-us", label: "Hubungi Kami" },
 ];
 
 const resourceLinks: FooterLink[] = [
-  { href: "/blog", label: "Blog Kesehatan" },
+  { href: "/article", label: "Blog Kesehatan" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/syarat", label: "Syarat & Ketentuan" },
-  { href: "/privasi", label: "Kebijakan Privasi" },
 ];
 
 export function Footer() {
@@ -41,8 +40,8 @@ export function Footer() {
                 width={70}
                 height={70}
               />
-              <div className="pl-2 block text-4xl">
-                <span className="text-foreground dark:text-foreground">
+              <div className="pl-2 block text-4xl font-bold">
+                <span className="text-foreground dark:text-foreground ">
                   <span className="hoverText text-hover-primary">N</span>
                   <span className="hoverText text-hover-primary">u</span>
                   <span className="hoverText text-hover-primary">t</span>
