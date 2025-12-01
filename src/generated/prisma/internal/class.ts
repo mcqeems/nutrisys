@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/home/mcqeems/Documents/Project/TECHCOMFEST/nutrisys/src/generated/prisma",
+      "value": "/home/almagribi/Repo/Project/nutrisys/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -38,7 +38,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/mcqeems/Documents/Project/TECHCOMFEST/nutrisys/prisma/schema.prisma",
+    "sourceFilePath": "/home/almagribi/Repo/Project/nutrisys/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
@@ -48,7 +48,6 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
