@@ -12,12 +12,6 @@ export default function HeroTentang() {
       setIsVisible(true);
     }, []);
 
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-      },
-    };
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12">
       <div className="absolute inset-0 z-0">
@@ -41,7 +35,7 @@ export default function HeroTentang() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6"
         >
-          <h1 className="text-5xl md:text-7xl font-bold font-headline mb-6 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-8xl font-bold font-headline mb-6 text-primary to-accent bg-clip-text ">
             Tentang Nutrisys
           </h1>
         </motion.div>
@@ -55,19 +49,6 @@ export default function HeroTentang() {
           Mengubah cara Anda memahami nutrisi dengan teknologi analisis canggih
           dan pendekatan personal untuk kesehatan optimal
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12"
-        >
-          <div className="inline-block px-8 py-3 bg-primary/10 border border-primary/20 rounded-full">
-            <p className="text-sm font-medium text-primary">
-              Scroll untuk mengetahui lebih lanjut
-            </p>
-          </div>
-        </motion.div>
       </motion.div>
     </section>
   );
