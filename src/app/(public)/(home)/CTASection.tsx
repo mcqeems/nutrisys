@@ -53,7 +53,7 @@ const CTASection = () => {
               </ul>
 
               {/* button */}
-              <Link href="/register" passHref legacyBehavior>
+              <a href="/register">
                 <Button
                   size="lg"
                   className="group w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg font-bold rounded-xl transition-all hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
@@ -61,7 +61,7 @@ const CTASection = () => {
                   Daftar Gratis Sekarang
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Button>
-              </Link>
+              </a>
               <p className="text-sm text-muted-foreground mt-4">
                 ✨ Gratis Pemakaian  • Tidak perlu berbayar
               </p>
