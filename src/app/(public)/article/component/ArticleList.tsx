@@ -95,9 +95,8 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
             <motion.a
               key={article.id}
               href={`/article/${article.id}`}
-              className="group flex flex-col rounded-xl bg-card shadow-lg border border-border transition-all duration-500 
-                         transform hover:scale-[1.02] hover:shadow-2xl hover:border-primary 
-                         dark:shadow-none dark:hover:border-primary/50"
+              className="group flex flex-col rounded-3xl bg-card shadow-lg border border-border transition-all duration-300 
+                         transform hover:scale-[1.01] hover:shadow-xl hover:border-primary/50 overflow-hidden" 
               variants={itemVariants}
             >
               <div className="relative w-full h-48 overflow-hidden">
