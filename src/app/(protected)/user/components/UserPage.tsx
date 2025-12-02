@@ -216,7 +216,7 @@ export default function UserPage() {
             <Flex direction={{ base: 'column', sm: 'row' }} align="center" gap={6}>
               <Box position="relative">
                 <Avatar.Root size="2xl" w="120px" h="120px">
-                  <Avatar.Image src={imagePreview || ''} />
+                  <Avatar.Image src={imagePreview || undefined} />
                   <Avatar.Fallback name={userData?.user?.name || 'User'} />
                 </Avatar.Root>
                 {isEditing && (
