@@ -281,7 +281,7 @@ export default function TargetPage() {
             </Card.Root>
           ))
         ) : (
-          <Flex alignItems="center" justifyContent="center" w="full">
+          <Flex alignItems="center" justifyContent="center" w="full" minH="400px">
             <Box w="300px">
               <TargetAnimation />
               <Text color={titleColorMuted} textAlign="center">
