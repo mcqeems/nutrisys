@@ -1,4 +1,3 @@
-import { articles } from '@/generated/prisma/client';
 import { prisma } from '@/prisma';
 
 export type ArticleListItem = {
@@ -32,19 +31,3 @@ export async function getAllArticleList(): Promise<ArticleListItem[]> {
   }
 }
 
-export async function getSingleArticleDetail(
-  id: number
-): Promise<articles | null> {
-  try {
-    const article = await prisma.articles.findUnique({
-      where: { id },
-    });
-
-    console.log(`[DEBUG] Article found for ID ${id}:`, !!article);
-
-    return article;
-  } catch (error) {
-    console.error(`ACTION_ERROR_GET_DETAIL (ID: ${id}):`, error);
-    throw new Error("Gagal mengambil detail artikel.");
-  }
-}
