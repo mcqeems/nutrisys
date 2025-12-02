@@ -1,28 +1,52 @@
-import { Zap } from "lucide-react";
+"use client";
+export function HeroSection() {
 
-export default function HeroSection() {
   return (
-    <section className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-background via-background to-background overflow-hidden">
-      <div className="relative max-w-5xl mx-auto text-center space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium animate-fade-in-up">
-          <Zap className="w-4 h-4" />
-          Fitur-Fitur Unggulan
+    <section
+      className="relative pt-24 pb-16 md:py-32 flex items-center justify-center overflow-hidden px-4"
+    >
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+      </div>
+
+      <div
+        className="relative z-10 max-w-4xl mx-auto text-center"
+      >
+        <div className="mb-6 inline-block">
+          <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20">
+            ✨ Kecerdasan untuk Kesejahteraan Anda
+          </span>
         </div>
 
-        <h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance animate-fade-in-up"
-          style={{ animationDelay: "0.1s" }}
-        >
-          Semua Alat yang Anda Butuhkan untuk Sukses
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-snug">
+          <span className="bg-linear-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+            Temukan Semua Fitur
+          </span>
+          <br />
+          <span className="text-foreground">Untuk Hidup Lebih Sehat</span>
         </h1>
 
-        <p
-          className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
-          style={{ animationDelay: "0.2s" }}
-        >
-          Fitur-fitur canggih yang dirancang untuk membuat perjalanan nutrisi
-          Anda menjadi mudah, efektif, dan menyenangkan
+        <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
+          Platform AI kami menyajikan alat lengkap mulai dari konsultasi instan
+          hingga analisis mendalam, dirancang untuk mendukung setiap langkah
+          perjalanan kesehatan Anda.
         </p>
+
+        <div className="flex flex-wrap gap-3 justify-center">
+          {[
+            "🤖 Asisten Chat AI",
+            "🥗 Analisis Nutrisi",
+            "📔 Jurnal Cerdas",
+            "🎯 Pelacakan Tujuan",
+          ].map((pill, i) => (
+            <div
+              key={i}
+              className="px-4 py-2 rounded-full bg-background/80 border border-border/40 text-sm font-medium backdrop-blur-sm hover:border-primary/50 transition-colors cursor-pointer"
+            >
+              {pill}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
