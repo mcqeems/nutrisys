@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { getSingleArticleDetail } from '@/lib/actions/getArticles';
+import { getSingleArticleDetail } from '@/lib/actions/getSingleArticleDetail';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
