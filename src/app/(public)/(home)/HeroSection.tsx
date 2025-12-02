@@ -36,7 +36,6 @@ const HeroSection = () => {
                 Partner Kesehatan Nutrisi Harian Anda
               </span>
             </h1>
-            {/* ... sisa konten ... */}
             <p className="text-muted-foreground max-w-lg text-lg mx-auto lg:mx-0">
               Hitung kalori, lacak makro, dan temukan rencana makan yang dipersonalisasi. Mulai perjalanan kesehatan
               Anda hari ini.
