@@ -13,7 +13,6 @@ export default function ContactForm() {
   });
 
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,22 +24,31 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+  const getMailtoString = () => {
+    const recipient = "brucadalm@gmail.com";
+
+    const subject = `Pesan dari Website: ${formData.subject}`;
+
+    const body = `
+Nama: ${formData.name}
+Email: ${formData.email}
+
+Pesan:
+${formData.message}
+      `;
+    return `mailto:${recipient}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form action={getMailtoString()} method="GET" className="space-y-6">
       <Card className="p-8 border-2 border-border bg-card/50 hover:border-primary/30">
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
           Kirim Pesan Kami
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Name Field */}
           <div className="form-group md:col-span-1">
             <label
               htmlFor="name"
@@ -65,7 +73,6 @@ export default function ContactForm() {
             />
           </div>
 
-          {/* Email Field */}
           <div className="form-group md:col-span-1">
             <label
               htmlFor="email"
@@ -91,7 +98,6 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Subject Field */}
         <div className="form-group mt-6">
           <label
             htmlFor="subject"
@@ -106,6 +112,7 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             onFocus={() => setFocusedField("subject")}
+            onBlur={() => setFocusedField(null)}
             placeholder="Subjek pesan Anda"
             className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-background/80 focus:outline-none ${
               focusedField === "subject"
@@ -115,7 +122,6 @@ export default function ContactForm() {
           />
         </div>
 
-        {/* Message Field */}
         <div className="form-group mt-6">
           <label
             htmlFor="message"
@@ -143,7 +149,6 @@ export default function ContactForm() {
           />
         </div>
 
-        {/* Submit Button */}
         <div
           className="mt-8"
           style={{
@@ -154,17 +159,9 @@ export default function ContactForm() {
             type="submit"
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 active:scale-95 text-base"
           >
-            {submitted ? "✓ Pesan Terkirim!" : "Kirim Pesan"}
+            Kirim Pesan
           </Button>
         </div>
-
-        {submitted && (
-          <Card className="mt-6 p-4 bg-primary/10 border-primary/30 animate-in fade-in slide-in-from-bottom-4">
-            <p className="text-sm text-primary font-medium">
-              ✓ Terima kasih! Kami akan segera menghubungi Anda dalam 24 jam.
-            </p>
-          </Card>
-        )}
       </Card>
     </form>
   );
