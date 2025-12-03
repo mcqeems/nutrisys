@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion, useInView, Variants } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { useRef } from "react";
+import Link from "next/link";
+import { motion, useInView, Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 interface MainFeatureCardProps {
   feature: {
@@ -33,17 +32,23 @@ const cardVariants: Variants = {
   },
 };
 
-export function MainFeatureCard({ feature, isHovered, onHover, onLeave }: MainFeatureCardProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+export function MainFeatureCard({
+  feature,
+  isHovered,
+  onHover,
+  onLeave,
+}: MainFeatureCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const youtubeEmbedUrl = `https://www.youtube.com/embed/${feature.videoUrl}`;
 
   return (
     <motion.div
       ref={ref}
       variants={cardVariants}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={isInView ? "visible" : "hidden"}
       className="group relative overflow-hidden rounded-2xl bg-card border border-border/40 transition-all duration-500  hover:shadow-2xl hover:border-primary/50"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
@@ -68,23 +73,31 @@ export function MainFeatureCard({ feature, isHovered, onHover, onLeave }: MainFe
           </Link>
         </div>
 
-        <p className="text-muted-foreground mb-6 leading-relaxed">{feature.description}</p>
+        <p className="text-muted-foreground mb-4 leading-relaxed">
+          {feature.description}
+        </p>
 
-        {/* Video Placeholder */}
+        {/* ANJURAN KUALITAS VIDEO */}
+        <p className="text-xs text-primary/70 mb-6 bg-primary/10 p-2 rounded-lg border border-primary/20">
+          💡 Untuk kualitas video terbaik (Full HD), klik ikon roda gigi
+          (Settings) pada pemutar video di bawah dan pilih resolusi tertinggi.
+        </p>
+
+        {/* Pemutar Video YouTube (IFRAME) */}
         <div
-          className={`relative mb-6 rounded-xl overflow-hidden bg-linear-to-br from-primary/20 to-primary/5 aspect-video transition-all duration-500 ${
-            isHovered ? 'scale-105 shadow-lg' : ''
+          className={`relative mb-6 rounded-xl overflow-hidden bg-black aspect-video transition-all duration-500 ${
+            isHovered ? "scale-105 shadow-lg" : ""
           }`}
-          onClick={() => setIsPlaying(!isPlaying)}
         >
-          <Image src={feature.videoUrl || '/placeholder.svg'} alt={feature.title} fill className="object-cover" />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-            <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <svg className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
+          <iframe
+            className="w-full h-full"
+            src={youtubeEmbedUrl}
+            title={`Video demo ${feature.title}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            key={feature.videoUrl}
+          ></iframe>
         </div>
 
         {/* Benefits */}
