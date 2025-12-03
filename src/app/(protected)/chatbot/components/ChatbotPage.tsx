@@ -17,12 +17,68 @@ import {
 } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import NextLink from 'next/link';
-import { SendIcon, BotIcon, UserIcon, Trash2Icon } from 'lucide-react';
+import {
+  SendIcon,
+  BotIcon,
+  UserIcon,
+  Trash2Icon,
+  Sparkles,
+  HelpCircle,
+  Apple,
+  Activity,
+  Heart,
+  Dumbbell,
+  Moon,
+  Droplets,
+} from 'lucide-react';
 import { sendMessage, resetChat } from '../actions/actions';
 import type { ChatLogs } from '../types/types';
 import Loader from '@/components/Loader';
 import Chatbot from './Chatbot';
 import TypingIndicator from '@/components/TypingIndicator';
+
+const quickStartSuggestions = [
+  {
+    icon: Apple,
+    label: 'Nutrisi Sehat',
+    prompt: 'Apa saja makanan yang kaya akan nutrisi untuk diet seimbang?',
+  },
+  {
+    icon: Activity,
+    label: 'Tips Kesehatan',
+    prompt: 'Berikan tips untuk menjaga kesehatan tubuh sehari-hari',
+  },
+  {
+    icon: HelpCircle,
+    label: 'Tentang NutriSys',
+    prompt: 'Apa itu NutriSys dan fitur apa saja yang tersedia?',
+  },
+  {
+    icon: Sparkles,
+    label: 'Rekomendasi Diet',
+    prompt: 'Rekomendasikan pola makan sehat untuk menurunkan berat badan',
+  },
+  {
+    icon: Heart,
+    label: 'Kesehatan Jantung',
+    prompt: 'Makanan apa yang baik untuk menjaga kesehatan jantung?',
+  },
+  {
+    icon: Dumbbell,
+    label: 'Nutrisi Olahraga',
+    prompt: 'Apa yang sebaiknya dimakan sebelum dan sesudah berolahraga?',
+  },
+  {
+    icon: Moon,
+    label: 'Tidur Berkualitas',
+    prompt: 'Makanan apa yang membantu meningkatkan kualitas tidur?',
+  },
+  {
+    icon: Droplets,
+    label: 'Hidrasi Tubuh',
+    prompt: 'Berapa banyak air yang harus diminum setiap hari dan tips hidrasi?',
+  },
+];
 
 const RenderMessage = ({ content, isUser }: { content: string; isUser: boolean }) => {
   const linkColor = useColorModeValue('blue.500', 'blue.300');
@@ -77,12 +133,17 @@ export default function ChatbotPage() {
 
   const glassBg = useColorModeValue('rgba(255, 255, 255, 0.6)', 'rgba(26, 32, 44, 0.8)');
   const glassBorder = useColorModeValue('whiteAlpha.400', 'whiteAlpha.100');
+  const quickStartBorder = useColorModeValue('gray.200', 'gray.600');
   const textColor = useColorModeValue('gray.800', 'white');
   const botBg = useColorModeValue('white', 'gray.700');
   const botColor = useColorModeValue('gray.800', 'white');
   const botBorder = useColorModeValue('gray.100', 'gray.600');
   const onlineColor = useColorModeValue('green.600', 'green.300');
   const emptyStateColor = useColorModeValue('gray.500', 'gray.400');
+
+  const handleSuggestionClick = (prompt: string) => {
+    setInputValue(prompt);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -297,7 +358,7 @@ export default function ChatbotPage() {
                   >
                     <Box whiteSpace="pre-wrap" lineHeight="tall">
                       <RenderMessage content={msg.message} isUser={msg.sender_type === 'user'} />
-                      <Text fontSize="14px" color={msg.sender_type === 'bot' ? 'gray.400' : 'gray.700'} textAlign="end">
+                      <Text fontSize="14px" color={msg.sender_type === 'bot' ? 'gray.400' : 'gray.600'} textAlign="end">
                         {new Date(msg.timestamp).toLocaleString('id-ID', {
                           timeStyle: 'short',
                           dateStyle: 'medium',
@@ -340,6 +401,51 @@ export default function ChatbotPage() {
           <ScrollArea.Thumb />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
+
+      {/* Quick Start Suggestions - Only show when no messages */}
+      {messages.length === 0 && !isLoadingFetch && (
+        <Box position="absolute" bottom="90px" left={4} right={4} zIndex={10}>
+          <Box
+            bg={glassBg}
+            backdropFilter="blur(16px)"
+            border="1px solid"
+            borderColor={glassBorder}
+            rounded="2xl"
+            p={4}
+            shadow="sm"
+          >
+            <Flex gap={2} flexWrap="wrap" justifyContent="center">
+              {quickStartSuggestions.map((suggestion, index) => (
+                <Button
+                  key={index}
+                  size="sm"
+                  onClick={() => handleSuggestionClick(suggestion.prompt)}
+                  bg={glassBg}
+                  border="1px solid"
+                  borderColor={quickStartBorder}
+                  color={textColor}
+                  rounded="full"
+                  px={4}
+                  py={2}
+                  _hover={{
+                    bg: 'green.500',
+                    color: 'white',
+                    borderColor: 'green.500',
+                    transform: 'translateY(-2px)',
+                    shadow: 'md',
+                  }}
+                  transition="all 0.2s"
+                >
+                  <suggestion.icon size={14} />
+                  <Text ml={2} fontSize="xs" fontWeight="medium">
+                    {suggestion.label}
+                  </Text>
+                </Button>
+              ))}
+            </Flex>
+          </Box>
+        </Box>
+      )}
 
       {/* Input Area */}
       <Box p={4} position="absolute" bottom={0} left={0} right={0} zIndex={10}>
