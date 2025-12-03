@@ -11,12 +11,14 @@ import FaqSection from "./(home)/FaqSection";
 import ComparisonTable from "./(home)/ComparisonTable";
 import AboutNutriSys from "./(home)/AboutNutrisys";
 import FeatureSection from "./(home)/FeatureSection";
+import { Footer } from "@/components/ui/footer";
 
 function home() {
   const scrollVariant: Variants = {
     initial: { opacity: 0, y: 50 },
     animate: { opacity: 1, y: 0 },
   };
+
   return (
     <div>
       <HeroSection />
@@ -89,6 +91,7 @@ function home() {
       >
         <CTASection />
       </motion.div>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import TeamSection from "./component/TeamSection";
 import VissionMissionSection from "./component/VissionMissionSection";
 import HeroTentang from "./component/HeroTentang";
 import CommitmentSection from "./component/CommitmentSection";
+import { Footer } from "@/components/ui/footer";
 
 const About = () => {
   return (
@@ -15,6 +16,7 @@ const About = () => {
       <div className="border-t border-border mx-auto max-w-7xl"></div>
       <CommitmentSection />
       <CTASection />
+      <Footer/>
     </div>
   );
 };

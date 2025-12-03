@@ -1,5 +1,5 @@
 "use client";
-
+import { Suspense } from "react";
 import PublicNavbar from "@/components/ui/navbar-public";
 import { Footer } from "@/components/ui/footer";
 import { ThemeProvider } from "next-themes";
@@ -11,7 +11,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <ThemeProvider defaultTheme="light" attribute="class">
         <PublicNavbar />
         {children}
-        <Footer />
         <ChatbotWidget />
       </ThemeProvider>
     </>

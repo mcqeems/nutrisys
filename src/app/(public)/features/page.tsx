@@ -1,3 +1,4 @@
+import { Footer } from "@/components/ui/footer";
 import { FeatureShowcase } from "./component/FeatureShowcase";
 
 export const metadata = {
@@ -9,6 +10,7 @@ export default function FeaturesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <FeatureShowcase />
+      <Footer/>
     </main>
   );
 }
