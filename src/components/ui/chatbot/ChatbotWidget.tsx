@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { PlusIcon } from "@heroicons/react/24/solid";
-import ChatbotWindow from "./ChatbotWindow";
-import ScrollToTopButton from "../scroll-to-top";
-import Chatbot from "@/app/(protected)/chatbot/components/Chatbot";
+import React, { useState } from 'react';
+import { PlusIcon } from '@heroicons/react/24/solid';
+import ChatbotWindow from './ChatbotWindow';
+import ScrollToTopButton from '../scroll-to-top';
+import Chatbot from '@/app/(protected)/chatbot/components/Chatbot';
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,9 +18,9 @@ export default function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-2 z-[9999]">
+    <div className="fixed bottom-4 right-2 z-100">
       {isOpen && (
-        <div className="mb-3 animate-slide-in-up absolute bottom-full right-0">
+        <div className="mb-3 absolute bottom-full right-0">
           <ChatbotWindow onClose={closeChat} />
         </div>
       )}
@@ -37,17 +37,15 @@ export default function ChatbotWidget() {
               rounded-xl 
               shadow-2xl 
               transition-all duration-300 
-              hover:opacity-90
-              
-              chatbot-pulse-float
-              
+              hover:opacity-90              
               bg-primary text-primary-foreground
               border-2 border-primary-foreground/10
+              cursor-pointer
             `}
             style={
               {
-                "--primary-rgb": "141, 196, 73",
-                borderRadius: "var(--radius)",
+                '--primary-rgb': '141, 196, 73',
+                borderRadius: 'var(--radius)',
                 boxShadow: `0 0 15px rgba(var(--primary-rgb),0.7)`,
               } as React.CSSProperties
             }
@@ -62,9 +60,7 @@ export default function ChatbotWidget() {
               </div>
               <div>
                 <h3 className="text-lg font-bold">NutriSys AI</h3>
-                <p className="text-xs opacity-80">
-                  Asisten Analisis Nutrisi Digital
-                </p>
+                <p className="text-xs opacity-80">Asisten Analisis Nutrisi Digital</p>
               </div>
             </div>
             <PlusIcon className="w-6 h-6 transform transition-transform duration-300" />

@@ -1,8 +1,8 @@
 // ScrollToTopButton.js (Disesuaikan)
 
-import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
-import { ChevronUp } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { ChevronUp } from 'lucide-react';
 
 const buttonVariants: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.8 },
@@ -10,12 +10,12 @@ const buttonVariants: Variants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: "spring", stiffness: 300, damping: 25 },
+    transition: { type: 'tween' },
   },
   hover: {
     scale: 1.1,
     rotate: 5,
-    transition: { duration: 0.2 },
+    transition: { duration: 0.1 },
   },
 };
 
@@ -25,7 +25,7 @@ const ScrollToTopButton = ({ isHorizontal = false }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -38,14 +38,14 @@ const ScrollToTopButton = ({ isHorizontal = false }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const baseClasses =
-    "p-5 bg-primary text-white border border-primary/20 rounded-full shadow-2xl hover:bg-primary/90 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 cursor-pointer";
+    'p-5 bg-primary text-white border border-primary/20 rounded-full shadow-2xl hover:bg-primary/90 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 cursor-pointer';
 
   return (
     <AnimatePresence>
