@@ -1,52 +1,47 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordian";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordian';
 
 function FaqSection() {
   const faqs = [
     {
-      question: "Apa itu NutriSys?",
+      question: 'Apa itu NutriSys?',
 
       answer:
-        "NutriSys adalah aplikasi analisis nutrisi yang menggunakan teknologi AI untuk membantu Anda memahami kandungan nutrisi makanan Anda. Cukup foto makanan Anda, dan kami akan memberikan informasi lengkap tentang kalori, protein, karbohidrat, lemak, vitamin, dan mineral.",
+        'NutriSys adalah aplikasi analisis nutrisi yang menggunakan teknologi AI untuk membantu Anda memahami kandungan nutrisi makanan Anda. Cukup foto makanan Anda, dan kami akan memberikan informasi lengkap tentang kalori, protein, karbohidrat, lemak, vitamin, dan mineral.',
     },
 
     {
-      question: "Bagaimana cara kerja NutriSys?",
+      question: 'Bagaimana cara kerja NutriSys?',
 
       answer:
-        "NutriSys menggunakan teknologi computer vision dan machine learning untuk mengenali makanan dari foto yang Anda upload. Sistem kami kemudian menganalisis kandungan nutrisi berdasarkan database makanan yang komprehensif dan memberikan hasil yang akurat dalam hitungan detik.",
+        'NutriSys menggunakan teknologi computer vision dan machine learning untuk mengenali makanan dari foto yang Anda upload. Sistem kami kemudian menganalisis kandungan nutrisi berdasarkan database makanan yang komprehensif dan memberikan hasil yang akurat dalam hitungan detik.',
     },
 
     {
-      question: "Apakah NutriSys gratis?",
+      question: 'Apakah NutriSys gratis?',
 
       answer:
-        "NutriSys menawarkan versi gratis dengan fitur dasar analisis nutrisi. Untuk fitur premium seperti tracking jangka panjang, meal planning, dan konsultasi dengan ahli gizi, tersedia paket berlangganan dengan harga terjangkau.",
+        'NutriSys menawarkan versi gratis dengan fitur dasar analisis nutrisi. Untuk fitur premium seperti tracking jangka panjang, meal planning, dan konsultasi dengan ahli gizi, tersedia paket berlangganan dengan harga terjangkau.',
     },
 
     {
-      question: "Apakah data saya aman?",
+      question: 'Apakah data saya aman?',
 
       answer:
-        "Keamanan data adalah prioritas utama kami. Semua informasi kesehatan Anda dienkripsi dan disimpan dengan standar keamanan tinggi. Kami tidak akan pernah membagikan data Anda tanpa izin eksplisit dari Anda.",
+        'Keamanan data adalah prioritas utama kami. Semua informasi kesehatan Anda dienkripsi dan disimpan dengan standar keamanan tinggi. Kami tidak akan pernah membagikan data Anda tanpa izin eksplisit dari Anda.',
     },
 
     {
-      question: "Makanan apa saja yang bisa dianalisis?",
+      question: 'Makanan apa saja yang bisa dianalisis?',
 
       answer:
-        "NutriSys dapat menganalisis hampir semua jenis makanan, mulai dari makanan tradisional Indonesia, makanan internasional, hingga makanan kemasan. Database kami terus diperbarui untuk mencakup lebih banyak variasi makanan.",
+        'NutriSys dapat menganalisis hampir semua jenis makanan, mulai dari makanan tradisional Indonesia, makanan internasional, hingga makanan kemasan. Database kami terus diperbarui untuk mencakup lebih banyak variasi makanan.',
     },
 
     {
-      question: "Apakah NutriSys bisa membantu diet saya?",
+      question: 'Apakah NutriSys bisa membantu diet saya?',
 
       answer:
-        "Ya! NutriSys tidak hanya menganalisis nutrisi, tetapi juga memberikan rekomendasi personal berdasarkan tujuan kesehatan Anda. Anda bisa set target kalori harian, pantau progress, dan dapatkan saran meal plan yang sesuai dengan kebutuhan diet Anda.",
+        'Ya! NutriSys tidak hanya menganalisis nutrisi, tetapi juga memberikan rekomendasi personal berdasarkan tujuan kesehatan Anda. Anda bisa set target kalori harian, pantau progress, dan dapatkan saran meal plan yang sesuai dengan kebutuhan diet Anda.',
     },
   ];
   return (
@@ -61,14 +56,12 @@ function FaqSection() {
         <div className="absolute top-1/2 right-1/3 w-40 h-40 bg-primary/5 rounded-full blur-2xl animate-[orb-pulse_14s_ease-in-out_infinite_2s]" />
       </div>
 
-      <div className="container  mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 py-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-[slide-up_0.8s_ease-out]">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Seputar{" "}
-              <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
-                Nutrisys
-              </span>
+              Seputar{' '}
+              <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">Nutrisys</span>
             </h2>
 
             <p className="text-muted-foreground animate-[fade-in_1s_ease-out_0.3s_backwards]">
@@ -92,7 +85,7 @@ function FaqSection() {
 
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-primary/10 to-transparent" />
 
-                <AccordionTrigger className="relative text-left text-xl font-semibold hover:text-primary hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary">
+                <AccordionTrigger className="relative text-left text-xl font-semibold hover:text-primary hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary cursor-pointer">
                   <span className="flex items-center gap-3 group-hover:translate-x-2 transition-transform duration-300">
                     <span className="w-2 h-2 rounded-full bg-primary/50 group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
 

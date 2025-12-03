@@ -1,60 +1,65 @@
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Quote, Star } from "lucide-react";
-import LogoLoop from "./CardLoop"; 
-import { useState, useEffect } from "react";
+import { Card } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Quote, Star } from 'lucide-react';
+import LogoLoop from './CardLoop';
+import { useEffect } from 'react';
 
 const testimonials = [
   {
-    name: "Sarah Wijaya",
-    role: "Fitness Enthusiast",
+    name: 'Nur Ihsan',
+    role: 'Fitness Enthusiast',
     content:
-      "NutriSys mengubah cara saya memandang nutrisi. Analisis AI-nya sangat akurat dan membantu saya mencapai target fitness dengan lebih efisien!",
+      'NutriSys mengubah cara saya memandang nutrisi. Analisis AI-nya sangat akurat dan membantu saya mencapai target fitness dengan lebih efisien!',
     rating: 5,
-    initials: "SW",
+    initials: 'FF',
+    image: '/Testimonials/ihsan.webp',
   },
   {
-    name: "Budi Santoso",
-    role: "Atlet Profesional",
+    name: 'Rizky Cahyono',
+    role: 'Atlet Profesional',
     content:
-      "Sebagai atlet, nutrisi adalah segalanya. NutriSys memberikan rekomendasi personal yang benar-benar sesuai dengan kebutuhan latihan saya.",
+      'Sebagai atlet, nutrisi adalah segalanya. NutriSys memberikan rekomendasi personal yang benar-benar sesuai dengan kebutuhan latihan saya.',
     rating: 5,
-    initials: "BS",
+    initials: 'RC',
+    image: '/Testimonials/rizky.webp',
   },
   {
-    name: "Diana Putri",
-    role: "Ibu Rumah Tangga",
+    name: 'Nabil Andara',
+    role: 'Guru SD',
     content:
-      "Aplikasi yang sangat membantu untuk mengatur pola makan keluarga. Interface-nya mudah dipahami dan fitur trackingnya sangat lengkap!",
+      'Aplikasi yang sangat membantu untuk mengatur pola makan keluarga. Interface-nya mudah dipahami dan fitur trackingnya sangat lengkap!',
     rating: 5,
-    initials: "DP",
+    initials: 'NA',
+    image: '/Testimonials/nabil.webp',
   },
   {
-    name: "Ahmad Rizki",
-    role: "Nutritionist",
+    name: 'Iqbal Maulana',
+    role: 'Nutritionist',
     content:
-      "Sebagai ahli gizi, saya terkesan dengan akurasi data dan analisis yang diberikan. Sangat membantu dalam memberikan konsultasi kepada klien.",
+      'Sebagai ahli gizi, saya terkesan dengan akurasi data dan analisis yang diberikan. Sangat membantu dalam memberikan konsultasi kepada klien.',
     rating: 5,
-    initials: "AR",
+    initials: 'IM',
+    image: '/Testimonials/iqbal.webp',
   },
   {
-    name: "Lina Marlina",
-    role: "Yoga Instructor",
+    name: 'Dafi Alhaq',
+    role: 'Yoga Instructor',
     content:
-      "NutriSys sempurna untuk gaya hidup sehat saya. Rekomendasi makanan berbasis plant-based sangat membantu dalam perjalanan wellness saya.",
+      'NutriSys sempurna untuk gaya hidup sehat saya. Rekomendasi makanan berbasis plant-based sangat membantu dalam perjalanan wellness saya.',
     rating: 5,
-    initials: "LM",
+    initials: 'RG',
+    image: '/Testimonials/dafi.webp',
   },
   {
-    name: "Eko Prasetyo",
-    role: "Software Developer",
+    name: 'Zahid Ahnaful',
+    role: 'Software Developer',
     content:
-      "Akhirnya aplikasi nutrisi yang tech-savvy! Integrasi AI-nya smooth dan data visualization-nya memudahkan tracking progress harian.",
+      'Akhirnya aplikasi nutrisi yang tech-savvy! Integrasi AI-nya smooth dan data visualization-nya memudahkan tracking progress harian.',
     rating: 5,
-    initials: "EP",
+    initials: 'ZA',
+    image: '/Testimonials/zahid.webp',
   },
 ];
-
 
 const testimonialLogos = testimonials.map((testimonial, index) => ({
   node: (
@@ -64,9 +69,7 @@ const testimonialLogos = testimonials.map((testimonial, index) => ({
     >
       <div className="flex-1 mb-4">
         <Quote className="w-6 h-6 text-primary mb-3 opacity-70" />
-        <p className="text-sm italic text-foreground/80 leading-relaxed mb-4">
-          "{testimonial.content}"
-        </p>
+        <p className="text-sm italic text-foreground/80 leading-relaxed mb-4">{testimonial.content}</p>
       </div>
 
       <div className="flex text-amber-400 mb-4">
@@ -77,17 +80,12 @@ const testimonialLogos = testimonials.map((testimonial, index) => ({
 
       <div className="flex items-center gap-3 mt-auto">
         <Avatar className="w-12 h-12">
-          <AvatarFallback className="bg-primary/20 text-primary text-2xl">
-            {testimonial.initials}
-          </AvatarFallback>
+          <AvatarImage src={testimonial.image} alt={testimonial.name} />
+          <AvatarFallback className="bg-primary/20 text-primary text-2xl">{testimonial.initials}</AvatarFallback>
         </Avatar>
         <div>
-          <div className="text-base font-semibold text-foreground">
-            {testimonial.name}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {testimonial.role}
-          </div>
+          <div className="text-base font-semibold text-foreground">{testimonial.name}</div>
+          <div className="text-sm text-muted-foreground">{testimonial.role}</div>
         </div>
       </div>
     </Card>
@@ -95,18 +93,15 @@ const testimonialLogos = testimonials.map((testimonial, index) => ({
   title: testimonial.name,
 }));
 
-
 const Testimonials = () => {
-  const [fadeColor, setFadeColor] = useState(); 
-
   useEffect(() => {
     const updateFadeColor = () => {
       const rootStyle = getComputedStyle(document.documentElement);
-      let backgroundValue = rootStyle.getPropertyValue("--background").trim();
+      let backgroundValue = rootStyle.getPropertyValue('--background').trim();
 
-      if (!backgroundValue || backgroundValue.includes("oklch")) {
-        const isDark = document.documentElement.classList.contains("dark");
-        backgroundValue = isDark ? "rgb(30, 38, 38)" : "rgb(255, 255, 255)";
+      if (!backgroundValue || backgroundValue.includes('oklch')) {
+        const isDark = document.documentElement.classList.contains('dark');
+        backgroundValue = isDark ? 'rgb(30, 38, 38)' : 'rgb(255, 255, 255)';
       }
     };
 
@@ -115,7 +110,7 @@ const Testimonials = () => {
     const observer = new MutationObserver(updateFadeColor);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ['class'],
     });
 
     return () => observer.disconnect();
@@ -126,28 +121,21 @@ const Testimonials = () => {
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-4">
             <Quote className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">
-              Testimoni Pengguna
-            </span>
+            <span className="text-sm font-medium text-primary">Testimoni Pengguna</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Apa Kata{" "}
-            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
-              Mereka
-            </span>
+            Apa Kata{' '}
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">Mereka</span>
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ribuan pengguna telah merasakan manfaat NutriSys dalam perjalanan
-            hidup sehat mereka
+            Banyak pengguna telah merasakan manfaat NutriSys dalam perjalanan hidup sehat mereka
           </p>
         </div>
       </div>
 
-      <div
-        className="h-[450px] relative overflow-hidden"
-      >
+      <div className="h-[450px] relative overflow-hidden">
         <LogoLoop
           logos={testimonialLogos}
           speed={50}
@@ -155,7 +143,6 @@ const Testimonials = () => {
           className="p-5"
           hoverSpeed={0}
           fadeOut
-          fadeOutColor={fadeColor}
           ariaLabel="Testimonial Loop"
         />
       </div>

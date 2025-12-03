@@ -1,6 +1,5 @@
 'use client';
 
-import { Footer } from '@/components/ui/footer';
 import ContactForm from './component/ContactForm';
 import ContactHeader from './component/ContactHeader';
 import { motion } from 'framer-motion';
@@ -14,7 +13,6 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </motion.div>
-      <Footer/>
     </main>
   );
 }

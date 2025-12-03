@@ -1,5 +1,5 @@
 // components/sections/ComparisonTable.tsx
-import { Check } from "lucide-react";
+import { Check } from 'lucide-react';
 
 // Tipe data untuk baris tabel perbandingan
 interface ComparisonRow {
@@ -9,11 +9,11 @@ interface ComparisonRow {
 }
 
 const comparisonData: ComparisonRow[] = [
-  { aspect: "Personalisasi", nutrisys: true, traditional: false },
-  { aspect: "Tracking Real-time", nutrisys: true, traditional: false },
-  { aspect: "AI Analysis", nutrisys: true, traditional: false },
-  { aspect: "Akses 24/7", nutrisys: true, traditional: false },
-  { aspect: "Biaya Terjangkau", nutrisys: true, traditional: false },
+  { aspect: 'Personalisasi', nutrisys: true, traditional: false },
+  { aspect: 'Tracking Real-time', nutrisys: true, traditional: false },
+  { aspect: 'AI Analysis', nutrisys: true, traditional: false },
+  { aspect: 'Akses 24 Jam', nutrisys: true, traditional: false },
+  { aspect: 'Tanpa Biaya', nutrisys: true, traditional: false },
 ];
 
 export default function ComparisonTable() {
@@ -22,35 +22,21 @@ export default function ComparisonTable() {
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Nutrisys vs. Metode {" "}
-            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
-              Tradisional
-            </span>
+            Nutrisys vs Metode
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent"> Tradisional</span>
           </h2>
-          <p
-            className="text-lg text-muted-foreground animate-fade-in-up"
-            style={{ animationDelay: "0.1s" }}
-          >
+          <p className="text-lg text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Lihat perbedaan signifikan dalam hasil dan efisiensi
           </p>
         </div>
 
         <div className="overflow-x-auto">
-          <table
-            className="w-full text-sm animate-fade-in-up"
-            style={{ animationDelay: "0.2s" }}
-          >
+          <table className="w-full text-sm animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <thead>
               <tr className="border-b-2 border-border">
-                <th className="text-left py-4 px-4 font-semibold text-foreground">
-                  Aspek
-                </th>
-                <th className="text-center py-4 px-4 font-semibold text-foreground">
-                  NutriSys
-                </th>
-                <th className="text-center py-4 px-4 font-semibold text-muted-foreground">
-                  Tradisional
-                </th>
+                <th className="text-left py-4 px-4 font-semibold text-foreground">Aspek</th>
+                <th className="text-center py-4 px-4 font-semibold text-foreground">NutriSys</th>
+                <th className="text-center py-4 px-4 font-semibold text-muted-foreground">Tradisional</th>
               </tr>
             </thead>
             <tbody>
@@ -65,7 +51,7 @@ export default function ComparisonTable() {
                   <td className="py-4 px-4 text-center">
                     <div
                       className={`inline-flex w-6 h-6 rounded-full items-center justify-center ${
-                        row.nutrisys ? "bg-primary/20" : "bg-destructive/20"
+                        row.nutrisys ? 'bg-primary/20' : 'bg-destructive/20'
                       }`}
                     >
                       {row.nutrisys ? (
@@ -78,7 +64,7 @@ export default function ComparisonTable() {
                   <td className="py-4 px-4 text-center">
                     <div
                       className={`inline-flex w-6 h-6 rounded-full items-center justify-center ${
-                        row.traditional ? "bg-primary/20" : "bg-destructive/20"
+                        row.traditional ? 'bg-primary/20' : 'bg-destructive/20'
                       }`}
                     >
                       {row.traditional ? (

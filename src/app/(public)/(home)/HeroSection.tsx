@@ -53,7 +53,7 @@ const HeroSection = () => {
               </a>
 
               <a
-                href="/fitur"
+                href="/features"
                 className="inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold
                            border border-border text-foreground hover:bg-accent/50 transition-colors duration-200"
               >

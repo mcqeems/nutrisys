@@ -1,17 +1,14 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
-import { ChevronUp } from "lucide-react";
-import CTASection from "./(home)/CTASection";
-import HeroSection from "./(home)/HeroSection";
-import Testimonials from "./(home)/Testimonials";
-import WhyNutriSys from "./(home)/WhySection";
-import FaqSection from "./(home)/FaqSection";
-import ComparisonTable from "./(home)/ComparisonTable";
-import AboutNutriSys from "./(home)/AboutNutrisys";
-import FeatureSection from "./(home)/FeatureSection";
-import { Footer } from "@/components/ui/footer";
+import { motion, Variants } from 'framer-motion';
+import CTASection from './(home)/CTASection';
+import HeroSection from './(home)/HeroSection';
+import Testimonials from './(home)/Testimonials';
+import WhyNutriSys from './(home)/WhySection';
+import FaqSection from './(home)/FaqSection';
+import ComparisonTable from './(home)/ComparisonTable';
+import AboutNutriSys from './(home)/AboutNutrisys';
+import FeatureSection from './(home)/FeatureSection';
 
 function home() {
   const scrollVariant: Variants = {
@@ -23,11 +20,7 @@ function home() {
     <div>
       <HeroSection />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
         <AboutNutriSys scrollVariant={scrollVariant} />
       </motion.div>
       <motion.div
@@ -91,7 +84,6 @@ function home() {
       >
         <CTASection />
       </motion.div>
-      <Footer />
     </div>
   );
 }

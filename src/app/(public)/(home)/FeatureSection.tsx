@@ -1,103 +1,70 @@
-import React, { useState } from "react";
-import {
-  Check,
-  ArrowRight,
-  Activity,
-  Leaf,
-  Users,
-  BarChart3,
-  Bell,
-  Lock,
-  LucideIcon,
-} from "lucide-react";
+import React from 'react';
+import { Check, Activity, LucideIcon, Bot, BookOpenText, Target } from 'lucide-react';
 
 export default function FeatureSection() {
-
   interface Feature {
     id: number;
     title: string;
     description: string;
     icon: LucideIcon;
-    color: string; 
+    color: string;
     details: string[];
   }
 
- 
   interface FeatureCardProps {
-    feature: Feature & {
-      onMouseEnter: () => void;
-      onMouseLeave: () => void;
-    };
+    feature: Feature;
     style?: React.CSSProperties;
   }
-
 
   const featuresData: Feature[] = [
     {
       id: 1,
-      title: "Analisis Nutrisi AI",
-      description:
-        "Teknologi machine learning menganalisis kebutuhan nutrisi Anda secara mendalam dan personal",
+      title: 'Analisis Nutrisi',
+      description: 'Teknologi AI yang menganalisis kebutuhan nutrisi Anda secara mendalam dan personal.',
       icon: Activity,
-      color: "from-blue-500 to-cyan-500",
-      details: [
-        "Scan nutrisi real-time",
-        "Rekomendasi otomatis",
-        "Tracking akurat",
-      ],
+      color: 'from-blue-500 to-cyan-500',
+      details: ['Scan nutrisi real-time', 'Rekomendasi otomatis', 'Tracking akurat'],
     },
     {
       id: 2,
-      title: "Database Makanan Lengkap",
+      title: 'NutriAI Chat',
       description:
-        "Lebih dari 500,000 jenis makanan dengan informasi gizi detail dan akurat",
-      icon: Leaf,
-      color: "from-green-500 to-emerald-500",
-      details: [
-        "Makanan lokal & internasional",
-        "Update berkala",
-        "Kalori presisi",
-      ],
+        'Membuat percakapan mengenai kesehatan, nutrisi dan sebagainya dengan NutriAI, AI cerdas dari Nutrisys.',
+      icon: Bot,
+      color: 'from-green-500 to-emerald-500',
+      details: ['Chatbot', 'Artificial Intelligence', 'Smart Assistant'],
     },
     {
       id: 3,
-      title: "Konsultasi Ahli",
+      title: 'Wellness Journal',
       description:
-        "Akses terbatas ke ahli gizi profesional untuk konsultasi dan panduan personal",
-      icon: Users,
-      color: "from-purple-500 to-pink-500",
-      details: ["Chat dengan ahli", "Video konsultasi", "Rencana custom"],
+        'Dokumentasikan perjalanan kesejahteraan anda dengan perjunalan cerdas. Lacak suasanan hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.',
+      icon: BookOpenText,
+      color: 'from-purple-500 to-pink-500',
+      details: ['Pencatatan Suasana Hati', 'Pelacakan Kebiasaan', 'AI Integrated'],
     },
     {
       id: 4,
-      title: "Laporan & Analytics",
+      title: 'Smart Target',
       description:
-        "Visualisasi data komprehensif tentang kemajuan dan tren kesehatan Anda",
-      icon: BarChart3,
-      color: "from-orange-500 to-red-500",
-      details: ["Grafik interaktif", "Export laporan", "Insight mingguan"],
+        'Tetapkan, lacak, da capai tujuan kesehatan anda secara cerdas. Dapatkan pemberitahuan cerdas dari target anda.',
+      icon: Target,
+      color: 'from-orange-500 to-red-500',
+      details: ['Penetapan Tujuan', 'Pelacakan Kemajuan', 'Smart Reminder'],
     },
-    
   ];
 
-  const [activeFeature, setActiveFeature] = useState<number | null>(null);
   const FeatureCard: React.FC<FeatureCardProps> = ({ feature, style }) => {
     const Icon = feature.icon;
 
     return (
-      <div
-        key={feature.id}
-        className="group relative animate-fade-in-up cursor-pointer"
-        style={style}
-        onMouseEnter={feature.onMouseEnter}
-        onMouseLeave={feature.onMouseLeave}
-      >
+      <div key={feature.id} className="group relative animate-fade-in-up" style={style}>
         <div className="relative p-8 bg-card rounded-2xl border border-border hover:border-primary transition-all duration-500 h-full overflow-hidden">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-primary/5 to-transparent rounded-2xl"></div>
 
-          <div className="relative space-y-6">
+          <div className="relative flex flex-col h-full">
             {/* Icon Container */}
-            <div className="inline-flex">
+            <div className="inline-flex mb-2">
               <div
                 className={`p-3 bg-linear-to-br ${feature.color} rounded-xl text-white shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110`}
               >
@@ -110,13 +77,11 @@ export default function FeatureSection() {
               <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
 
             {/* Details List */}
-            <ul className="space-y-2 pt-4 border-t border-border/50">
+            <ul className="space-y-2 pt-4 border-t border-border/50 mt-auto">
               {feature.details.map((detail, idx) => (
                 <li
                   key={idx}
@@ -127,31 +92,20 @@ export default function FeatureSection() {
                 </li>
               ))}
             </ul>
-
-            {/* Arrow indicator */}
-    
           </div>
+
+          {/* Arrow indicator */}
         </div>
       </div>
     );
   };
 
-
   return (
     <section className="py-10 px-4 sm:px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
           {featuresData.map((feature, index) => (
-            <FeatureCard
-              key={feature.id}
-              feature={{
-                ...feature,
-                onMouseEnter: () => setActiveFeature(feature.id),
-                onMouseLeave: () => setActiveFeature(null),
-              }}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            />
+            <FeatureCard key={feature.id} feature={feature} style={{ animationDelay: `${index * 0.1}s` }} />
           ))}
         </div>
       </div>
