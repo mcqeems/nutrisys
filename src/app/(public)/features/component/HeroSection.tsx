@@ -1,17 +1,12 @@
-"use client";
+'use client';
 export function HeroSection() {
-
   return (
-    <section
-      className="relative pt-24 pb-16 md:py-32 flex items-center justify-center overflow-hidden px-4"
-    >
+    <section className="relative pt-24 pb-16 md:py-32 flex items-center justify-center overflow-hidden px-4">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-40 animate-pulse"></div>
       </div>
 
-      <div
-        className="relative z-10 max-w-4xl mx-auto text-center"
-      >
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
         <div className="mb-6 inline-block">
           <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20">
             ✨ Kecerdasan untuk Kesejahteraan Anda
@@ -27,21 +22,15 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-          Platform AI kami menyajikan alat lengkap mulai dari konsultasi instan
-          hingga analisis mendalam, dirancang untuk mendukung setiap langkah
-          perjalanan kesehatan Anda.
+          Platform AI kami menyajikan alat lengkap mulai dari konsultasi instan hingga analisis mendalam, dirancang
+          untuk mendukung setiap langkah perjalanan kesehatan Anda.
         </p>
 
         <div className="flex flex-wrap gap-3 justify-center">
-          {[
-            "🤖 Asisten Chat AI",
-            "🥗 Analisis Nutrisi",
-            "📔 Jurnal Cerdas",
-            "🎯 Pelacakan Tujuan",
-          ].map((pill, i) => (
+          {['NutriAI Chat', 'Analisis Nutrisi', 'Wellness Journal', 'Smart Target'].map((pill, i) => (
             <div
               key={i}
-              className="px-4 py-2 rounded-full bg-background/80 border border-border/40 text-sm font-medium backdrop-blur-sm hover:border-primary/50 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-full bg-background/80 border transition-all text-sm font-medium backdrop-blur-sm border-primary/20 hover:border-primary/50"
             >
               {pill}
             </div>
