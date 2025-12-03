@@ -1,23 +1,25 @@
-// components/Footer.tsx
 import Link from "next/link";
-import { Leaf, Twitter, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
-// Definisikan tipe dasar untuk tautan
 interface FooterLink {
   href: string;
   label: string;
 }
+const EMAIL_ADDRESS = "nutrisys@unida.gontor.ac.id"; 
+const WA_NUMBER = "+6282210980898";
+const WA_MESSAGE = "Halo, saya ingin bertanya tentang Nutisys";
 
-// Data Tautan Navigasi Cepat
 const navLinks: FooterLink[] = [
   { href: "/", label: "Beranda" },
   { href: "/features", label: "Fitur Unggulan" },
+  { href: "/article", label: "Blog Artikel" },
   { href: "/about", label: "Tentang Kami" },
   { href: "/contact-us", label: "Hubungi Kami" },
 ];
 
 const resourceLinks: FooterLink[] = [
-  { href: "/article", label: "Blog Kesehatan" },
+  { href: "/about/#visimisi", label: "Visi Misi" },
+  { href: "/about/#komitmen", label: "Komitmen Kami" },
   { href: "/#faq", label: "FAQ" },
 ];
 
@@ -103,29 +105,27 @@ export function Footer() {
           {/* tautan Sosial */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="text-lg font-semibold text-foreground mb-4 border-b border-primary/20 pb-1">
-              Ikuti Kami
+              Hubungi Kami
             </h3>
             <div className="flex space-x-4">
               <a
-                href="#"
-                aria-label="Twitter"
+                href={`mailto:${EMAIL_ADDRESS}`}
+                aria-label="Email Kami"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Twitter className="w-6 h-6" />
+                <Mail className="w-6 h-6" />
               </a>
+
               <a
-                href="#"
-                aria-label="Facebook"
+                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
+                  WA_MESSAGE
+                )}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Instagram className="w-6 h-6" />
+                <Phone className="w-6 h-6" />
               </a>
             </div>
           </div>
