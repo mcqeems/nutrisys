@@ -1,8 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion, type Variants } from "framer-motion"; 
 import { Button } from "@/components/ui/butons";
 import { Card } from "@/components/ui/card";
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, 
+      when: "beforeChildren",
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -42,13 +66,27 @@ ${formData.message}
   };
 
   return (
-    <form action={getMailtoString()} method="GET" className="space-y-6">
+    <motion.form 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      action={getMailtoString()}
+      method="GET"
+      className="space-y-6"
+    >
       <Card className="p-8 border-2 border-border bg-card/50 hover:border-primary/30">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
+        <motion.h2 
+          variants={itemVariants}
+          className="text-2xl md:text-3xl font-bold mb-8 text-foreground"
+        >
           Kirim Pesan Kami
-        </h2>
+        </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <motion.div
+          variants={itemVariants}
+          className="grid md:grid-cols-2 gap-6"
+        >
           <div className="form-group md:col-span-1">
             <label
               htmlFor="name"
@@ -96,9 +134,10 @@ ${formData.message}
               }`}
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="form-group mt-6">
+        {/* Subjek */}
+        <motion.div variants={itemVariants} className="form-group mt-6">
           <label
             htmlFor="subject"
             className="block text-sm font-semibold mb-3 text-foreground"
@@ -120,9 +159,10 @@ ${formData.message}
                 : "border-border hover:border-primary/50"
             }`}
           />
-        </div>
+        </motion.div>
 
-        <div className="form-group mt-6">
+        {/* Pesan */}
+        <motion.div variants={itemVariants} className="form-group mt-6">
           <label
             htmlFor="message"
             className="block text-sm font-semibold mb-3 text-foreground"
@@ -143,26 +183,18 @@ ${formData.message}
                 ? "border-primary shadow-lg shadow-primary/20"
                 : "border-border hover:border-primary/50"
             }`}
-            style={{
-              animation: "slideInField 0.6s ease-out 0.3s forwards",
-            }}
           />
-        </div>
+        </motion.div>
 
-        <div
-          className="mt-8"
-          style={{
-            animation: "slideInField 0.6s ease-out 0.4s forwards",
-          }}
-        >
+        <motion.div variants={itemVariants} className="mt-8">
           <Button
             type="submit"
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 active:scale-95 text-base"
           >
             Kirim Pesan
           </Button>
-        </div>
+        </motion.div>
       </Card>
-    </form>
+    </motion.form>
   );
 }

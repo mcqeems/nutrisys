@@ -103,7 +103,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                   </div>
                 </div>
 
-                <div className="p-6 md:p-7 flex flex-col flex-grow">
+                <div className="p-6 md:p-7 flex flex-col grow">
                   <div className="flex items-center text-sm font-medium text-muted-foreground mb-3">
                     <Calendar className="h-4 w-4 mr-1 text-primary" />
                     {formatDate(article.created_at)}
@@ -116,7 +116,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                     {article.title}
                   </h2>
                   <div
-                    className="text-base text-muted-foreground flex-grow mb-5 
+                    className="text-base text-muted-foreground grow mb-5 
              overflow-hidden text-ellipsis line-clamp-3"
                   >
                     <ReactMarkdown

@@ -12,6 +12,7 @@ import {
   Bot,
   Target,
   WandSparkles,
+  Zap, // Menambahkan ikon baru untuk membedakan fitur
 } from "lucide-react";
 
 const mainFeatures = [
@@ -67,7 +68,7 @@ const complementaryFeatures = [
     title: "Notifikasi Cerdas",
     description:
       "Tetap termotivasi dengan pengingat dan pembaruan cerdas yang disesuaikan dengan jadwal dan preferensi Anda.",
-    imageUrl: "/Fitur/notifications.webp",
+    videoUrl: "pBPclUZuYls",
     link: "notifications",
     icon: Bell,
   },
@@ -76,9 +77,18 @@ const complementaryFeatures = [
     title: "Personalisasi",
     description:
       "Semuanya beradaptasi dengan Anda. Platform kami mempelajari preferensi Anda dan memberikan pengalaman yang dipersonalisasi.",
-    imageUrl: "/Fitur/personalisasi.webp",
+    videoUrl: "gZzvlmveYsE",
     link: "user",
     icon: WandSparkles,
+  },
+  {
+    id: 7,
+    title: "Smart Summary Analysis",
+    description:
+      "Merangkum keseluruhan menggunakan teknologi AI dari fitur-fitur yang telah dipakai oleh para pengguna.",
+    videoUrl: "YI25jDCSYtk",
+    link: "dashboard",
+    icon: Zap,
   },
 ];
 
@@ -94,6 +104,7 @@ export function FeatureShowcase() {
         className="pb-20 px-4 bg-linear-to-b from-background via-background to-background"
       >
         <div className="max-w-7xl mx-auto">
+          {/* Main Features: 2 kolom */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {mainFeatures.map((feature) => (
               <MainFeatureCard
@@ -117,9 +128,16 @@ export function FeatureShowcase() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {complementaryFeatures.map((feature) => (
-                <ComplementaryFeatureCard key={feature.id} feature={feature} />
+                <ComplementaryFeatureCard
+                  key={feature.id}
+                  feature={feature}
+                  // Meneruskan state hover ke ComplementaryFeatureCard
+                  isHovered={hoveredFeature === feature.id}
+                  onHover={() => setHoveredFeature(feature.id)}
+                  onLeave={() => setHoveredFeature(null)}
+                />
               ))}
             </div>
           </div>

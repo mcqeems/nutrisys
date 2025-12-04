@@ -77,15 +77,8 @@ export function MainFeatureCard({
           {feature.description}
         </p>
 
-        {/* ANJURAN KUALITAS VIDEO */}
-        <p className="text-xs text-primary/70 mb-6 bg-primary/10 p-2 rounded-lg border border-primary/20">
-          💡 Untuk kualitas video terbaik (Full HD), klik ikon roda gigi
-          (Settings) pada pemutar video di bawah dan pilih resolusi tertinggi.
-        </p>
-
-        {/* Pemutar Video YouTube (IFRAME) */}
         <div
-          className={`relative mb-6 rounded-xl overflow-hidden bg-black aspect-video transition-all duration-500 ${
+          className={`relative mb-4 rounded-xl overflow-hidden bg-black aspect-video transition-all duration-500 ${
             isHovered ? "scale-105 shadow-lg" : ""
           }`}
         >
@@ -100,7 +93,23 @@ export function MainFeatureCard({
           ></iframe>
         </div>
 
-        {/* Benefits */}
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            height: isHovered ? "auto" : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className={`overflow-hidden ${isHovered ? "mb-6" : "mb-0"}`}
+        >
+          <div className="flex items-center p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400">
+            <div className="mr-3 text-xl">⚠️</div>
+            <p className="text-sm font-medium">
+              Untuk pengalaman visual terbaik, pastikan memakai kualitas tertinggi.
+            </p>
+          </div>
+        </motion.div>
+
         <div className="flex flex-wrap gap-2">
           {feature.benefits.map((benefit, i) => (
             <span

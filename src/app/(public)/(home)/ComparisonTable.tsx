@@ -1,7 +1,8 @@
-// components/sections/ComparisonTable.tsx
-import { Check } from 'lucide-react';
+'use client';
 
-// Tipe data untuk baris tabel perbandingan
+import { motion, type Variants } from "framer-motion";
+import { Check } from "lucide-react";
+
 interface ComparisonRow {
   aspect: string;
   nutrisys: boolean;
@@ -9,40 +10,93 @@ interface ComparisonRow {
 }
 
 const comparisonData: ComparisonRow[] = [
-  { aspect: 'Personalisasi', nutrisys: true, traditional: false },
-  { aspect: 'Tracking Real-time', nutrisys: true, traditional: false },
-  { aspect: 'AI Analysis', nutrisys: true, traditional: false },
-  { aspect: 'Akses 24 Jam', nutrisys: true, traditional: false },
-  { aspect: 'Tanpa Biaya', nutrisys: true, traditional: false },
+  { aspect: "Personalisasi", nutrisys: true, traditional: false },
+  { aspect: "Tracking Real-time", nutrisys: true, traditional: false },
+  { aspect: "AI Analysis", nutrisys: true, traditional: false },
+  { aspect: "Akses 24 Jam", nutrisys: true, traditional: false },
+  { aspect: "Tanpa Biaya", nutrisys: true, traditional: false },
 ];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, 
+      when: "beforeChildren",
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function ComparisonTable() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-5xl mx-auto space-y-12">
+        
         <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold mb-4"
+          >
             Nutrisys vs Metode
-            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent"> Tradisional</span>
-          </h2>
-          <p className="text-lg text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
+              {" "}
+              Tradisional
+            </span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-muted-foreground"
+          >
             Lihat perbedaan signifikan dalam hasil dan efisiensi
-          </p>
+          </motion.p>
         </div>
 
+        {/* Table Section */}
         <div className="overflow-x-auto">
-          <table className="w-full text-sm animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <motion.table 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }} 
+            className="w-full text-sm"
+          >
             <thead>
               <tr className="border-b-2 border-border">
-                <th className="text-left py-4 px-4 font-semibold text-foreground">Aspek</th>
-                <th className="text-center py-4 px-4 font-semibold text-foreground">NutriSys</th>
-                <th className="text-center py-4 px-4 font-semibold text-muted-foreground">Tradisional</th>
+                <th className="text-left py-4 px-4 font-semibold text-foreground">
+                  Aspek
+                </th>
+                <th className="text-center py-4 px-4 font-semibold text-foreground">
+                  NutriSys
+                </th>
+                <th className="text-center py-4 px-4 font-semibold text-muted-foreground">
+                  Tradisional
+                </th>
               </tr>
             </thead>
             <tbody>
               {comparisonData.map((row, idx) => (
-                <tr
+                <motion.tr 
                   key={idx}
+                  variants={itemVariants}
                   className="border-b border-border hover:bg-primary/5 transition-colors duration-300 group"
                 >
                   <td className="py-4 px-4 font-medium text-foreground group-hover:text-primary transition-colors duration-300">
@@ -51,7 +105,7 @@ export default function ComparisonTable() {
                   <td className="py-4 px-4 text-center">
                     <div
                       className={`inline-flex w-6 h-6 rounded-full items-center justify-center ${
-                        row.nutrisys ? 'bg-primary/20' : 'bg-destructive/20'
+                        row.nutrisys ? "bg-primary/20" : "bg-destructive/20"
                       }`}
                     >
                       {row.nutrisys ? (
@@ -64,7 +118,7 @@ export default function ComparisonTable() {
                   <td className="py-4 px-4 text-center">
                     <div
                       className={`inline-flex w-6 h-6 rounded-full items-center justify-center ${
-                        row.traditional ? 'bg-primary/20' : 'bg-destructive/20'
+                        row.traditional ? "bg-primary/20" : "bg-destructive/20"
                       }`}
                     >
                       {row.traditional ? (
@@ -74,10 +128,10 @@ export default function ComparisonTable() {
                       )}
                     </div>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
-          </table>
+          </motion.table>
         </div>
       </div>
     </section>

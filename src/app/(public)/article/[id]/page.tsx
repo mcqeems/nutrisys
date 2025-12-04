@@ -88,7 +88,7 @@ export default async function ArticleDetailPage({ params: routeParams }: Article
               Kembali
             </a>
           </div>
-          <div className="relative w-full aspect-video md:aspect-[16/7] rounded-xl overflow-hidden mb-8 shadow-inner">
+          <div className="relative w-full aspect-video md:aspect-16/7 rounded-xl overflow-hidden mb-8 shadow-inner">
             <Image
               src={imageUrl}
               alt={article.title}

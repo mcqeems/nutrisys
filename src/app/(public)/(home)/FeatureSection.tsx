@@ -1,5 +1,15 @@
-import React from 'react';
-import { Check, Activity, LucideIcon, Bot, BookOpenText, Target } from 'lucide-react';
+'use client';
+
+import React from "react";
+import { motion, type Variants } from "framer-motion"; 
+import {
+  Check,
+  Activity,
+  Bot,
+  BookOpenText,
+  Target,
+  LucideIcon, 
+} from "lucide-react";
 
 export default function FeatureSection() {
   interface Feature {
@@ -13,52 +23,84 @@ export default function FeatureSection() {
 
   interface FeatureCardProps {
     feature: Feature;
-    style?: React.CSSProperties;
   }
 
   const featuresData: Feature[] = [
     {
       id: 1,
-      title: 'Analisis Nutrisi',
-      description: 'Teknologi AI yang menganalisis kebutuhan nutrisi Anda secara mendalam dan personal.',
+      title: "Analisis Nutrisi",
+      description:
+        "Teknologi AI yang menganalisis kebutuhan nutrisi Anda secara mendalam dan personal.",
       icon: Activity,
-      color: 'from-blue-500 to-cyan-500',
-      details: ['Scan nutrisi real-time', 'Rekomendasi otomatis', 'Tracking akurat'],
+      color: "from-blue-500 to-cyan-500",
+      details: [
+        "Scan nutrisi real-time",
+        "Rekomendasi otomatis",
+        "Tracking akurat",
+      ],
     },
     {
       id: 2,
-      title: 'NutriAI Chat',
+      title: "NutriAI Chat",
       description:
-        'Membuat percakapan mengenai kesehatan, nutrisi dan sebagainya dengan NutriAI, AI cerdas dari Nutrisys.',
+        "Membuat percakapan mengenai kesehatan, nutrisi dan sebagainya dengan NutriAI, AI cerdas dari Nutrisys.",
       icon: Bot,
-      color: 'from-green-500 to-emerald-500',
-      details: ['Chatbot', 'Artificial Intelligence', 'Smart Assistant'],
+      color: "from-green-500 to-emerald-500",
+      details: ["Chatbot", "Artificial Intelligence", "Smart Assistant"],
     },
     {
       id: 3,
-      title: 'Wellness Journal',
+      title: "Wellness Journal",
       description:
-        'Dokumentasikan perjalanan kesejahteraan anda dengan perjunalan cerdas. Lacak suasanan hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.',
+        "Dokumentasikan perjalanan kesejahteraan anda dengan perjunalan cerdas. Lacak suasanan hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.",
       icon: BookOpenText,
-      color: 'from-purple-500 to-pink-500',
-      details: ['Pencatatan Suasana Hati', 'Pelacakan Kebiasaan', 'AI Integrated'],
+      color: "from-purple-500 to-pink-500",
+      details: [
+        "Pencatatan Suasana Hati",
+        "Pelacakan Kebiasaan",
+        "AI Integrated",
+      ],
     },
     {
       id: 4,
-      title: 'Smart Target',
+      title: "Smart Target",
       description:
-        'Tetapkan, lacak, da capai tujuan kesehatan anda secara cerdas. Dapatkan pemberitahuan cerdas dari target anda.',
+        "Tetapkan, lacak, da capai tujuan kesehatan anda secara cerdas. Dapatkan pemberitahuan cerdas dari target anda.",
       icon: Target,
-      color: 'from-orange-500 to-red-500',
-      details: ['Penetapan Tujuan', 'Pelacakan Kemajuan', 'Smart Reminder'],
+      color: "from-orange-500 to-red-500",
+      details: ["Penetapan Tujuan", "Pelacakan Kemajuan", "Smart Reminder"],
     },
   ];
 
-  const FeatureCard: React.FC<FeatureCardProps> = ({ feature, style }) => {
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const containerVariants: Variants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
     const Icon = feature.icon;
 
     return (
-      <div key={feature.id} className="group relative animate-fade-in-up" style={style}>
+      <motion.div
+        key={feature.id}
+        className="group relative"
+        variants={cardVariants}
+      >
         <div className="relative p-8 bg-card rounded-2xl border border-border hover:border-primary transition-all duration-500 h-full overflow-hidden">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-primary/5 to-transparent rounded-2xl"></div>
 
@@ -77,7 +119,9 @@ export default function FeatureSection() {
               <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {feature.description}
+              </p>
             </div>
 
             {/* Details List */}
@@ -96,18 +140,24 @@ export default function FeatureSection() {
 
           {/* Arrow indicator */}
         </div>
-      </div>
+      </motion.div>
     );
   };
 
   return (
     <section className="py-10 px-4 sm:px-6 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuresData.map((feature, index) => (
-            <FeatureCard key={feature.id} feature={feature} style={{ animationDelay: `${index * 0.1}s` }} />
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          variants={containerVariants}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {featuresData.map((feature) => (
+            <FeatureCard key={feature.id} feature={feature} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

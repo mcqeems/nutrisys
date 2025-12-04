@@ -11,13 +11,13 @@ const SkeletonArticleCard: React.FC = () => (
       </div>
     </div>
 
-    <div className="p-6 md:p-7 flex flex-col flex-grow">
+    <div className="p-6 md:p-7 flex flex-col grow">
       <div className="flex items-center text-sm font-medium mb-3">
         <div className="h-4 w-20 bg-gray-300 dark:bg-gray-600 rounded"></div>
       </div>
       <div className="h-6 w-full bg-gray-300 dark:bg-gray-600 rounded mb-3"></div>
       <div className="h-6 w-3/4 bg-gray-300 dark:bg-gray-600 rounded mb-3"></div>
-      <div className="flex-grow space-y-2 mb-5">
+      <div className="grow space-y-2 mb-5">
         <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-full"></div>
         <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-11/12"></div>
         <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-10/12"></div>

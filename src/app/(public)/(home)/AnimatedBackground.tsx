@@ -91,7 +91,7 @@ export function AnimatedBackground() {
       </div>
 
       <motion.div
-        className="absolute -top-20 -left-40 h-[24rem] w-[24rem] rounded-full blur-3xl bg-primary/50 hidden lg:block" 
+        className="absolute -top-20 -left-40 h-96 w-[24rem] rounded-full blur-3xl bg-primary/50 hidden lg:block" 
         animate={{
           x: [0, 60, 0],
           y: [0, 80, 0],
@@ -105,7 +105,7 @@ export function AnimatedBackground() {
         }}
       />
       <motion.div
-        className="absolute -bottom-40 -right-20 h-[30rem] w-[30rem] rounded-full blur-3xl bg-accent/30" 
+        className="absolute -bottom-40 -right-20 h-120 w-120 rounded-full blur-3xl bg-accent/30" 
         animate={{
           x: [0, -70, 0],
           y: [0, -90, 0],

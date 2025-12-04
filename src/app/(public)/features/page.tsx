@@ -1,7 +1,7 @@
 import { FeatureShowcase } from './component/FeatureShowcase';
 
 export const metadata = {
-  title: 'Fitur | Nutrisys',
+  title: 'Features | Nutrisys',
   description: 'Explore our AI-powered health and wellness features',
 };
 
