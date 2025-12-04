@@ -93,11 +93,11 @@ export default async function ArticleDetailPage({
             <a
               href="/article"
               className="inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold
-                                     bg-primary text-primary-foreground shadow-lg shadow-primary/30
-                                     hover:opacity-90 transition-opacity duration-200"
+               bg-primary text-primary-foreground shadow-lg shadow-primary/30
+               hover:opacity-90 transition-opacity duration-200"
             >
+              <ArrowLeft className="mr-2 h-5 w-5" />
               Kembali
-              <ArrowLeft className="ml-2 h-5 w-5" />
             </a>
           </div>
           <div className="relative w-full aspect-video md:aspect-[16/7] rounded-xl overflow-hidden mb-8 shadow-inner">

@@ -1,47 +1,52 @@
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordian';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordian";
 
 function FaqSection() {
   const faqs = [
     {
-      question: 'Apa itu NutriSys?',
+      question: "Apa itu Nutrisys?",
 
       answer:
-        'NutriSys adalah aplikasi analisis nutrisi yang menggunakan teknologi AI untuk membantu Anda memahami kandungan nutrisi makanan Anda. Cukup foto makanan Anda, dan kami akan memberikan informasi lengkap tentang kalori, protein, karbohidrat, lemak, vitamin, dan mineral.',
+        "Nutrisys adalah aplikasi analisis nutrisi yang menggunakan teknologi AI untuk membantu Anda memahami kandungan nutrisi makanan Anda. Cukup foto makanan Anda, dan kami akan memberikan informasi lengkap tentang kalori, protein, karbohidrat, lemak, vitamin, dan mineral.",
     },
 
     {
-      question: 'Bagaimana cara kerja NutriSys?',
+      question: "Bagaimana cara kerja Nutrisys?",
 
       answer:
-        'NutriSys menggunakan teknologi computer vision dan machine learning untuk mengenali makanan dari foto yang Anda upload. Sistem kami kemudian menganalisis kandungan nutrisi berdasarkan database makanan yang komprehensif dan memberikan hasil yang akurat dalam hitungan detik.',
+        "Nutrisys menggunakan teknologi computer vision dan machine learning untuk mengenali makanan dari foto yang Anda upload. Sistem kami kemudian menganalisis kandungan nutrisi berdasarkan database makanan yang komprehensif dan memberikan hasil yang akurat dalam hitungan detik.",
     },
 
     {
-      question: 'Apakah NutriSys gratis?',
+      question: "Apakah Nutrisys gratis?",
 
       answer:
-        'NutriSys menawarkan versi gratis dengan fitur dasar analisis nutrisi. Untuk fitur premium seperti tracking jangka panjang, meal planning, dan konsultasi dengan ahli gizi, tersedia paket berlangganan dengan harga terjangkau.',
+        "Nutrisys sepenuhnya gratis! Anda dapat langsung menikmati semua fitur canggih analisis nutrisi dan pengelolaan diet tanpa perlu khawatir biaya. Kami berkomitmen menyediakan layanan kesehatan yang dapat diakses oleh siapa saja, tanpa batasan atau langganan premium.",
     },
 
     {
-      question: 'Apakah data saya aman?',
+      question: "Apakah data saya aman?",
 
       answer:
-        'Keamanan data adalah prioritas utama kami. Semua informasi kesehatan Anda dienkripsi dan disimpan dengan standar keamanan tinggi. Kami tidak akan pernah membagikan data Anda tanpa izin eksplisit dari Anda.',
+        "Keamanan data adalah prioritas utama kami. Semua informasi kesehatan Anda dienkripsi dan disimpan dengan standar keamanan tinggi. Kami tidak akan pernah membagikan data Anda tanpa izin eksplisit dari Anda.",
     },
 
     {
-      question: 'Makanan apa saja yang bisa dianalisis?',
+      question: "Makanan apa saja yang bisa dianalisis?",
 
       answer:
-        'NutriSys dapat menganalisis hampir semua jenis makanan, mulai dari makanan tradisional Indonesia, makanan internasional, hingga makanan kemasan. Database kami terus diperbarui untuk mencakup lebih banyak variasi makanan.',
+        "Nutrisys dapat menganalisis hampir semua jenis makanan, mulai dari makanan tradisional Indonesia, makanan internasional, hingga makanan kemasan. Database kami terus diperbarui untuk mencakup lebih banyak variasi makanan.",
     },
 
     {
-      question: 'Apakah NutriSys bisa membantu diet saya?',
+      question: "Apakah Nutrisys bisa membantu diet saya?",
 
       answer:
-        'Ya! NutriSys tidak hanya menganalisis nutrisi, tetapi juga memberikan rekomendasi personal berdasarkan tujuan kesehatan Anda. Anda bisa set target kalori harian, pantau progress, dan dapatkan saran meal plan yang sesuai dengan kebutuhan diet Anda.',
+        "Ya! Nutrisys tidak hanya menganalisis nutrisi, tetapi juga memberikan rekomendasi personal berdasarkan tujuan kesehatan Anda. Anda bisa set target kalori harian, pantau progress, dan dapatkan saran meal plan yang sesuai dengan kebutuhan diet Anda.",
     },
   ];
   return (
@@ -60,12 +65,14 @@ function FaqSection() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-[slide-up_0.8s_ease-out]">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Seputar{' '}
-              <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">Nutrisys</span>
+              Seputar{" "}
+              <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
+                Nutrisys
+              </span>
             </h2>
 
             <p className="text-muted-foreground animate-[fade-in_1s_ease-out_0.3s_backwards]">
-              Temukan jawaban untuk pertanyaan umum tentang NutriSys
+              Temukan jawaban untuk pertanyaan umum tentang Nutrisys
             </p>
           </div>
 

@@ -33,7 +33,7 @@ const AboutNutriSys: React.FC<AboutNutriSysProps> = ({ scrollVariant }) => {
 
             {/* Judul Utama */}
             <h2 className="text-3xl sm:text-4xl font-extrabold text-card-foreground">
-              Apa itu NutriSys?
+              Apa itu Nutrisys?
             </h2>
             <p className="text-muted-foreground max-w-xl">
               NutriSys adalah platform canggih untuk menganalisis dan melacak

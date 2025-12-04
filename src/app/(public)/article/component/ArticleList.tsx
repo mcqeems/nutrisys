@@ -73,14 +73,6 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative flex-grow">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Cari artikel ...."
-              className="w-full pl-12 pr-4 py-3 border border-border rounded-xl bg-card text-card-foreground placeholder-muted-foreground focus:ring-primary focus:border-primary transition shadow-md"
-            />
-          </div>
         </motion.div>
 
         {/* Daftar Artikel */}
