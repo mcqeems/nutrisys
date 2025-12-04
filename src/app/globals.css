@@ -42,9 +42,7 @@
   --font-family-sans-stack-headline: 'Stack Sans Headline', sans-serif;
 }
 
-/* =================================================================== */
 /* 🟢 LIGHT MODE (Default - HIJAU) */
-/* =================================================================== */
 :root {
   --radius: 0.625rem;
 
@@ -98,9 +96,7 @@
   --sidebar-ring: oklch(0.709 0.01 56.259);
 }
 
-/* =================================================================== */
 /* 🌑 DARK MODE (Override - HIJAU) */
-/* =================================================================== */
 .dark {
   /* Latar Belakang dan Teks Dasar */
   --background: oklch(0.147 0.004 150); /* Dark Greenish Gray */

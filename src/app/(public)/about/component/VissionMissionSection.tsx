@@ -90,7 +90,7 @@ const VisionMissionSection = () => {
                   key={index}
                   className="flex items-center text-card-foreground text-base group cursor-default"
                 >
-                  <ArrowRight className="h-5 w-5 text-chart-1 flex-shrink-0 mr-2 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
+                  <ArrowRight className="h-5 w-5 text-chart-1 shrink-0 mr-2 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
                   <span className="transition duration-300 group-hover:text-primary">
                     {point}
                   </span>
@@ -127,7 +127,7 @@ const VisionMissionSection = () => {
                   key={index}
                   className="flex items-start text-card-foreground text-base group cursor-default"
                 >
-                  <ArrowRight className="h-5 w-5 text-chart-2 flex-shrink-0 mr-2 mt-1 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
+                  <ArrowRight className="h-5 w-5 text-chart-2 shrink-0 mr-2 mt-1 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
                   <span className="transition duration-300 group-hover:text-primary">
                     {point}
                   </span>
