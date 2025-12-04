@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
   }
 
   const description =
-    article.summary || article.content?.substring(0, 160) || 'Read this health and nutrition article on NutriSys.';
+    article.description || article.content?.substring(0, 160) || 'Read this health and nutrition article on NutriSys.';
 
   return {
     title: article.title,
@@ -43,13 +43,13 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
       description,
       type: 'article',
       publishedTime: article.created_at?.toISOString(),
-      images: article.img_url ? [{ url: article.img_url, alt: article.title }] : undefined,
+      images: article.image_path ? [{ url: article.image_path, alt: article.title }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description,
-      images: article.img_url ? [article.img_url] : undefined,
+      images: article.image_path ? [article.image_path] : undefined,
     },
   };
 }
