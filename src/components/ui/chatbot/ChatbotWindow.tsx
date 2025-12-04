@@ -113,8 +113,8 @@ export default function ChatbotWindow({ onClose }: ChatbotWindowProps) {
     <div
       id="chatbot-window"
       className="
-        bg-card 
-        w-80 md:w-96 h-[520px] 
+        bg-background
+        w-full md:w-100 h-[520px] 
         rounded-xl 
         shadow-2xl 
         flex flex-col 
