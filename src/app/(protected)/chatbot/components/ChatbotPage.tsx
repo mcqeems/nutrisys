@@ -407,6 +407,7 @@ export default function ChatbotPage() {
         <Box position="absolute" bottom="90px" left={4} right={4} zIndex={10}>
           <Box
             bg={glassBg}
+            display={{ base: 'none', lg: 'block' }}
             backdropFilter="blur(16px)"
             border="1px solid"
             borderColor={glassBorder}

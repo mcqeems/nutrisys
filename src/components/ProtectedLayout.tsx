@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Box, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { ReactNode, useState, useEffect } from 'react';
 import { useColorModeValue } from './ui/color-mode';
 import ProtectedNavbar from './ProtectedNavbar';
@@ -47,15 +47,24 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
 
   return (
     <NotificationProvider>
-      <Container>
-        <Box w="full" p="4" my="1.5" bg={greenBox} rounded="2xl" shadow="lg" border="green" borderWidth="medium">
+      <Box w="100%" maxW={{ base: '100%', md: '8xl' }} mx="auto" px={{ base: 0, md: 4 }}>
+        <Box
+          w="full"
+          p={{ base: 2, md: 4 }}
+          my={{ base: 0, md: 1.5 }}
+          bg={greenBox}
+          rounded={{ base: 'none', md: '2xl' }}
+          shadow={{ base: 'none', md: 'lg' }}
+          border="green"
+          borderWidth={{ base: 0, md: 'medium' }}
+        >
           <ProtectedNavbar session={session} loadingUser={loadingUser} />
           {children}
         </Box>
         <Flex alignItems="center" justifyContent="center">
           <Box p="2">© 2025 Nutrisys. All Rights Reserved.</Box>
         </Flex>
-      </Container>
+      </Box>
     </NotificationProvider>
   );
 }

@@ -27,7 +27,7 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
   const unreadCount = notifications.filter((n) => !n.is_read).length;
 
   return (
-    <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6} h="full">
+    <Flex direction="column" bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6} h="100%">
       <Flex direction="row" justifyContent="space-between">
         <Box>
           <Flex align="center" gap={2} mb={2}>
@@ -49,7 +49,7 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
         </Link>
       </Flex>
 
-      <Stack gap={3} maxH="350px" overflowY="auto">
+      <Stack gap={3} flex={1} overflowY="auto">
         {notifications.length > 0 ? (
           notifications.map((notif) => (
             <Box
@@ -79,6 +79,6 @@ export default function NotificationsCard({ notifications }: NotificationsCardPr
           </Box>
         )}
       </Stack>
-    </Box>
+    </Flex>
   );
 }

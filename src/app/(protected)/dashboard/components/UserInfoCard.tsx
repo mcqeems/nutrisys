@@ -27,7 +27,7 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
   const inputBg = useColorModeValue('green.50', 'green.900');
 
   return (
-    <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6}>
+    <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6} h="100%">
       <Flex direction="row" justifyContent="space-between">
         <Text fontWeight="semibold" mb={4}>
           User Info
@@ -41,16 +41,16 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
 
       <Flex gap={6} mb={6} direction={{ base: 'column', md: 'row' }}>
         {/* Left: Avatar and basic info */}
-        <Flex gap={4} align="center">
+        <Flex direction={{ base: 'column', lg: 'row' }} gap={4} align="center">
           <Avatar.Root size="xl" w="80px" h="80px">
             <Avatar.Image src={user?.image || undefined} />
             <Avatar.Fallback name={user?.name || 'User'} />
           </Avatar.Root>
           <Box>
-            <Text fontWeight="medium" mb={1}>
+            <Text alignSelf="start" textAlign="start" fontWeight="medium" mb={1}>
               Nama: {user?.name || '-'}
             </Text>
-            <Text fontSize="sm" color={labelColor} mb={2}>
+            <Text alignSelf="start" textAlign="start" fontSize="sm" color={labelColor} mb={2}>
               Email: {user?.email || '-'}
             </Text>
             <Badge colorPalette="green" variant="surface">

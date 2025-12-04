@@ -31,8 +31,8 @@ import {
   PauseCircle,
   PlayCircle,
   FileText,
-  PauseIcon,
   HourglassIcon,
+  CheckIcon,
 } from 'lucide-react';
 import { createTarget } from '@/lib/actions/createTarget';
 import { updateTargetStatus } from '@/lib/actions/updateTargetStatus';
@@ -240,7 +240,7 @@ export default function TargetPage() {
                     <TargetAnimation />
                   ) : item.status === 'Selesai' ? (
                     <Box p="6">
-                      <PauseIcon size="100px" />
+                      <CheckIcon size="100px" />
                     </Box>
                   ) : (
                     <Box p="6">

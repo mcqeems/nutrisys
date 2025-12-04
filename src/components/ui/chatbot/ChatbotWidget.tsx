@@ -25,15 +25,15 @@ export default function ChatbotWidget() {
         </div>
       )}
 
-      <div className="flex items-end space-x-3 md:space-x-4">
+      <div className="flex items-end space-x-1 md:space-x-4">
         {!isOpen && (
           <button
             onClick={openChat}
             className={`
               relative 
               flex items-center justify-between 
-              w-72 md:w-70
-              p-3 
+              w-56 md:w-72
+              p-2 md:p-3 
               rounded-xl 
               shadow-2xl 
               transition-all duration-300 
@@ -52,18 +52,18 @@ export default function ChatbotWidget() {
             aria-expanded={isOpen}
             aria-controls="chatbot-window"
           >
-            <div className="flex items-center space-x-3">
-              <div className="bg-primary-foreground/20 p-2 rounded-full">
-                <div className="w-7 h-7">
+            <div className="flex items-center space-x-2 md:space-x-3">
+              <div className="bg-primary-foreground/20 p-1.5 md:p-2 rounded-full">
+                <div className="w-5 h-5 md:w-7 md:h-7">
                   <Chatbot />
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold">NutriSys Support</h3>
-                <p className="text-xs opacity-80">Punya keluhan? Tanyakan disini!</p>
+                <h3 className="text-sm md:text-lg font-bold">NutriSys Support</h3>
+                <p className="text-[10px] md:text-xs opacity-80">Punya keluhan? Tanyakan disini!</p>
               </div>
             </div>
-            <PlusIcon className="w-6 h-6 transform transition-transform duration-300" />
+            <PlusIcon className="w-5 h-5 md:w-6 md:h-6 transform transition-transform duration-300" />
           </button>
         )}
 

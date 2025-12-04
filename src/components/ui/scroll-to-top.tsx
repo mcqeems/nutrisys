@@ -45,7 +45,7 @@ const ScrollToTopButton = ({ isHorizontal = false }) => {
   }, []);
 
   const baseClasses =
-    'p-5 bg-primary text-white border border-primary/20 rounded-full shadow-2xl hover:bg-primary/90 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 cursor-pointer';
+    'p-3 md:p-5 bg-primary text-white border border-primary/20 rounded-full shadow-2xl hover:bg-primary/90 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 cursor-pointer';
 
   return (
     <AnimatePresence>
@@ -60,7 +60,7 @@ const ScrollToTopButton = ({ isHorizontal = false }) => {
           className={baseClasses}
           aria-label="Scroll back to top"
         >
-          <ChevronUp className="w-7 h-7" />
+          <ChevronUp className="w-5 h-5 md:w-7 md:h-7" />
         </motion.button>
       )}
     </AnimatePresence>

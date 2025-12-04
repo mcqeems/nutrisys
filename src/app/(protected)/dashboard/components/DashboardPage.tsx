@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Container, Heading, Text, Grid, Box, Skeleton } from '@chakra-ui/react';
+import { Container, Heading, Text, Grid, Box, Skeleton, Flex } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { Utensils, MessageCircle, BookHeart, Target } from 'lucide-react';
 import UserInfoCard from './UserInfoCard';
@@ -135,7 +135,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container py={8}>
       {/* Greeting */}
       <Heading size="3xl" mb={8}>
         Selamat datang,{' '}
@@ -145,10 +145,14 @@ export default function DashboardPage() {
       </Heading>
 
       {/* User Info + Notifications Row */}
-      <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={6} mb={6}>
-        <UserInfoCard user={data.user} userInfo={data.userInfo} />
-        <NotificationsCard notifications={data.notifications} />
-      </Grid>
+      <Flex direction={{ base: 'column', lg: 'row' }} gap={6} mb={6} alignItems="stretch">
+        <Box flex={2}>
+          <UserInfoCard user={data.user} userInfo={data.userInfo} />
+        </Box>
+        <Box flex={1}>
+          <NotificationsCard notifications={data.notifications} />
+        </Box>
+      </Flex>
 
       {/* AI Summary */}
       <Box mb={6}>

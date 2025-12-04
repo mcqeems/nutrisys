@@ -202,7 +202,7 @@ export default function JournalPage() {
                           opacity={0.3}
                           pointerEvents="none"
                         >
-                          <Box w="150px">
+                          <Box w={{ base: '75px', lg: '125px' }}>
                             <Book />
                           </Box>
                         </Flex>
