@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface ArticleDetailPageProps {
   params: {
@@ -40,8 +41,6 @@ function ErrorComponent({
     </div>
   );
 }
-
-// -------------------------------------------------------------
 
 export default async function ArticleDetailPage({
   params: routeParams,
@@ -159,9 +158,104 @@ export default async function ArticleDetailPage({
             >
               {article.content ? (
                 <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  // MENGATUR KOMPONEN SECARA LENGKAP UNTUK KONTROL PENUH
                   components={{
-                    h2: ({ children }) => <h2>{children}</h2>,
-                    ul: ({ children }) => <ul className="pl-6">{children}</ul>,
+                    // PENGATURAN TEKS DASAR
+                    p: ({ children }) => (
+                      <p className="mb-4 leading-relaxed">{children}</p>
+                    ),
+                    a: ({ href, children }) => (
+                      <a
+                        href={href}
+                        className="text-primary hover:text-primary/80 transition-colors underline"
+                      >
+                        {children}
+                      </a>
+                    ),
+                    em: ({ children }) => (
+                      <em className="italic">{children}</em>
+                    ),
+                    strong: ({ children }) => (
+                      <strong className="font-extrabold text-foreground/90">
+                        {children}
+                      </strong>
+                    ),
+
+                    h1: ({ children }) => (
+                      <h1 className="text-4xl font-extrabold mt-10 mb-5">
+                        {children}
+                      </h1>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="text-3xl font-bold mt-8 mb-4 border-b border-border pb-2">
+                        {children}
+                      </h2>
+                    ), 
+                    h3: ({ children }) => (
+                      <h3 className="text-2xl font-semibold mt-6 mb-3">
+                        {children}
+                      </h3>
+                    ),
+                    h4: ({ children }) => (
+                      <h4 className="text-xl font-medium mt-5 mb-2">
+                        {children}
+                      </h4>
+                    ),
+                    h5: ({ children }) => (
+                      <h5 className="text-lg font-medium mt-4 mb-2">
+                        {children}
+                      </h5>
+                    ),
+                    h6: ({ children }) => (
+                      <h6 className="text-base font-medium mt-4 mb-2">
+                        {children}
+                      </h6>
+                    ),
+
+                    ul: ({ children }) => (
+                      <ul className="list-disc pl-6 my-4 space-y-2">
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="list-decimal pl-6 my-4 space-y-2">
+                        {children}
+                      </ol>
+                    ),
+                    li: ({ children }) => <li className="mb-1">{children}</li>,
+
+                    table: ({ children }) => (
+                      <div className="overflow-x-auto my-6 border border-border rounded-lg shadow-sm">
+                        <table className="min-w-full divide-y divide-border">
+                          {children}
+                        </table>
+                      </div>
+                    ),
+                    thead: ({ children }) => (
+                      <thead className="bg-muted">{children}</thead>
+                    ),
+                    tbody: ({ children }) => (
+                      <tbody className="divide-y divide-border">
+                        {children}
+                      </tbody>
+                    ),
+                    th: ({ children }) => (
+                      <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        {children}
+                      </th>
+                    ),
+                    td: ({ children }) => (
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-card-foreground">
+                        {children}
+                      </td>
+                    ),
+
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 border-primary/70 pl-4 py-2 my-4 bg-primary/5 italic text-muted-foreground">
+                        {children}
+                      </blockquote>
+                    ),
                   }}
                 >
                   {article.content}

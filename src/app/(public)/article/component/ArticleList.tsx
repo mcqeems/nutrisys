@@ -67,20 +67,12 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           </p>
         </div>
 
-        {/* Input Pencarian */}
-        <motion.div
-          className="flex flex-col md:flex-row gap-4 mb-16 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        ></motion.div>
+
 
         {/* Daftar Artikel */}
-        <motion.div
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          
         >
           {articles.length > 0 ? (
             articles.map((article) => (
@@ -124,26 +116,24 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                     {article.title}
                   </h2>
                   <div
-                    // Wrapper div yang menampung konten dan diberikan kelas line-clamp-3
                     className="text-base text-muted-foreground flex-grow mb-5 
              overflow-hidden text-ellipsis line-clamp-3"
                   >
                     <ReactMarkdown
-                      // Melarang semua elemen block-level yang akan merusak hitungan baris
                       disallowedElements={[
                         "h1",
                         "h2",
                         "h3",
                         "h4",
                         "h5",
-                        "h6", // Headings
+                        "h6", 
                         "ul",
                         "ol",
-                        "li", // Lists
+                        "li", 
                         "table",
                         "blockquote",
                         "hr",
-                        "img", // Lain-lain
+                        "img", 
                       ]}
                       unwrapDisallowed={true}
                     >
@@ -164,7 +154,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
               Tidak ada artikel yang tersedia saat ini.
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
