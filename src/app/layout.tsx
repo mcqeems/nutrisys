@@ -52,23 +52,14 @@ export const metadata: Metadata = {
     title: 'NutriSys - AI-Powered Health & Wellness Platform',
     description:
       'Transform your health journey with AI-powered nutrition tracking, food analysis, and personalized wellness insights.',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'NutriSys - AI-Powered Health & Wellness Platform',
-        type: 'image/png',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NutriSys - AI-Powered Health & Wellness Platform',
     description:
       'Transform your health journey with AI-powered nutrition tracking, food analysis, and personalized wellness insights.',
-    images: ['/opengraph-image.png'],
     creator: '@nutrisys',
+    site: '@nutrisys',
   },
   robots: {
     index: true,
