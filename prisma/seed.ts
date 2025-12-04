@@ -8,9 +8,7 @@ async function main() {
     {
       title: "Manfaat Air Putih untuk Tubuh Optimal",
       description: "Hidrasi optimal",
-      content: `
-
-💧 Manfaat Air Putih untuk Tubuh Optimal: Kunci Kesehatan Modern
+      content: `💧 Manfaat Air Putih untuk Tubuh Optimal: Kunci Kesehatan Modern
 
 Air putih sering kali dianggap sepele, namun perannya dalam menjaga fungsi tubuh yang optimal adalah **mutlak dan tak tergantikan**. Ilmu pengetahuan terus memperkuat fakta bahwa hidrasi yang memadai adalah fondasi kesehatan, mulai dari tingkat seluler hingga kinerja kognitif.
 
