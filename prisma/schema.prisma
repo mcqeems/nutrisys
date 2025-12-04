@@ -1,8 +1,9 @@
 generator client {
-  provider      = "prisma-client"
+  // provider      = "prisma-client"
+  provider      = "prisma-client-js"
   // Moved generated client into src/ to avoid creating a top-level app/ folder
-  output        = "../src/generated/prisma"
-  runtime       = "bun"
+  // output        = "../src/generated/prisma"
+  // runtime       = "bun"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
