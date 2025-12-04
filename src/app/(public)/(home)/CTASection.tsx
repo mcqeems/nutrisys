@@ -6,7 +6,7 @@ const benefits = [
   'Analisis nutrisi real-time',
   'Rekomendasi menu personal',
   'Tracking progress harian',
-  'Konsultasi dengan ahli gizi',
+  'Reminder Cerdas',
 ];
 
 const CTASection = () => {
