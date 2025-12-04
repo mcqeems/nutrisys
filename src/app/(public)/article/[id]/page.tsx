@@ -4,11 +4,54 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Metadata } from 'next';
 
 interface ArticleDetailPageProps {
   params: Promise<{
     id: string;
   }>;
+}
+
+export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const articleId = parseInt(id);
+
+  if (isNaN(articleId)) {
+    return {
+      title: 'Article Not Found',
+      description: 'The requested article could not be found.',
+    };
+  }
+
+  const article = await getSingleArticleDetail(articleId);
+
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+      description: 'The requested article could not be found.',
+    };
+  }
+
+  const description =
+    article.summary || article.content?.substring(0, 160) || 'Read this health and nutrition article on NutriSys.';
+
+  return {
+    title: article.title,
+    description,
+    openGraph: {
+      title: article.title,
+      description,
+      type: 'article',
+      publishedTime: article.created_at?.toISOString(),
+      images: article.img_url ? [{ url: article.img_url, alt: article.title }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description,
+      images: article.img_url ? [article.img_url] : undefined,
+    },
+  };
 }
 
 function ErrorComponent({ title, message }: { title: string; message: string }) {

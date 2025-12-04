@@ -4,8 +4,13 @@ import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'Login - Nutrisys',
-  description: 'Nutrisys Login Page',
+  title: 'Login',
+  description:
+    'Sign in to your NutriSys account to access AI-powered nutrition tracking, personalized health insights, and wellness tools.',
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default async function Login() {

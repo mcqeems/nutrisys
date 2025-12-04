@@ -2,8 +2,13 @@ import { Metadata } from 'next';
 import JournalPage from './components/JournalPage';
 
 export const metadata: Metadata = {
-  title: 'Wellness Jurnal - Nutrisys',
-  description: 'Membantu anda mendokumentasikan dan mencatat perkembangan kesehatan nutrisi anda!',
+  title: 'Wellness Journal',
+  description:
+    'Document and track your nutrition journey with the NutriSys wellness journal - log meals, monitor progress, and achieve your health goals.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function Analyze() {

@@ -1,20 +1,25 @@
-import CTASection from "./(home)/CTASection";
-import HeroSection from "./(home)/HeroSection";
-import Testimonials from "./(home)/Testimonials";
-import WhyNutriSys from "./(home)/WhySection";
-import FaqSection from "./(home)/FaqSection";
-import ComparisonTable from "./(home)/ComparisonTable";
-import AboutNutriSys from "./(home)/AboutNutrisys";
-import FeatureSection from "./(home)/FeatureSection";
-import { Metadata } from "next";
+import CTASection from './(home)/CTASection';
+import HeroSection from './(home)/HeroSection';
+import Testimonials from './(home)/Testimonials';
+import WhyNutriSys from './(home)/WhySection';
+import FaqSection from './(home)/FaqSection';
+import ComparisonTable from './(home)/ComparisonTable';
+import AboutNutriSys from './(home)/AboutNutrisys';
+import FeatureSection from './(home)/FeatureSection';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Nutrisys - Home",
-  description: "Explore our AI-powered health and wellness features",
+  title: 'Home',
+  description:
+    'Transform your health journey with NutriSys. AI-powered nutrition tracking, food analysis, and personalized wellness insights to help you achieve your health goals.',
+  openGraph: {
+    title: 'NutriSys - AI-Powered Health & Wellness Platform',
+    description:
+      'Transform your health journey with AI-powered nutrition tracking, food analysis, and personalized wellness insights.',
+  },
 };
 
 function home() {
-  
   return (
     <div>
       <HeroSection />
