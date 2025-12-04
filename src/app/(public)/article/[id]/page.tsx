@@ -1,29 +1,21 @@
-import { getSingleArticleDetail } from "@/lib/actions/getSingleArticleDetail";
-import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { getSingleArticleDetail } from '@/lib/actions/getSingleArticleDetail';
+import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ArticleDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-function ErrorComponent({
-  title,
-  message,
-}: {
-  title: string;
-  message: string;
-}) {
+function ErrorComponent({ title, message }: { title: string; message: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 px-4 min-h-[60vh] bg-background">
       <div className="text-center max-w-lg p-8 border border-border rounded-xl shadow-lg bg-card">
-        <h1 className="text-4xl font-extrabold text-destructive mb-3">
-          {title}
-        </h1>
+        <h1 className="text-4xl font-extrabold text-destructive mb-3">{title}</h1>
         <p className="text-lg text-muted-foreground mb-6">{message}</p>
 
         <Link href="/article">
@@ -42,18 +34,11 @@ function ErrorComponent({
   );
 }
 
-export default async function ArticleDetailPage({
-  params: routeParams,
-}: ArticleDetailPageProps) {
+export default async function ArticleDetailPage({ params: routeParams }: ArticleDetailPageProps) {
   const { id } = await routeParams;
 
-  if (!id || id.trim() === "") {
-    return (
-      <ErrorComponent
-        title="Kesalahan Rute"
-        message="ID artikel tidak ditemukan di URL."
-      />
-    );
+  if (!id || id.trim() === '') {
+    return <ErrorComponent title="Kesalahan Rute" message="ID artikel tidak ditemukan di URL." />;
   }
 
   const articleId = parseInt(id);
@@ -79,14 +64,14 @@ export default async function ArticleDetailPage({
   }
 
   const dateDisplay = article.created_at
-    ? new Date(article.created_at).toLocaleDateString("id-ID", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+    ? new Date(article.created_at).toLocaleDateString('id-ID', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       })
-    : "Tanggal tidak tersedia";
+    : 'Tanggal tidak tersedia';
 
-  const imageUrl = article.image_path || "/images/placeholder.jpg";
+  const imageUrl = article.image_path || '/images/placeholder.jpg';
 
   return (
     <section className="pt-24 pb-20 bg-background min-h-screen">
@@ -121,7 +106,7 @@ export default async function ArticleDetailPage({
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm text-muted-foreground pt-4">
               <span className="font-semibold text-primary/80 bg-primary/10 px-3 py-1 rounded-full text-xs uppercase tracking-wider mb-2 sm:mb-0">
-                {article.description || "Tanpa Kategori"}
+                {article.description || 'Tanpa Kategori'}
               </span>
 
               <span className="flex items-center">
@@ -140,10 +125,7 @@ export default async function ArticleDetailPage({
                   <line x1="8" y1="2" x2="8" y2="6"></line>
                   <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                Dipublikasikan:{" "}
-                <span className="ml-1 font-medium text-foreground">
-                  {dateDisplay}
-                </span>
+                Dipublikasikan: <span className="ml-1 font-medium text-foreground">{dateDisplay}</span>
               </span>
             </div>
 
@@ -162,93 +144,42 @@ export default async function ArticleDetailPage({
                   // MENGATUR KOMPONEN SECARA LENGKAP UNTUK KONTROL PENUH
                   components={{
                     // PENGATURAN TEKS DASAR
-                    p: ({ children }) => (
-                      <p className="mb-4 leading-relaxed">{children}</p>
-                    ),
+                    p: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
                     a: ({ href, children }) => (
-                      <a
-                        href={href}
-                        className="text-primary hover:text-primary/80 transition-colors underline"
-                      >
+                      <a href={href} className="text-primary hover:text-primary/80 transition-colors underline">
                         {children}
                       </a>
                     ),
-                    em: ({ children }) => (
-                      <em className="italic">{children}</em>
-                    ),
-                    strong: ({ children }) => (
-                      <strong className="font-extrabold text-foreground/90">
-                        {children}
-                      </strong>
-                    ),
+                    em: ({ children }) => <em className="italic">{children}</em>,
+                    strong: ({ children }) => <strong className="font-extrabold text-foreground/90">{children}</strong>,
 
-                    h1: ({ children }) => (
-                      <h1 className="text-4xl font-extrabold mt-10 mb-5">
-                        {children}
-                      </h1>
-                    ),
+                    h1: ({ children }) => <h1 className="text-4xl font-extrabold mt-10 mb-5">{children}</h1>,
                     h2: ({ children }) => (
-                      <h2 className="text-3xl font-bold mt-8 mb-4 border-b border-border pb-2">
-                        {children}
-                      </h2>
-                    ), 
-                    h3: ({ children }) => (
-                      <h3 className="text-2xl font-semibold mt-6 mb-3">
-                        {children}
-                      </h3>
+                      <h2 className="text-3xl font-bold mt-8 mb-4 border-b border-border pb-2">{children}</h2>
                     ),
-                    h4: ({ children }) => (
-                      <h4 className="text-xl font-medium mt-5 mb-2">
-                        {children}
-                      </h4>
-                    ),
-                    h5: ({ children }) => (
-                      <h5 className="text-lg font-medium mt-4 mb-2">
-                        {children}
-                      </h5>
-                    ),
-                    h6: ({ children }) => (
-                      <h6 className="text-base font-medium mt-4 mb-2">
-                        {children}
-                      </h6>
-                    ),
+                    h3: ({ children }) => <h3 className="text-2xl font-semibold mt-6 mb-3">{children}</h3>,
+                    h4: ({ children }) => <h4 className="text-xl font-medium mt-5 mb-2">{children}</h4>,
+                    h5: ({ children }) => <h5 className="text-lg font-medium mt-4 mb-2">{children}</h5>,
+                    h6: ({ children }) => <h6 className="text-base font-medium mt-4 mb-2">{children}</h6>,
 
-                    ul: ({ children }) => (
-                      <ul className="list-disc pl-6 my-4 space-y-2">
-                        {children}
-                      </ul>
-                    ),
-                    ol: ({ children }) => (
-                      <ol className="list-decimal pl-6 my-4 space-y-2">
-                        {children}
-                      </ol>
-                    ),
+                    ul: ({ children }) => <ul className="list-disc pl-6 my-4 space-y-2">{children}</ul>,
+                    ol: ({ children }) => <ol className="list-decimal pl-6 my-4 space-y-2">{children}</ol>,
                     li: ({ children }) => <li className="mb-1">{children}</li>,
 
                     table: ({ children }) => (
                       <div className="overflow-x-auto my-6 border border-border rounded-lg shadow-sm">
-                        <table className="min-w-full divide-y divide-border">
-                          {children}
-                        </table>
+                        <table className="min-w-full divide-y divide-border">{children}</table>
                       </div>
                     ),
-                    thead: ({ children }) => (
-                      <thead className="bg-muted">{children}</thead>
-                    ),
-                    tbody: ({ children }) => (
-                      <tbody className="divide-y divide-border">
-                        {children}
-                      </tbody>
-                    ),
+                    thead: ({ children }) => <thead className="bg-muted">{children}</thead>,
+                    tbody: ({ children }) => <tbody className="divide-y divide-border">{children}</tbody>,
                     th: ({ children }) => (
                       <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                         {children}
                       </th>
                     ),
                     td: ({ children }) => (
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-card-foreground">
-                        {children}
-                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-card-foreground">{children}</td>
                     ),
 
                     blockquote: ({ children }) => (
@@ -262,8 +193,7 @@ export default async function ArticleDetailPage({
                 </ReactMarkdown>
               ) : (
                 <p className="whitespace-pre-line text-lg leading-relaxed italic text-muted-foreground">
-                  Konten artikel ini belum tersedia. Mohon maaf atas
-                  ketidaknyamanan ini.
+                  Konten artikel ini belum tersedia. Mohon maaf atas ketidaknyamanan ini.
                 </p>
               )}
             </div>
