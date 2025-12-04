@@ -1,13 +1,13 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 async function main() {
-  console.log("Memulai proses seeding artikel nutrisi....");
-  const longContent = "yyy ".repeat(150) + "yyy";
+  console.log('Memulai proses seeding artikel nutrisi....');
+  const longContent = 'yyy '.repeat(150) + 'yyy';
 
   const articleData = [
     {
-      title: "Manfaat Air Putih untuk Tubuh Optimal",
-      description: "Hidrasi optimal",
+      title: 'Manfaat Air Putih untuk Tubuh Optimal',
+      description: 'Hidrasi optimal',
       content: `💧 Manfaat Air Putih untuk Tubuh Optimal: Kunci Kesehatan Modern
 
 Air putih sering kali dianggap sepele, namun perannya dalam menjaga fungsi tubuh yang optimal adalah **mutlak dan tak tergantikan**. Ilmu pengetahuan terus memperkuat fakta bahwa hidrasi yang memadai adalah fondasi kesehatan, mulai dari tingkat seluler hingga kinerja kognitif.
@@ -70,11 +70,11 @@ Untuk memastikan tubuh Anda optimal, **dengarkan sinyal tubuh Anda**. Minumlah a
 **Kesimpulan:**
 
 Memenuhi kebutuhan air putih harian adalah investasi paling mendasar untuk kesehatan tubuh optimal. Ini adalah kebiasaan sehat yang paling mudah diterapkan dengan dampak kesehatan yang luas dan nyata.`,
-      image_path: "/Articles/1.webp",
+      image_path: '/Articles/1.webp',
     },
     {
-      title: "Pentingnya Serat Makanan bagi Kesehatan Usus",
-      description: "Pencernaan sehat",
+      title: 'Pentingnya Serat Makanan bagi Kesehatan Usus',
+      description: 'Pencernaan sehat',
       content: `🌱 Pentingnya Serat Makanan bagi Kesehatan Usus: Jembatan Menuju Keseimbangan Mikrobioma
 ========================================================================================
 
@@ -136,11 +136,11 @@ Menurut pedoman kesehatan, asupan serat harian yang ideal adalah sekitar **25 gr
     
 
 > **Peringatan:** Peningkatan asupan serat harus dilakukan secara bertahap dan selalu diiringi dengan **minum air putih yang cukup** untuk menghindari kembung, gas, atau sembelit.`,
-      image_path: "/Articles/2.webp",
+      image_path: '/Articles/2.webp',
     },
     {
-      title: "Sumber Protein Terbaik untuk Pertumbuhan dan Perbaikan",
-      description: "Otot kuat",
+      title: 'Sumber Protein Terbaik untuk Pertumbuhan dan Perbaikan',
+      description: 'Otot kuat',
       content: `🥩 Sumber Protein Terbaik untuk Pertumbuhan dan Perbaikan
 =========================================================
 
@@ -213,11 +213,11 @@ Untuk memaksimalkan manfaat protein, penting untuk memperhatikan waktu dan distr
 **Kesimpulan:**
 
 Protein adalah pilar kesehatan yang tidak boleh diabaikan. Baik Anda mengandalkan sumber hewani yang lengkap atau menggabungkan berbagai sumber nabati, memprioritaskan kualitas dan kuantitas protein adalah investasi terbaik untuk mendukung pertumbuhan, pemulihan, dan fungsi tubuh secara keseluruhan.`,
-      image_path: "/Articles/3.webp",
+      image_path: '/Articles/3.webp',
     },
     {
-      title: "Mengenal Lemak Sehat: Omega-3 dan Fungsinya",
-      description: "Energi stabil",
+      title: 'Mengenal Lemak Sehat: Omega-3 dan Fungsinya',
+      description: 'Energi stabil',
       content: `🐟 Mengenal Lemak Sehat: Omega-3 dan Fungsinya
 ==============================================
 
@@ -299,11 +299,11 @@ Meskipun tidak ada standar RDA (Angka Kecukupan Gizi yang Dianjurkan) yang ditet
 **Kesimpulan:**
 
 Omega-3 adalah lemak yang harus Anda kejar, bukan hindari. Dengan secara teratur memasukkan ikan berlemak, biji-bijian, dan kacang-kacangan ke dalam diet Anda, atau melalui suplemen yang tepat, Anda secara aktif berinvestasi dalam kesehatan jantung, otak, dan mengurangi peradangan kronis di tubuh Anda.`,
-      image_path: "/Articles/4.webp",
+      image_path: '/Articles/4.webp',
     },
     {
-      title: "Karbohidrat Kompleks vs Sederhana: Pilihan Energi",
-      description: "Bahan bakar",
+      title: 'Karbohidrat Kompleks vs Sederhana: Pilihan Energi',
+      description: 'Bahan bakar',
       content: `🍚 Karbohidrat Kompleks vs Sederhana: Pilihan Energi
 ====================================================
 
@@ -382,11 +382,11 @@ Pola makan yang didominasi karbohidrat kompleks IG rendah dikaitkan dengan penur
 **Kesimpulan:**
 
 Bukan berarti Anda harus menghindari semua karbohidrat sederhana. Namun, untuk energi yang optimal dan kesehatan jangka panjang, sebaiknya prioritaskan **karbohidrat kompleks** yang diperkaya serat (seperti biji-bijian utuh dan sayuran). Batasi asupan karbohidrat sederhana yang berasal dari gula tambahan dan makanan olahan. Pilihan karbohidrat yang cerdas adalah investasi langsung pada energi dan kesehatan metabolik Anda.`,
-      image_path: "/Articles/5.webp",
+      image_path: '/Articles/5.webp',
     },
     {
-      title: "Peran Penting Vitamin D bagi Imunitas dan Tulang",
-      description: "Tulang kuat",
+      title: 'Peran Penting Vitamin D bagi Imunitas dan Tulang',
+      description: 'Tulang kuat',
       content: `☀️ Peran Penting Vitamin D bagi Imunitas dan Tulang
 ===================================================
 
@@ -450,11 +450,11 @@ Kekurangan Vitamin D adalah masalah kesehatan global, memengaruhi miliaran orang
 **Kesimpulan:**
 
 Vitamin D adalah pemain kunci dalam orkestra kesehatan tubuh. Dari memfasilitasi kekuatan tulang hingga memodulasi pertahanan kekebalan tubuh, memastikan kadar yang optimal melalui kombinasi paparan matahari yang aman, diet, dan suplemen (jika perlu) adalah langkah proaktif yang penting menuju kesehatan holistik.`,
-      image_path: "/Articles/6.webp",
+      image_path: '/Articles/6.webp',
     },
     {
-      title: "Kekuatan Antioksidan Melawan Radikal Bebas",
-      description: "Lawan radikal",
+      title: 'Kekuatan Antioksidan Melawan Radikal Bebas',
+      description: 'Lawan radikal',
       content: `🛡️ Kekuatan Antioksidan Melawan Radikal Bebas
 ==============================================
 
@@ -525,11 +525,11 @@ Meskipun suplemen antioksidan tersedia luas, fokus utama harus selalu pada diet.
 **Kesimpulan:**
 
 Antioksidan adalah pertahanan alami tubuh Anda melawan kerusakan seluler dan penyakit yang didorong oleh stres oksidatif. Dengan memperkaya diet Anda dengan berbagai sumber alami antioksidan, Anda secara langsung mendukung kemampuan tubuh Anda untuk memperbaiki diri, melindungi sel, dan mempromosikan umur panjang.`,
-      image_path: "/Articles/7.webp",
+      image_path: '/Articles/7.webp',
     },
     {
-      title: "Mengatasi Defisiensi Mineral Penting: Zat Besi",
-      description: "Darah sehat",
+      title: 'Mengatasi Defisiensi Mineral Penting: Zat Besi',
+      description: 'Darah sehat',
       content: `🩸 Mengatasi Defisiensi Mineral Penting: Zat Besi
 =================================================
 
@@ -602,11 +602,11 @@ Jika defisiensi zat besi sudah terdiagnosis secara klinis (anemia), perubahan di
 **Kesimpulan:**
 
 Zat besi adalah mineral yang keberadaannya sangat krusial bagi kehidupan yang energik dan sistem kekebalan yang kuat. Dengan memahami sumbernya (heme vs non-heme) dan menerapkan trik penyerapan (seperti menggabungkannya dengan Vitamin C), Anda dapat mengambil langkah proaktif dalam mencegah dan mengatasi defisiensi zat besi.`,
-      image_path: "/Articles/8.webp",
+      image_path: '/Articles/8.webp',
     },
     {
-      title: "Makan Secara Sadar (Mindful Eating)",
-      description: "Keseimbangan porsi",
+      title: 'Makan Secara Sadar (Mindful Eating)',
+      description: 'Keseimbangan porsi',
       content: `🧘 Makan Secara Sadar: Teknik _Mindful Eating_
 ==============================================
 
@@ -682,7 +682,7 @@ _Mindful eating_ bukanlah diet yang melarang kelompok makanan tertentu. Ini adal
 **Kesimpulan:**
 
 Mempraktikkan _mindful eating_ adalah salah satu perubahan gaya hidup paling sederhana namun paling berdampak yang dapat Anda lakukan. Dengan berfokus pada saat ini saat makan, Anda dapat beralih dari hubungan yang otomatis dan reaktif dengan makanan menjadi hubungan yang penuh perhatian, intuitif, dan lebih sehat.`,
-      image_path: "/Articles/9.webp",
+      image_path: '/Articles/9.webp',
     },
   ];
 
