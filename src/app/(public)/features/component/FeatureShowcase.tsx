@@ -20,7 +20,7 @@ const mainFeatures = [
     title: "NutriAI Chat",
     description:
       "Pelatih kesehatan pribadi Anda tersedia 24 Jam. Dapatkan saran yang dipersonalisasi dan jawaban instan untuk semua pertanyaan kesehatan Anda.",
-    videoUrl: "3woeGE8be3s",
+    videoUrl: "hz12zXne60s",
     link: "chatbot",
     icon: Bot,
     benefits: ["Tersedia 24 Jam", "Saran Personal", "Dukungan Real-time"],
@@ -30,7 +30,7 @@ const mainFeatures = [
     title: "Analisis Nutrisi",
     description:
       "Lacak dan analisis nutrisi Anda dengan wawasan bertenaga AI. Dapatkan rincian mendetail tentang makro, mikro, dan rekomendasi diet.",
-    videoUrl: "2pt_-O_-sfU",
+    videoUrl: "AamwCkUCu4I",
     link: "/analyze",
     icon: Activity,
     benefits: ["Pelacakan Makro", "Analisis AI", "Rekomendasi Diet"],
@@ -40,7 +40,7 @@ const mainFeatures = [
     title: "Wellness Journal",
     description:
       "Dokumentasikan perjalanan kesejahteraan Anda dengan penjurnalan cerdas. Lacak suasana hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.",
-    videoUrl: "2pt_-O_-sfU",
+    videoUrl: "419_Iu9mle0",
     link: "journal",
     icon: BookOpenText,
     benefits: [
