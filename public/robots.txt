@@ -1,0 +1,16 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow protected routes
+Disallow: /dashboard
+Disallow: /analyze
+Disallow: /chatbot
+Disallow: /journal
+Disallow: /notifications
+Disallow: /target
+Disallow: /user
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://nutrisys.com/sitemap.xml
