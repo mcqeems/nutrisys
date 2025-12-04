@@ -1,7 +1,8 @@
 import { getSingleArticleDetail } from "@/lib/actions/getSingleArticleDetail";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react"; 
-import Link from "next/link"; 
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 interface ArticleDetailPageProps {
   params: {
@@ -31,13 +32,16 @@ function ErrorComponent({
                        ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 
                        h-10 py-2 px-4 shadow-md"
           >
-            Kembali ke Beranda
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Kembali ke Daftar Artikel
           </button>
         </Link>
       </div>
     </div>
   );
 }
+
+// -------------------------------------------------------------
 
 export default async function ArticleDetailPage({
   params: routeParams,
@@ -153,10 +157,21 @@ export default async function ArticleDetailPage({
                           prose-headings:text-foreground prose-a:text-primary 
                           prose-li:marker:text-primary prose-strong:font-bold"
             >
-              <p className="whitespace-pre-line text-lg leading-relaxed">
-                {article.content ??
-                  "Konten artikel ini belum tersedia. Mohon maaf atas ketidaknyamanan ini."}
-              </p>
+              {article.content ? (
+                <ReactMarkdown
+                  components={{
+                    h2: ({ children }) => <h2>{children}</h2>,
+                    ul: ({ children }) => <ul className="pl-6">{children}</ul>,
+                  }}
+                >
+                  {article.content}
+                </ReactMarkdown>
+              ) : (
+                <p className="whitespace-pre-line text-lg leading-relaxed italic text-muted-foreground">
+                  Konten artikel ini belum tersedia. Mohon maaf atas
+                  ketidaknyamanan ini.
+                </p>
+              )}
             </div>
           </div>
         </article>

@@ -1,10 +1,11 @@
 "use client";
 
-import { Search, ChevronRight, Leaf, Calendar, Zap } from "lucide-react";
+import { ChevronRight, Leaf, Calendar, Zap } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import type { ArticleListItem } from "@/lib/actions/getArticles"; // Ganti dengan path yang sesuai
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 interface ArticleListProps {
   articles: ArticleListItem[];
@@ -72,8 +73,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-        >
-        </motion.div>
+        ></motion.div>
 
         {/* Daftar Artikel */}
         <motion.div
@@ -123,12 +123,33 @@ export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                   >
                     {article.title}
                   </h2>
-                  <p
+                  <div
+                    // Wrapper div yang menampung konten dan diberikan kelas line-clamp-3
                     className="text-base text-muted-foreground flex-grow mb-5 
-                           overflow-hidden text-ellipsis line-clamp-3"
+             overflow-hidden text-ellipsis line-clamp-3"
                   >
-                    {article.content}
-                  </p>
+                    <ReactMarkdown
+                      // Melarang semua elemen block-level yang akan merusak hitungan baris
+                      disallowedElements={[
+                        "h1",
+                        "h2",
+                        "h3",
+                        "h4",
+                        "h5",
+                        "h6", // Headings
+                        "ul",
+                        "ol",
+                        "li", // Lists
+                        "table",
+                        "blockquote",
+                        "hr",
+                        "img", // Lain-lain
+                      ]}
+                      unwrapDisallowed={true}
+                    >
+                      {article.content}
+                    </ReactMarkdown>
+                  </div>
                   <div className="mt-auto pt-4 border-t border-border/70">
                     <span className="flex items-center font-medium text-primary hover:text-primary/80 transition duration-300">
                       Baca Selengkapnya
