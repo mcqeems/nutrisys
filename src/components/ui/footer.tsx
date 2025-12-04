@@ -7,7 +7,7 @@ interface FooterLink {
 }
 const EMAIL_ADDRESS = 'brucadalm@gmail.com';
 const WA_NUMBER = '+6282210980898';
-const WA_MESSAGE = 'Halo, saya ingin bertanya tentang Nutisys';
+const WA_MESSAGE = 'Halo, saya ingin bertanya tentang Nutrisys';
 
 const navLinks: FooterLink[] = [
   { href: '/', label: 'Beranda' },

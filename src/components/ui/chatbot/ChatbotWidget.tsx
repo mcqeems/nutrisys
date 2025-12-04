@@ -59,8 +59,8 @@ export default function ChatbotWidget() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold">NutriSys AI</h3>
-                <p className="text-xs opacity-80">Asisten Analisis Nutrisi Digital</p>
+                <h3 className="text-lg font-bold">NutriSys Support</h3>
+                <p className="text-xs opacity-80">Punya keluhan? Tanyakan disini!</p>
               </div>
             </div>
             <PlusIcon className="w-6 h-6 transform transition-transform duration-300" />
