@@ -12,7 +12,7 @@ import {
   Bot,
   Target,
   WandSparkles,
-  Zap, // Menambahkan ikon baru untuk membedakan fitur
+  ClipboardList, 
 } from "lucide-react";
 
 const mainFeatures = [
@@ -88,7 +88,7 @@ const complementaryFeatures = [
       "Merangkum keseluruhan menggunakan teknologi AI dari fitur-fitur yang telah dipakai oleh para pengguna.",
     videoUrl: "YI25jDCSYtk",
     link: "dashboard",
-    icon: Zap,
+    icon: ClipboardList,
   },
 ];
 
@@ -133,7 +133,6 @@ export function FeatureShowcase() {
                 <ComplementaryFeatureCard
                   key={feature.id}
                   feature={feature}
-                  // Meneruskan state hover ke ComplementaryFeatureCard
                   isHovered={hoveredFeature === feature.id}
                   onHover={() => setHoveredFeature(feature.id)}
                   onLeave={() => setHoveredFeature(null)}
