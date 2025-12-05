@@ -195,7 +195,7 @@ export default function UserPage() {
         <Heading size="2xl">
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Text>Profil</Text>
-            <Text>Pengguna</Text>
+            <Text> Pengguna</Text>
           </Flex>
         </Heading>
         {!isEditing ? (
