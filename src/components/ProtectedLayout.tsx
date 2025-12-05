@@ -9,6 +9,7 @@ import { NotificationProvider } from '@/context/NotificationContext';
 interface UserInfo {
   id: number;
   user_id: string;
+  age?: number | null;
   gender?: string | null;
   height?: number | null;
   weight?: number | null;

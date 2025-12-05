@@ -7,6 +7,7 @@ export interface SummarizeData {
     name: string;
   } | null;
   userInfo: {
+    age?: number;
     gender?: string;
     blood_type?: string;
     height?: number;
@@ -97,6 +98,7 @@ export async function getSummarizeData(): Promise<SummarizeData | null> {
         : null,
       userInfo: userInfo
         ? {
+            age: userInfo.age || undefined,
             gender: userInfo.gender || undefined,
             blood_type: userInfo.blood_type || undefined,
             height: userInfo.height || undefined,

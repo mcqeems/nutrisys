@@ -28,6 +28,7 @@ import { saveUploadedS3ImageToUser } from '@/lib/actions/postUserImage';
 interface UserData {
   id: number;
   user_id: string;
+  age?: number;
   gender?: string;
   height?: number;
   weight?: number;
@@ -49,6 +50,7 @@ export default function UserPage() {
 
   // User Info State
   const [formData, setFormData] = useState({
+    age: '',
     gender: '',
     height: '',
     weight: '',
@@ -74,6 +76,7 @@ export default function UserPage() {
         if (json.data) {
           setUserData(json.data);
           setFormData({
+            age: json.data.age || '',
             gender: json.data.gender || '',
             height: json.data.height || '',
             weight: json.data.weight || '',
@@ -121,6 +124,7 @@ export default function UserPage() {
 
       // 2. Update Profile Data
       const res = await updateUserProfile({
+        age: formData.age ? parseInt(formData.age.toString()) : undefined,
         gender: formData.gender,
         height: formData.height ? parseInt(formData.height.toString()) : undefined,
         weight: formData.weight ? parseInt(formData.weight.toString()) : undefined,
@@ -153,6 +157,7 @@ export default function UserPage() {
     setIsEditing(false);
     if (userData) {
       setFormData({
+        age: userData.age !== undefined && userData.age !== null ? userData.age.toString() : '',
         gender: userData.gender || '',
         height: userData.height !== undefined && userData.height !== null ? userData.height.toString() : '',
         weight: userData.weight !== undefined && userData.weight !== null ? userData.weight.toString() : '',
@@ -192,11 +197,8 @@ export default function UserPage() {
   return (
     <Container maxW="container.md" py={8}>
       <Flex justify="space-between" align="center" mb={8}>
-        <Heading size="2xl">
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <Text>Profil</Text>
-            <Text> Pengguna</Text>
-          </Flex>
+        <Heading pr={{ base: '4', md: '0px' }} size="2xl">
+          <Text>Profil Pengguna</Text>
         </Heading>
         {!isEditing ? (
           <Button onClick={() => setIsEditing(true)} colorPalette="blue" variant="solid">
@@ -222,7 +224,7 @@ export default function UserPage() {
             <Flex direction={{ base: 'column', sm: 'row' }} align="center" gap={6}>
               <Box position="relative">
                 <Avatar.Root size="2xl" w="120px" h="120px">
-                  <Avatar.Image src={imagePreview || undefined} />
+                  <Avatar.Image src={imagePreview || '/profile_image_default.png'} />
                   <Avatar.Fallback name={userData?.user?.name || 'User'} />
                 </Avatar.Root>
                 {isEditing && (
@@ -258,6 +260,19 @@ export default function UserPage() {
 
             {/* Personal Info Grid */}
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+              <Box>
+                <Text color={labelColor} fontSize="sm" mb={1}>
+                  Usia (tahun)
+                </Text>
+                {isEditing ? (
+                  <Input name="age" type="number" value={formData.age} onChange={handleInputChange} placeholder="0" />
+                ) : (
+                  <Text fontWeight="medium" fontSize="lg">
+                    {formData.age ? `${formData.age} tahun` : '-'}
+                  </Text>
+                )}
+              </Box>
+
               <Box>
                 <Text color={labelColor} fontSize="sm" mb={1}>
                   Jenis Kelamin

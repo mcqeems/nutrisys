@@ -150,6 +150,7 @@ model user_info {
   id              Int       @id @default(autoincrement())
   user_id         String    @unique @db.VarChar(255)
   gender          String?   @db.VarChar(50)
+  age             Int?
   height          Int?
   weight          Int?
   blood_type      String?   @db.VarChar(10)

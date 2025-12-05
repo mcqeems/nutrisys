@@ -5,6 +5,7 @@ import { auth } from '@/auth';
 import { revalidatePath } from 'next/cache';
 
 export type UserProfileData = {
+  age?: number;
   gender?: string;
   height?: number;
   weight?: number;
@@ -31,6 +32,7 @@ export async function updateUserProfile(data: UserProfileData) {
       await prisma.user_info.update({
         where: { user_id: userId },
         data: {
+          age: data.age,
           gender: data.gender,
           height: data.height,
           weight: data.weight,
@@ -43,6 +45,7 @@ export async function updateUserProfile(data: UserProfileData) {
       await prisma.user_info.create({
         data: {
           user_id: userId,
+          age: data.age,
           gender: data.gender,
           height: data.height,
           weight: data.weight,

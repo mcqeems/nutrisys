@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Check, Heart, Scale, Zap } from 'lucide-react';
+import { Heart, Scale, Zap } from 'lucide-react';
 import Nutrition from './Nutrition';
 
 const itemVariants: Variants = {

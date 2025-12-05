@@ -18,6 +18,7 @@ interface DashboardData {
     image?: string;
   } | null;
   userInfo: {
+    age?: number;
     gender?: string;
     blood_type?: string;
     height?: number;

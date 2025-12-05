@@ -14,6 +14,7 @@ interface AISummaryCardProps {
   onGenerate: () => void;
   isLoading?: boolean;
   userInfo?: {
+    age?: number;
     gender?: string;
     blood_type?: string;
     height?: number;
@@ -52,7 +53,7 @@ export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoad
 
   // Check if user info is incomplete
   const isUserInfoIncomplete =
-    !userInfo || !userInfo.gender || !userInfo.height || !userInfo.weight || !userInfo.blood_type;
+    !userInfo || !userInfo.age || !userInfo.gender || !userInfo.height || !userInfo.weight || !userInfo.blood_type;
 
   // Format generated date
   const formattedDate = generatedAt

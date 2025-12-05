@@ -11,6 +11,7 @@ interface UserInfoCardProps {
     image?: string;
   } | null;
   userInfo: {
+    age?: number;
     gender?: string;
     blood_type?: string;
     height?: number;
@@ -64,6 +65,12 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
         <Grid templateColumns="repeat(2, 1fr)" gap={2} flex={1}>
           <Text fontSize="sm">
             <Text as="span" color={labelColor}>
+              Umur:{' '}
+            </Text>
+            {userInfo?.age ? `${userInfo.age} tahun` : '-'}
+          </Text>
+          <Text fontSize="sm">
+            <Text as="span" color={labelColor}>
               Jenis Kelamin:{' '}
             </Text>
             {userInfo?.gender || '-'}
@@ -76,15 +83,15 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
           </Text>
           <Text fontSize="sm">
             <Text as="span" color={labelColor}>
-              Golongan Darah:{' '}
-            </Text>
-            {userInfo?.blood_type || '-'}
-          </Text>
-          <Text fontSize="sm">
-            <Text as="span" color={labelColor}>
               Berat Badan:{' '}
             </Text>
             {userInfo?.weight ? `${userInfo.weight} kg` : '-'}
+          </Text>
+          <Text fontSize="sm">
+            <Text as="span" color={labelColor}>
+              Golongan Darah:{' '}
+            </Text>
+            {userInfo?.blood_type || '-'}
           </Text>
         </Grid>
       </Flex>
