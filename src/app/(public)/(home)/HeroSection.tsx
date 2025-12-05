@@ -1,11 +1,11 @@
-"use client";
-import { Leaf, Apple, ChevronRight, Scale, Clock } from "lucide-react";
-import { FloatingText } from "@/components/ui/floating-text";
-import TextType from "@/components/TextType";
-import Image from "next/image";
-import AnimatedBackground from "./AnimatedBackground";
+'use client';
+import { Leaf, Apple, ChevronRight, Scale, Clock } from 'lucide-react';
+import { FloatingText } from '@/components/ui/floating-text';
+import TextType from '@/components/TextType';
+import Image from 'next/image';
+import AnimatedBackground from './AnimatedBackground';
 
-const HEALTH_MODEL_URL = "/Logo/nutrisys-large.webp";
+const HEALTH_MODEL_URL = '/Logo/nutrisys-large.webp';
 
 const HeroSection = () => {
   return (
@@ -21,7 +21,7 @@ const HeroSection = () => {
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
               <TextType
-                text={["Rencana Nutrisi", "Khusus Untukmu"]}
+                text={['Rencana Nutrisi', 'Khusus Untukmu']}
                 typingSpeed={40}
                 pauseDuration={1500}
                 showCursor={true}
@@ -30,15 +30,15 @@ const HeroSection = () => {
               <span
                 className="block title-accent-span"
                 style={{
-                  color: "var(--color-primary)",
+                  color: 'var(--color-primary)',
                 }}
               >
                 Partner Kesehatan Nutrisi Harian Anda
               </span>
             </h1>
             <p className="text-muted-foreground max-w-lg text-lg mx-auto lg:mx-0">
-              Hitung kalori, lacak makro, dan temukan rencana makan yang
-              dipersonalisasi. Mulai perjalanan kesehatan Anda hari ini.
+              Hitung kalori, lacak makro, dan temukan rencana makan yang dipersonalisasi. Mulai perjalanan kesehatan
+              Anda hari ini.
             </p>
 
             <div className="flex space-x-4 pt-4 justify-center lg:justify-start">
@@ -73,17 +73,11 @@ const HeroSection = () => {
             />
             {/* Badge 1 */}
             <div className="absolute top-1/4 left-4 sm:left-0">
-              <FloatingText
-                icon={<Clock className="h-5 w-5 text-primary" />}
-                title="Melacak Kalori"
-              />
+              <FloatingText icon={<Clock className="h-5 w-5 text-primary" />} title="Melacak Kalori" />
             </div>
             {/* Badge 2 */}
             <div className="absolute bottom-1/4 right-4 sm:right-0 px-30">
-              <FloatingText
-                icon={<Scale className="h-5 w-5 text-primary" />}
-                title="Keseimbangan"
-              />
+              <FloatingText icon={<Scale className="h-5 w-5 text-primary" />} title="Keseimbangan" />
             </div>
             {/* Logo Lingkaran */}
             <div className="absolute top-0 right-4 sm:right-0 p-3 rounded-full bg-primary/10 border border-border shadow-lg">
