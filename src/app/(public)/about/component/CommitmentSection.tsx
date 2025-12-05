@@ -1,17 +1,29 @@
-'use client'
+"use client";
 
 import { Zap, Shield, Heart, Aperture } from "lucide-react";
-import { motion, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion"; // Tambahkan 'type' untuk konsistensi
 
+// Menggunakan cardVariants dari komponen WhyNutriSys (termasuk scale dan y)
 const cardVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.8, rotate: -5 }, 
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: {
     opacity: 1,
+    y: 0,
     scale: 1,
-    rotate: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.8, 0.5, 1], // FIXED Easing
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+// Menggunakan containerVariants dari komponen WhyNutriSys
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // StaggerChildren juga disesuaikan
     },
   },
 };
@@ -65,44 +77,34 @@ const CommitmentSection = () => {
           </p>
         </div>
 
-        {/* Kotak Komitmen Interaktif */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
           {commitments.map((item, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative flex flex-col items-center p-6 bg-card rounded-xl shadow-lg border border-border transition duration-500 ease-in-out transform hover:scale-[1.05] hover:shadow-2xl hover:border-primary/50 tw-animate-pulse-slowest"
+              className="group relative flex flex-col items-center p-6 bg-card rounded-xl shadow-lg border border-border transition duration-500 ease-in-out transform lg:hover:scale-[1.05] lg:hover:shadow-2xl lg:hover:border-primary/50"
             >
               <div
-                className={`p-4 rounded-full bg-secondary transition duration-500 group-hover:bg-primary/10 border-2 border-primary`}
+                className={`p-4 rounded-full bg-secondary transition duration-500 lg:group-hover:bg-primary/10 border-2 border-primary`}
               >
                 <item.icon className={`h-8 w-8 ${item.color}`} />
               </div>
 
               {/* Konten */}
-              <h3 className="mt-6 text-xl font-bold text-card-foreground text-center transition duration-500 group-hover:text-primary">
+              <h3 className="mt-6 text-xl font-bold text-card-foreground text-center transition duration-500 lg:group-hover:text-primary">
                 {item.title}
               </h3>
               <p className="mt-3 text-base text-muted-foreground text-center">
                 {item.description}
               </p>
-
-              <div
-                className={`absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition duration-500`}
-                style={{
-                  boxShadow: `0 0 10px 5px var(--color-primary-foreground), 0 0 20px 10px ${item.color.replace(
-                    "text-chart-",
-                    "var(--color-chart-"
-                  )}`,
-                }}
-              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,23 +3,29 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const heroImage = "/Background/hero-nutrition.webp";
+const heroImageDesktop = "/Background/hero-nutrition.webp";
+const heroImageMobile = "/Background/hero-nutrition-horizontal.webp";
 
 export default function HeroTentang() {
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-      setIsVisible(true);
-    }, []);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-linear-to-b from-background/10 via-background/10 to-background z-10" />
         <img
-          src={heroImage}
-          alt="Nutrition Hero"
-          className="w-full h-full object-cover opacity-20"
+          src={heroImageDesktop}
+          alt="Nutrition Hero Desktop"
+          className="w-full h-full object-cover opacity-20 max-sm:hidden"
+        />
+        <img
+          src={heroImageMobile}
+          alt="Nutrition Hero Mobile"
+          className="w-full h-full object-cover opacity-20 sm:hidden"
         />
       </div>
 

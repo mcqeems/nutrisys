@@ -1,23 +1,29 @@
-'use client';
+"use client";
 import { ArrowRight, Globe, TrendingUp } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
-const leftSlide: Variants = {
-  hidden: { opacity: 0, x: -100 },
+const slideUp: Variants = {
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }, // FIXED Easing
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
-const rightSlide: Variants = {
-  hidden: { opacity: 0, x: 100 },
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }, // FIXED Easing
+    transition: {
+      staggerChildren: 0.2, 
+    },
   },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
 const vision = {
@@ -49,27 +55,42 @@ const VisionMissionSection = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          {/* Animasi untuk Header */}
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            variants={slideUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             Visi dan{" "}
             <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
               Misi Kami
             </span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-muted-foreground animate-[fade-in_1s_ease-out_0.3s_backwards]">
-            Kami ada untuk menjembatani kesenjangan antara kompleksitas ilmu
-            nutrisi dan pilihan makanan harian Anda.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Kolom Kiri: Visi (Slide dari Kiri) */}
-          <motion.div
-            className="flex flex-col p-6 rounded-xl bg-card border border-border transition duration-300 hover:shadow-xl hover:border-primary"
-            variants={leftSlide}
+          <motion.p
+            className="text-muted-foreground"
+            variants={itemVariants} 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            Kami ada untuk menjembatani kesenjangan antara kompleksitas ilmu
+            nutrisi dan pilihan makanan harian Anda.
+          </motion.p>
+        </div>
+
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }} 
+        >
+          <motion.div
+            className="flex flex-col p-6 rounded-xl bg-card border border-border transition duration-300 lg:hover:shadow-xl lg:hover:border-primary"
+            variants={slideUp} 
           >
             <div className="flex items-center space-x-4 mb-6">
               <vision.icon
@@ -90,8 +111,8 @@ const VisionMissionSection = () => {
                   key={index}
                   className="flex items-center text-card-foreground text-base group cursor-default"
                 >
-                  <ArrowRight className="h-5 w-5 text-chart-1 shrink-0 mr-2 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
-                  <span className="transition duration-300 group-hover:text-primary">
+                  <ArrowRight className="h-5 w-5 text-chart-1 shrink-0 mr-2 transition duration-300 group-hover:text-primary lg:group-hover:translate-x-1" />
+                  <span className="transition duration-300 lg:group-hover:text-primary">
                     {point}
                   </span>
                 </li>
@@ -99,13 +120,9 @@ const VisionMissionSection = () => {
             </ul>
           </motion.div>
 
-          {/* Kolom Kanan: Misi (Slide dari Kanan) */}
           <motion.div
-            className="flex flex-col p-6 rounded-xl bg-card border border-border transition duration-300 hover:shadow-xl hover:border-primary"
-            variants={rightSlide}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
+            className="flex flex-col p-6 rounded-xl bg-card border border-border transition duration-300 lg:hover:shadow-xl lg:hover:border-primary"
+            variants={slideUp} 
           >
             <div className="flex items-center space-x-4 mb-6">
               <mission.icon
@@ -127,15 +144,15 @@ const VisionMissionSection = () => {
                   key={index}
                   className="flex items-start text-card-foreground text-base group cursor-default"
                 >
-                  <ArrowRight className="h-5 w-5 text-chart-2 shrink-0 mr-2 mt-1 transition duration-300 group-hover:text-primary group-hover:translate-x-1" />
-                  <span className="transition duration-300 group-hover:text-primary">
+                  <ArrowRight className="h-5 w-5 text-chart-2 shrink-0 mr-2 mt-1 transition duration-300 group-hover:text-primary lg:group-hover:translate-x-1" />
+                  <span className="transition duration-300 lg:group-hover:text-primary">
                     {point}
                   </span>
                 </li>
               ))}
             </ul>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

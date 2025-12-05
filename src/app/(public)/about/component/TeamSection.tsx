@@ -9,20 +9,19 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      damping: 10,
-      stiffness: 100,
+      duration: 0.6,
+      ease: "easeOut",
     },
   },
 };
@@ -75,17 +74,16 @@ const TeamSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
         >
           {teamMembers.map((member) => (
             <motion.div
               key={member.id}
               variants={itemVariants}
-              className="group flex flex-col items-center bg-card p-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] border-t-4 border-primary"
+              className="group flex flex-col items-center bg-card p-8 rounded-lg shadow-xl scale-100 transition duration-300 ease-in-out transform lg:hover:shadow-2xl lg:hover:scale-[1.02] border-t-4 border-primary"
             >
               <div className="relative h-40 w-40 rounded-full overflow-hidden mb-6 border-2 border-primary/50">
                 <Image
-                  className="object-cover transition duration-300 group-hover:opacity-80"
+                  className="object-cover transition duration-300 lg:group-hover:opacity-80"
                   src={member.imageUrl}
                   alt={`Foto ${member.name}`}
                   layout="fill"
@@ -94,7 +92,7 @@ const TeamSection = () => {
               </div>
 
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-card-foreground transition duration-300 group-hover:text-primary">
+                <h3 className="text-2xl font-bold text-card-foreground transition duration-300 lg:group-hover:text-primary">
                   {member.name}
                 </h3>
                 <p className="text-lg text-primary font-semibold mt-1">
@@ -111,7 +109,7 @@ const TeamSection = () => {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition duration-150"
+                      className="text-muted-foreground lg:hover:text-primary transition duration-150"
                       aria-label={`${member.name} di LinkedIn`}
                     >
                       <FaLinkedin className="h-6 w-6" />
@@ -122,7 +120,7 @@ const TeamSection = () => {
                       href={member.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition duration-150"
+                      className="text-muted-foreground lg:hover:text-primary transition duration-150"
                       aria-label={`${member.name} di Twitter`}
                     >
                       <FaGithub className="h-6 w-6" />
@@ -131,7 +129,7 @@ const TeamSection = () => {
                   {member.email && (
                     <a
                       href={`mailto:${member.email}`}
-                      className="text-muted-foreground hover:text-primary transition duration-150"
+                      className="text-muted-foreground lg:hover:text-primary transition duration-150"
                       aria-label={`Email ${member.name}`}
                     >
                       <FaEnvelope className="h-6 w-6" />
