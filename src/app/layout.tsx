@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 
 const GA_MEASUREMENT_ID = 'G-7X1DKWM6TN';
 
@@ -130,6 +131,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <Analytics />
       </body>
     </html>
   );
