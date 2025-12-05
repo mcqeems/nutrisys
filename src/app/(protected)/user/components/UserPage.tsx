@@ -193,8 +193,10 @@ export default function UserPage() {
     <Container maxW="container.md" py={8}>
       <Flex justify="space-between" align="center" mb={8}>
         <Heading size="2xl">
-          Profil
-          <hr /> Pengguna
+          <Flex direction={{ base: 'column', md: 'row' }}>
+            <Text>Profil</Text>
+            <Text>Pengguna</Text>
+          </Flex>
         </Heading>
         {!isEditing ? (
           <Button onClick={() => setIsEditing(true)} colorPalette="blue" variant="solid">
