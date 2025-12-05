@@ -27,7 +27,7 @@ export function ComplementaryFeatureCard({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl bg-card border border-border/40 transition-all duration-500 lg:hover:shadow-2xl lg:hover:border-primary/50 h-full flex flex-col"
+      className="group relative overflow-hidden rounded-2xl bg-card border border-border transition-all duration-500 lg:hover:shadow-2xl lg:hover:border-primary/50 h-full flex flex-col"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >

@@ -36,7 +36,7 @@ export function HeroSection() {
           ].map((pill, i) => (
             <div
               key={i}
-              className="px-4 py-2 rounded-full bg-gray-100/80 text-sm font-medium"
+              className="px-4 py-2 rounded-full bg-secondary text-sm font-medium"
             >
               {pill}
             </div>
