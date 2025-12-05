@@ -184,7 +184,7 @@ export default function JournalPage() {
                     aria-label="Add Journal"
                   >
                     <PlusIcon />
-                    Buat Jurnal
+                    <Text display={{ base: 'none', md: 'block' }}>Buat Jurnal</Text>
                   </IconButton>
                 </Flex>
 
