@@ -46,18 +46,19 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
             <Avatar.Image src={user?.image || undefined} />
             <Avatar.Fallback name={user?.name || 'User'} />
           </Avatar.Root>
-          <Box>
-            <Text alignSelf="start" textAlign="start" fontWeight="medium" mb={1}>
-              Nama: {user?.name || '-'}
-            </Text>
-            <Text alignSelf="start" textAlign="start" fontSize="sm" color={labelColor} mb={2}>
-              Email: {user?.email || '-'}
-            </Text>
-            <Badge colorPalette="green" variant="surface">
-              Member
-            </Badge>
-          </Box>
         </Flex>
+
+        <Box>
+          <Text alignSelf="start" textAlign="start" fontWeight="medium" mb={1}>
+            Nama: {user?.name || '-'}
+          </Text>
+          <Text alignSelf="start" textAlign="start" fontSize="sm" color={labelColor} mb={2}>
+            Email: {user?.email || '-'}
+          </Text>
+          <Badge colorPalette="green" variant="surface">
+            Member
+          </Badge>
+        </Box>
 
         {/* Right: Health info */}
         <Grid templateColumns="repeat(2, 1fr)" gap={2} flex={1}>
@@ -94,7 +95,7 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
           Alergi Makanan:
         </Text>
         <Box bg={inputBg} p={3} borderRadius="md" minH="70px" border="2px dashed" borderColor={borderColor}>
-          <Text fontSize="sm">{userInfo?.food_allergy || 'Tidak ada data'}</Text>
+          <Text fontSize="sm">{userInfo?.food_allergy || 'Tidak ada.'}</Text>
         </Box>
       </Box>
 
@@ -104,7 +105,7 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
           Riwayat Penyakit:
         </Text>
         <Box bg={inputBg} p={3} borderRadius="md" minH="70px" border="2px dashed" borderColor={borderColor}>
-          <Text fontSize="sm">{userInfo?.medical_history || 'Tidak ada data'}</Text>
+          <Text fontSize="sm">{userInfo?.medical_history || 'Tidak ada.'}</Text>
         </Box>
       </Box>
     </Box>

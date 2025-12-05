@@ -49,7 +49,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { unreadCount } = useNotifications();
   const { toggleColorMode, colorMode } = useColorMode();
-  const greenColor = useColorModeValue('green.500', 'green.400');
+  const greenColor = useColorModeValue('green.600', 'green.500');
   const greenColorHover = useColorModeValue('green.400', 'green.500');
   const greenLogo = useColorModeValue('green.500', 'green.400');
   const userInfoBgMobile = useColorModeValue('green.50', 'green.900');
@@ -350,7 +350,7 @@ const NavLink = ({
   const isActive = pathname === href;
   return (
     <div className="h-full flex flex-col justify-center items-center relative">
-      <Link href={href} className="p-2 hoverText text-hover-light">
+      <Link href={href} className="p-2 hoverText text-hover-light ">
         <Text fontWeight={500} color={isActive ? activeColor : undefined}>
           {label}
         </Text>
@@ -361,8 +361,8 @@ const NavLink = ({
           width="full"
           bg={activeColor}
           position="absolute"
-          bottom="0"
-          rounded="lg"
+          bottom="-2"
+          rounded="md"
           display={{ base: 'none', md: 'block' }}
         />
       )}
