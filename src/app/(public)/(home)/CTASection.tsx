@@ -110,10 +110,10 @@ const CTASection = () => {
                 >
                   <Button
                     size="lg"
-                    className="group w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg font-bold rounded-xl transition-all hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 cursor-pointer"
+                    className="group w-full md:w-auto bg-primary lg:hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg font-bold rounded-xl transition-all lg:hover:scale-105 lg:hover:shadow-2xl lg:hover:shadow-primary/30 cursor-pointer"
                   >
                     Daftar Gratis Sekarang
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight className="ml-2 w-5 h-5 lg:group-hover:translate-x-2 transition-transform" />
                   </Button>
                 </motion.div>
               </Link>
@@ -148,7 +148,7 @@ const CTASection = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="group backdrop-blur-sm bg-background/60 rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10 "
+                  className="group backdrop-blur-sm bg-background/60 rounded-2xl p-6 border border-border/50 lg:hover:border-primary/50 transition-all duration-300 lg:hover:scale-105 lg:hover:shadow-lg lg:hover:shadow-primary/10 "
                 >
                   <div
                     className={`text-3xl font-bold mb-2 bg-linear-to-r ${stat.color} bg-clip-text text-transparent`}

@@ -113,23 +113,23 @@ function FaqSection() {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="relative border border-border/90 px-4 py-2 text-xl rounded-xl bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] group overflow-hidden"
+                  className="relative border border-border/90 px-4 py-2 text-xl rounded-xl bg-card/50 backdrop-blur-sm transition-all duration-500 lg:hover:border-primary/50 lg:hover:shadow-xl lg:hover:shadow-primary/20 lg:hover:scale-[1.02] group overflow-hidden"
                 >
                   {/* Animated linear background on hover */}
-                  <div className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Shimmer effect */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-primary/10 to-transparent" />
+                  <div className="absolute inset-0 -translate-x-full lg:group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-primary/10 to-transparent" />
 
-                  <AccordionTrigger className="relative text-left text-xl font-semibold hover:text-primary hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary cursor-pointer">
-                    <span className="flex items-center gap-3 group-hover:translate-x-2 transition-transform duration-300">
-                      <span className="w-2 h-2 rounded-full bg-primary/50 group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
+                  <AccordionTrigger className="relative text-left text-xl font-semibold lg:hover:text-primary lg:hover:no-underline py-6 transition-all duration-300 &data-state=open:text-primary cursor-pointer">
+                    <span className="flex items-center gap-3 lg:group-hover:translate-x-2 transition-transform duration-300">
+                      <span className="w-2 h-2 rounded-full bg-primary/50 lg:group-hover:bg-primary lg:group-hover:scale-150 transition-all duration-300" />
                       {faq.question}
                     </span>
                   </AccordionTrigger>
 
                   <AccordionContent className="relative text-muted-foreground leading-relaxed pb-6">
-                    <div className="pl-5 border-l-2 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
+                    <div className="pl-5 border-l-2 border-primary/20 lg:group-hover:border-primary/40 transition-colors duration-300">
                       {faq.answer}
                     </div>
                   </AccordionContent>

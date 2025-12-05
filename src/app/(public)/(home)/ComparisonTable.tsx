@@ -97,9 +97,9 @@ export default function ComparisonTable() {
                 <motion.tr 
                   key={idx}
                   variants={itemVariants}
-                  className="border-b border-border hover:bg-primary/5 transition-colors duration-300 group"
+                  className="border-b border-border lg:hover:bg-primary/5 transition-colors duration-300 group"
                 >
-                  <td className="py-4 px-4 font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+                  <td className="py-4 px-4 font-medium text-foreground lg:group-hover:text-primary transition-colors duration-300">
                     {row.aspect}
                   </td>
                   <td className="py-4 px-4 text-center">

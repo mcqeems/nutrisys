@@ -109,24 +109,24 @@ const WhyNutriSys = () => {
             const Icon = feature.icon;
             return (
               <motion.div key={index} variants={cardVariants}>
-                <Card className="group relative overflow-hidden backdrop-blur-sm bg-card/50 border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 ">
+                <Card className="group relative overflow-hidden backdrop-blur-sm bg-card/50 border-2 border-border/50 lg:hover:border-primary/50 transition-all duration-500 lg:hover:shadow-xl lg:hover:shadow-primary/10 lg:hover:-translate-y-2 ">
                   {/* Gradient Background */}
                   <div
-                    className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500`}
                   />
 
                   <div className="relative p-8">
                     {/* Icon Container */}
                     <div className="mb-6 relative">
                       <div
-                        className={`inline-flex p-4 rounded-2xl bg-linear-to-br ${feature.gradient} group-hover:scale-110 transition-transform duration-500`}
+                        className={`inline-flex p-4 rounded-2xl bg-linear-to-br ${feature.gradient} lg:group-hover:scale-110 transition-transform duration-500`}
                       >
                         <Icon className={`w-8 h-8 ${feature.iconColor}`} />
                       </div>
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-2xl font-bold mb-3 lg:group-hover:text-primary transition-colors duration-300">
                       {feature.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -134,7 +134,7 @@ const WhyNutriSys = () => {
                     </p>
 
                     {/* Hover Effect Line */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-primary via-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-primary via-accent to-primary scale-x-0 lg:group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   </div>
                 </Card>
               </motion.div>

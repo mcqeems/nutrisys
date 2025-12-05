@@ -101,14 +101,14 @@ export default function FeatureSection() {
         className="group relative"
         variants={cardVariants}
       >
-        <div className="relative p-8 bg-card rounded-2xl border border-border hover:border-primary transition-all duration-500 h-full overflow-hidden">
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-primary/5 to-transparent rounded-2xl"></div>
+        <div className="relative p-8 bg-card rounded-2xl border border-border lg:hover:border-primary transition-all duration-500 h-full overflow-hidden">
+          <div className="absolute inset-0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-primary/5 to-transparent rounded-2xl"></div>
 
           <div className="relative flex flex-col h-full">
             {/* Icon Container */}
             <div className="inline-flex mb-2">
               <div
-                className={`p-3 bg-linear-to-br ${feature.color} rounded-xl text-white shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110`}
+                className={`p-3 bg-linear-to-br ${feature.color} rounded-xl text-white shadow-lg lg:group-hover:shadow-2xl transition-all duration-500 lg:group-hover:scale-110`}
               >
                 <Icon className="w-6 h-6" />
               </div>
@@ -116,7 +116,7 @@ export default function FeatureSection() {
 
             {/* Title & Description */}
             <div className="space-y-3">
-              <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-xl font-bold text-foreground lg:group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -129,7 +129,7 @@ export default function FeatureSection() {
               {feature.details.map((detail, idx) => (
                 <li
                   key={idx}
-                  className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                  className="flex items-center gap-2 text-sm text-muted-foreground lg:group-hover:text-foreground transition-colors duration-300"
                 >
                   <Check className="w-4 h-4 text-primary shrink-0" />
                   {detail}
