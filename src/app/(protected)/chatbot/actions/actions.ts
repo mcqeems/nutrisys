@@ -51,7 +51,40 @@ export async function sendMessage(message: string) {
   const sessionId = 'default';
 
   try {
-    // 1. Save User Message
+    // 1. Fetch user info for personalized context
+    const userInfo = await prisma.user_info.findUnique({
+      where: { user_id: userId },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    // Build personalized context
+    let userContext = '';
+    if (userInfo) {
+      const details: string[] = [];
+      if (userInfo.user?.name) details.push(`Nama: ${userInfo.user.name}`);
+      if (userInfo.age) details.push(`Usia: ${userInfo.age} tahun`);
+      if (userInfo.gender) details.push(`Jenis Kelamin: ${userInfo.gender}`);
+      if (userInfo.height) details.push(`Tinggi Badan: ${userInfo.height} cm`);
+      if (userInfo.weight) details.push(`Berat Badan: ${userInfo.weight} kg`);
+      if (userInfo.blood_type) details.push(`Golongan Darah: ${userInfo.blood_type}`);
+      if (userInfo.food_allergy) details.push(`Alergi Makanan: ${userInfo.food_allergy}`);
+      if (userInfo.medical_history) details.push(`Riwayat Medis: ${userInfo.medical_history}`);
+
+      if (details.length > 0) {
+        userContext = `\n\nINFORMASI PENGGUNA SAAT INI:\n${details.join(
+          '\n'
+        )}\n\nGunakan informasi ini untuk memberikan saran yang lebih personal dan relevan. Sapa pengguna dengan namanya jika tersedia. Pertimbangkan alergi makanan dan riwayat medis saat memberikan rekomendasi nutrisi.`;
+      }
+    }
+
+    // 2. Save User Message
     await prisma.chat_logs.create({
       data: {
         user_id: userId,
@@ -86,7 +119,7 @@ export async function sendMessage(message: string) {
       history: [
         {
           role: 'user',
-          parts: [{ text: SYSTEM_PROMPT }],
+          parts: [{ text: SYSTEM_PROMPT + userContext }],
         },
         {
           role: 'model',
