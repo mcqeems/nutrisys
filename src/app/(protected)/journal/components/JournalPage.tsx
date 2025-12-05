@@ -117,7 +117,7 @@ export default function JournalPage() {
   const historyJournals = journals || [];
 
   return (
-    <Container py={8}>
+    <Container minH="800px" py={8}>
       <Heading size="3xl" mb={2} color={titleColor}>
         Wellness Journal
       </Heading>

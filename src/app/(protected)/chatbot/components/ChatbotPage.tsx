@@ -322,7 +322,7 @@ export default function ChatbotPage() {
               ) : (
                 messages.length === 0 && (
                   <Flex direction="column" alignItems="center" justifyContent="center" flex={1} color={emptyStateColor}>
-                    <Box bg="transparent" w="full" maxW="200px">
+                    <Box bg="transparent" w="full" maxW={{ base: '150px', md: '200px' }}>
                       <Chatbot />
                     </Box>
                     <Text mt={4}>Mulai percakapan dengan Nutrisys AI</Text>

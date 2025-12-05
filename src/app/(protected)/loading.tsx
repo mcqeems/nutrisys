@@ -5,7 +5,7 @@ import Loader from '@/components/Loader';
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen md:min-h-[800px]">
       <Loader />
     </div>
   );

@@ -192,18 +192,22 @@ export default function UserPage() {
   return (
     <Container maxW="container.md" py={8}>
       <Flex justify="space-between" align="center" mb={8}>
-        <Heading size="2xl">Profil Pengguna</Heading>
+        <Heading size="2xl">
+          Profil
+          <hr /> Pengguna
+        </Heading>
         {!isEditing ? (
           <Button onClick={() => setIsEditing(true)} colorPalette="blue" variant="solid">
-            <Edit2 size={16} /> Edit Profil
+            <Edit2 size={16} /> <Text display={{ base: 'none', md: 'block' }}>Edit Profil</Text>
           </Button>
         ) : (
           <Flex gap={2}>
-            <Button onClick={handleCancel} variant="outline" disabled={isLoading}>
-              <X size={16} /> Batal
+            <Button onClick={handleCancel} variant="solid" disabled={isLoading}>
+              <X size={16} />
+              <Text display={{ base: 'none', md: 'block' }}>Batal</Text>
             </Button>
             <Button onClick={handleSave} colorPalette="green" loading={isLoading}>
-              <Save size={16} /> Simpan
+              <Save size={16} /> <Text display={{ base: 'none', md: 'block' }}>Simpan</Text>
             </Button>
           </Flex>
         )}
@@ -211,7 +215,7 @@ export default function UserPage() {
 
       <Card.Root variant="elevated" bg={bgColor} borderColor={borderColor}>
         <Card.Body>
-          <Stack gap={8}>
+          <Stack gap="14">
             {/* Header Section: Avatar & Basic Info */}
             <Flex direction={{ base: 'column', sm: 'row' }} align="center" gap={6}>
               <Box position="relative">

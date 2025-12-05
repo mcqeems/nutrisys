@@ -144,7 +144,7 @@ export default function NotificationsPage() {
   }
 
   return (
-    <Container maxW="container.lg" py={8}>
+    <Container minH="800px" maxW="container.lg" py={8}>
       <Flex justify="space-between" align="center" mb={2}>
         <Heading size="3xl" color={titleColor}>
           Notifikasi
@@ -152,7 +152,7 @@ export default function NotificationsPage() {
         {unreadCount > 0 && (
           <Button colorPalette="green" size="sm" onClick={handleMarkAllAsRead} loading={isMarkingAll}>
             <CheckCheck size={16} />
-            Tandai Semua Dibaca
+            <Text display={{ base: 'none', md: 'block' }}>Tandai Semua Dibaca</Text>
           </Button>
         )}
       </Flex>
@@ -173,7 +173,7 @@ export default function NotificationsPage() {
               _hover={{ shadow: 'md' }}
             >
               <Card.Body>
-                <Flex justify="space-between" align="start" gap={4}>
+                <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="start" gap={4}>
                   <Flex gap={4} align="start" flex={1}>
                     <Box mt={1}>{getTypeIcon(notif.type)}</Box>
                     <Box flex={1}>
@@ -209,6 +209,7 @@ export default function NotificationsPage() {
                       variant="outline"
                       p={2}
                       size="sm"
+                      w={{ base: 'full', md: '100px' }}
                       onClick={() => handleMarkAsRead(notif.id)}
                     >
                       <Check size={16} />

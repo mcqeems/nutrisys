@@ -116,7 +116,7 @@ export default function AnalyzePage() {
   };
 
   return (
-    <Container maxW="full" py={8}>
+    <Container minH="800px" maxW="full" py={8}>
       <Heading size="3xl" mb={2} color={titleColor}>
         Analisis Nutrisi
       </Heading>
