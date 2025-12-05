@@ -9,7 +9,6 @@ import FeatureSection from './(home)/FeatureSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home',
   description:
     'Transform your health journey with NutriSys. AI-powered nutrition tracking, food analysis, and personalized wellness insights to help you achieve your health goals.',
   openGraph: {
