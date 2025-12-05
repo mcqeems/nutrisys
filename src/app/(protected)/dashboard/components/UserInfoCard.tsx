@@ -43,7 +43,7 @@ export default function UserInfoCard({ user, userInfo }: UserInfoCardProps) {
         {/* Left: Avatar and basic info */}
         <Flex direction={{ base: 'column', lg: 'row' }} gap={4} align="center">
           <Avatar.Root size="xl" w="80px" h="80px">
-            <Avatar.Image src={user?.image || undefined} />
+            <Avatar.Image src={user?.image || '/profile_image_default.png'} />
             <Avatar.Fallback name={user?.name || 'User'} />
           </Avatar.Root>
         </Flex>
