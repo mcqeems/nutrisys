@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const cspHeader = isDev
   ? `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https: http:;
   font-src 'self' data:;
@@ -20,11 +20,11 @@ const cspHeader = isDev
 `
   : `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.youtube.com https://www.youtube-nocookie.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google-analytics.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' data: blob: https: http:;
+  img-src 'self' data: blob: https: http: https://www.googletagmanager.com https://www.google-analytics.com;
   font-src 'self' https://fonts.gstatic.com data:;
-  connect-src 'self' https: wss:;
+  connect-src 'self' https: wss: https://www.google-analytics.com https://analytics.google.com;
   media-src 'self' https: blob:;
   frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com;
   object-src 'none';
