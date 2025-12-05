@@ -1,7 +1,24 @@
 import type { NextConfig } from 'next';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 // Content Security Policy configuration
-const cspHeader = `
+const cspHeader = isDev
+  ? `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data: blob: https: http:;
+  font-src 'self' data:;
+  connect-src 'self' http: https: ws: wss:;
+  media-src 'self' https: blob:;
+  frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com;
+  object-src 'none';
+  frame-ancestors 'self';
+  form-action 'self';
+  base-uri 'self';
+`
+  : `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.youtube.com https://www.youtube-nocookie.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
@@ -15,14 +32,14 @@ const cspHeader = `
   form-action 'self';
   base-uri 'self';
   upgrade-insecure-requests;
-`
-  .replace(/\n/g, ' ')
-  .trim();
+`;
+
+const cspValue = cspHeader.replace(/\n/g, ' ').trim();
 
 const securityHeaders = [
   {
     key: 'Content-Security-Policy',
-    value: cspHeader,
+    value: cspValue,
   },
   {
     key: 'Strict-Transport-Security',
