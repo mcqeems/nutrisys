@@ -169,7 +169,7 @@ export default function DashboardPage() {
       {/* Stats Row */}
       <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={4}>
         <StatsCard
-          title="Analisis Nutrisi"
+          title="Nutrition Analyzer"
           label="Total Analisis:"
           count={data.stats.totalAnalisis}
           icon={Utensils}
@@ -177,7 +177,7 @@ export default function DashboardPage() {
           link="/analyze"
         />
         <StatsCard
-          title="AI Chat"
+          title="Chat AI"
           label="Total Pesan:"
           count={data.stats.totalPesan}
           icon={MessageCircle}
