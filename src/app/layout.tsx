@@ -13,7 +13,7 @@ const sourceSans3 = Source_Sans_3({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nutrisys.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nutrisys.my.id';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -78,21 +78,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: [{ url: '/Logo/logo_raw.png', type: 'image/png' }],
-    apple: [{ url: '/Logo/logo_raw.png', sizes: '180x180', type: 'image/png' }],
-  },
   manifest: '/manifest.json',
   category: 'health',
   classification: 'Health & Fitness',
   alternates: {
     canonical: siteUrl,
-  },
-  verification: {
-    // Add your verification codes here when available
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
   },
 };
 
@@ -130,6 +120,21 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'NutriSys',
+              url: 'https://www.nutrisys.my.id/',
+              alternateName: ['NutriSys AI', 'NutriSys Platform'],
+            }),
+          }}
+        />
+
         {children}
         <Analytics />
       </body>
