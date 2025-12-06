@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { registerSchema } from '@/lib/validation/auth';
 import Image from 'next/image';
-import { LoaderCircle, EyeIcon } from 'lucide-react';
+import { LoaderCircle, EyeIcon, EyeOffIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default function RegisterPage() {
@@ -113,7 +113,7 @@ export default function RegisterPage() {
                 }}
                 className="cursor-pointer text-muted-foreground rounded-full hover:text-foreground transition-all absolute right-2 top-3 z-100"
               >
-                <EyeIcon size="24" />
+                {passwordVisible ? <EyeOffIcon size="24" /> : <EyeIcon size="24" />}
               </button>
             </div>
           </div>
