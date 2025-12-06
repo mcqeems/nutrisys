@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { loginSchema } from '@/lib/validation/auth';
 import Image from 'next/image';
-import { LoaderCircle } from 'lucide-react';
+import { EyeIcon, LoaderCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LoginPage() {
@@ -12,6 +12,7 @@ export default function LoginPage() {
   const params = useSearchParams();
   const error = params.get('error');
   const [email, setEmail] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -71,20 +72,34 @@ export default function LoginPage() {
               type="email"
               required
               className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              placeholder="nama@email.com"
+              placeholder="Masukkan email anda..."
             />
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-foreground">Password</label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              required
-              className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              placeholder="••••••••"
-            />
+            <div className="relative">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={passwordVisible ? 'text' : 'password'}
+                required
+                className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                tabIndex={0}
+                aria-label={passwordVisible ? 'Sembunyikan password' : 'Tampilkan password'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPasswordVisible((prev) => !prev);
+                }}
+                className="cursor-pointer text-muted-foreground rounded-full hover:text-foreground transition-all absolute right-2 top-3 z-100"
+              >
+                <EyeIcon size="24" />
+              </button>
+            </div>
           </div>
 
           <button
@@ -104,13 +119,13 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          No account?{' '}
+          Belum ada akun?{' '}
           <Link href="/register" className="text-primary hover:underline font-medium">
             Register
           </Link>
         </p>
         <p className="text-center text-sm text-muted-foreground mt-2">
-          Go back?{' '}
+          Kembali?{' '}
           <Link href="/" className="text-primary hover:underline font-medium">
             Home
           </Link>
