@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import AnalyzePage from './components/AnalyzePage';
 
 export const metadata: Metadata = {
-  title: 'Food Analysis',
+  title: 'Nutrition Analyzer',
   description:
     'Analyze your food and beverages with NutriSys Smart Analyzer - get instant nutrition information powered by AI.',
   robots: {
