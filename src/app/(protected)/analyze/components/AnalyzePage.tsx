@@ -118,7 +118,7 @@ export default function AnalyzePage() {
   return (
     <Container minH="800px" maxW="full" py={8}>
       <Heading size="3xl" mb={2} color={titleColor}>
-        Analisis Nutrisi
+        Nutrition Analyzer
       </Heading>
       <Text color={titleColorMuted} mb="4">
         Upload foto atau deskripsikan makanan Anda untuk mendapatkan analisis nutrisi lengkap dari AI.

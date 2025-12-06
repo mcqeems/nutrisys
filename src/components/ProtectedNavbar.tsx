@@ -89,7 +89,7 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
         <Flex direction="row" gap="6" display={{ base: 'none', md: 'flex' }}>
           <NavLink href="/dashboard" label="Dashboard" pathname={pathname} activeColor={greenColor} />
           <NavLink href="/analyze" label="Nutrition Analyzer" pathname={pathname} activeColor={greenColor} />
-          <NavLink href="/chatbot" label="Chat AI" pathname={pathname} activeColor={greenColor} />
+          <NavLink href="/chatbot" label="NutriAI Chat" pathname={pathname} activeColor={greenColor} />
           <NavLink href="/journal" label="Wellness Journal" pathname={pathname} activeColor={greenColor} />
           <NavLink href="/target" label="Target" pathname={pathname} activeColor={greenColor} />
         </Flex>
@@ -273,19 +273,19 @@ export default function ProtectedNavbar({ session, loadingUser }: ProtectedNavba
                   />
                   <MobileNavLink
                     href="/analyze"
-                    label="Analisis Nutrisi"
+                    label="Nutrition Analyzer"
                     pathname={pathname}
                     onClose={() => setIsDrawerOpen(false)}
                   />
                   <MobileNavLink
                     href="/chatbot"
-                    label="AI Chat"
+                    label="NutriAI Chat"
                     pathname={pathname}
                     onClose={() => setIsDrawerOpen(false)}
                   />
                   <MobileNavLink
                     href="/journal"
-                    label="Wellness Jurnal"
+                    label="Wellness Journal"
                     pathname={pathname}
                     onClose={() => setIsDrawerOpen(false)}
                   />

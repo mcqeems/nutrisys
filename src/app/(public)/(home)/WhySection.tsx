@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { motion, type Variants } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Brain, Shield, Zap, Users, LucideIcon } from "lucide-react";
+import { motion, type Variants } from 'framer-motion';
+import { Card } from '@/components/ui/card';
+import { Brain, Shield, Zap, Users, LucideIcon } from 'lucide-react';
 
 interface Feature {
   icon: LucideIcon;
@@ -15,35 +15,31 @@ interface Feature {
 const features: Feature[] = [
   {
     icon: Brain,
-    title: "AI-Powered Analysis",
-    description:
-      "Analisis nutrisi yang didukung oleh kecerdasan buatan untuk rekomendasi yang akurat dan personal.",
-    gradient: "from-primary/20 to-accent/20",
-    iconColor: "text-primary",
+    title: 'AI-Powered Analysis',
+    description: 'Analisis nutrisi yang didukung oleh kecerdasan buatan untuk rekomendasi yang akurat dan personal.',
+    gradient: 'from-primary/20 to-accent/20',
+    iconColor: 'text-primary',
   },
   {
     icon: Shield,
-    title: "Data Aman & Privasi",
-    description:
-      "Keamanan data Anda adalah tanggung jawab dan prioritas utama kami dengan enkripsi end-to-end.",
-    gradient: "from-chart-2/20 to-chart-1/20",
-    iconColor: "text-chart-2",
+    title: 'Data Aman & Privasi',
+    description: 'Keamanan data Anda adalah tanggung jawab dan prioritas utama kami dengan enkripsi end-to-end.',
+    gradient: 'from-chart-2/20 to-chart-1/20',
+    iconColor: 'text-chart-2',
   },
   {
     icon: Zap,
-    title: "Real-time Tracking",
-    description:
-      "Pantau asupan nutrisi Anda secara real-time dengan dashboard interaktif yang mudah dipahami.",
-    gradient: "from-chart-4/20 to-chart-5/20",
-    iconColor: "text-chart-4",
+    title: 'Real-time Tracking',
+    description: 'Pantau asupan nutrisi Anda secara real-time dengan dashboard interaktif yang mudah dipahami.',
+    gradient: 'from-chart-4/20 to-chart-5/20',
+    iconColor: 'text-chart-4',
   },
   {
     icon: Users,
-    title: "Komunitas Aktif",
-    description:
-      "Bergabung dengan pengguna lainnya yang berkomitmen untuk hidup lebih sehat dan teratur.",
-    gradient: "from-chart-3/20 to-primary/20",
-    iconColor: "text-chart-3",
+    title: 'Komunitas Aktif',
+    description: 'Bergabung dengan pengguna lainnya yang berkomitmen untuk hidup lebih sehat dan teratur.',
+    gradient: 'from-chart-3/20 to-primary/20',
+    iconColor: 'text-chart-3',
   },
 ];
 
@@ -55,7 +51,7 @@ const cardVariants: Variants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut" as const,
+      ease: 'easeOut' as const,
     },
   },
 };
@@ -87,10 +83,8 @@ const WhyNutriSys = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Mengapa{" "}
-            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">
-              Nutrisys ?
-            </span>
+            Mengapa{' '}
+            <span className="bg-linear-to-r from-primary to-chart-2 bg-clip-text text-transparent">Nutrisys ?</span>
           </motion.h2>
           <motion.p
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
@@ -98,8 +92,7 @@ const WhyNutriSys = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Platform nutrisi terlengkap dengan teknologi terdepan untuk
-            kesehatan optimal Anda
+            Platform nutrisi terlengkap dengan teknologi terdepan untuk kesehatan optimal Anda
           </motion.p>
         </div>
 
@@ -129,9 +122,7 @@ const WhyNutriSys = () => {
                     <h3 className="text-2xl font-bold mb-3 lg:group-hover:text-primary transition-colors duration-300">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
 
                     {/* Hover Effect Line */}
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-primary via-accent to-primary scale-x-0 lg:group-hover:scale-x-100 transition-transform duration-500 origin-left" />

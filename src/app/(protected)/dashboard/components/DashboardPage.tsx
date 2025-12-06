@@ -177,7 +177,7 @@ export default function DashboardPage() {
           link="/analyze"
         />
         <StatsCard
-          title="Chat AI"
+          title="NutriAI Chat"
           label="Total Pesan:"
           count={data.stats.totalPesan}
           icon={MessageCircle}

@@ -27,7 +27,7 @@ INFORMASI NUTRISYS:
 NutriSys adalah platform analisis nutrisi digital berbasis AI yang membantu pengguna memahami dan mengelola kebutuhan nutrisi harian dengan rekomendasi personal.
 
 **Fitur Utama:**
-1. **Analisis Nutrisi** - Lacak dan analisis asupan makanan harian. Masukkan makanan yang dikonsumsi, sistem akan menghitung kalori, protein, karbohidrat, lemak, dan nutrisi lainnya secara otomatis.
+1. **Nutrition Analyzer** - Lacak dan analisis asupan makanan harian. Masukkan makanan yang dikonsumsi, sistem akan menghitung kalori, protein, karbohidrat, lemak, dan nutrisi lainnya secara otomatis.
 
 2. **NutriAI Chat** - Asisten virtual berbasis AI yang menjawab pertanyaan seputar kesehatan dan nutrisi 24 Jam (Setiap Waktu). Bisa bertanya tentang kandungan makanan, tips diet, atau rekomendasi pola makan sehat.
 

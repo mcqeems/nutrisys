@@ -68,8 +68,8 @@ export default function AISummaryCard({ summary, generatedAt, onGenerate, isLoad
 
   return (
     <Box bg={cardBg} borderRadius="xl" border="1px solid" borderColor={borderColor} p={6}>
-      <Flex direction="row" justifyContent="space-between" alignItems="flex-start" mb={4}>
-        <Box>
+      <Flex direction={{ base: 'column', md: 'row' }} justifyContent="space-between" alignItems="flex-start" mb={4}>
+        <Box mb={{ base: 2, md: 0 }}>
           <Text fontWeight="semibold" mb={1}>
             Rangkuman AI
           </Text>

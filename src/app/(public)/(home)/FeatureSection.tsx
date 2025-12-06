@@ -1,15 +1,8 @@
 'use client';
 
-import React from "react";
-import { motion, type Variants } from "framer-motion"; 
-import {
-  Check,
-  Activity,
-  Bot,
-  BookOpenText,
-  Target,
-  LucideIcon, 
-} from "lucide-react";
+import React from 'react';
+import { motion, type Variants } from 'framer-motion';
+import { Check, Activity, Bot, BookOpenText, Target, LucideIcon } from 'lucide-react';
 
 export default function FeatureSection() {
   interface Feature {
@@ -28,47 +21,38 @@ export default function FeatureSection() {
   const featuresData: Feature[] = [
     {
       id: 1,
-      title: "Analisis Nutrisi",
-      description:
-        "Teknologi AI yang menganalisis kebutuhan nutrisi Anda secara mendalam dan personal.",
+      title: 'Nutrition Analyzer',
+      description: 'Teknologi AI yang menganalisis kebutuhan nutrisi Anda secara mendalam dan personal.',
       icon: Activity,
-      color: "from-blue-500 to-cyan-500",
-      details: [
-        "Scan nutrisi real-time",
-        "Rekomendasi otomatis",
-        "Tracking akurat",
-      ],
+      color: 'from-blue-500 to-cyan-500',
+      details: ['Scan nutrisi real-time', 'Rekomendasi otomatis', 'Tracking akurat'],
     },
     {
       id: 2,
-      title: "NutriAI Chat",
+      title: 'NutriAI Chat',
       description:
-        "Membuat percakapan mengenai kesehatan, nutrisi dan sebagainya dengan NutriAI, AI cerdas dari Nutrisys.",
+        'Membuat percakapan mengenai kesehatan, nutrisi dan sebagainya dengan NutriAI, AI cerdas dari Nutrisys.',
       icon: Bot,
-      color: "from-green-500 to-emerald-500",
-      details: ["Chatbot", "Artificial Intelligence", "Smart Assistant"],
+      color: 'from-green-500 to-emerald-500',
+      details: ['Chatbot', 'Artificial Intelligence', 'Smart Assistant'],
     },
     {
       id: 3,
-      title: "Wellness Journal",
+      title: 'Wellness Journal',
       description:
-        "Dokumentasikan perjalanan kesejahteraan anda dengan perjunalan cerdas. Lacak suasanan hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.",
+        'Dokumentasikan perjalanan kesejahteraan anda dengan perjunalan cerdas. Lacak suasanan hati, kebiasaan, dan kemajuan dengan wawasan bertenaga AI.',
       icon: BookOpenText,
-      color: "from-purple-500 to-pink-500",
-      details: [
-        "Pencatatan Suasana Hati",
-        "Pelacakan Kebiasaan",
-        "AI Integrated",
-      ],
+      color: 'from-purple-500 to-pink-500',
+      details: ['Pencatatan Suasana Hati', 'Pelacakan Kebiasaan', 'AI Integrated'],
     },
     {
       id: 4,
-      title: "Smart Target",
+      title: 'Smart Target',
       description:
-        "Tetapkan, lacak, da capai tujuan kesehatan anda secara cerdas. Dapatkan pemberitahuan cerdas dari target anda.",
+        'Tetapkan, lacak, da capai tujuan kesehatan anda secara cerdas. Dapatkan pemberitahuan cerdas dari target anda.',
       icon: Target,
-      color: "from-orange-500 to-red-500",
-      details: ["Penetapan Tujuan", "Pelacakan Kemajuan", "Smart Reminder"],
+      color: 'from-orange-500 to-red-500',
+      details: ['Penetapan Tujuan', 'Pelacakan Kemajuan', 'Smart Reminder'],
     },
   ];
 
@@ -79,7 +63,7 @@ export default function FeatureSection() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut" as const,
+        ease: 'easeOut' as const,
       },
     },
   };
@@ -96,11 +80,7 @@ export default function FeatureSection() {
     const Icon = feature.icon;
 
     return (
-      <motion.div
-        key={feature.id}
-        className="group relative"
-        variants={cardVariants}
-      >
+      <motion.div key={feature.id} className="group relative" variants={cardVariants}>
         <div className="relative p-8 bg-card rounded-2xl border border-border lg:hover:border-primary transition-all duration-500 h-full overflow-hidden">
           <div className="absolute inset-0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-primary/5 to-transparent rounded-2xl"></div>
 
@@ -119,9 +99,7 @@ export default function FeatureSection() {
               <h3 className="text-xl font-bold text-foreground lg:group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
 
             {/* Details List */}
