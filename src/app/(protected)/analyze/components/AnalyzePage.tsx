@@ -19,7 +19,15 @@ import {
   Badge,
   Skeleton,
 } from '@chakra-ui/react';
-import { FileTextIcon, CameraIcon, ScanSearchIcon, ClockIcon, ApertureIcon, AlertTriangle } from 'lucide-react';
+import {
+  FileTextIcon,
+  CameraIcon,
+  ScanSearchIcon,
+  ClockIcon,
+  ApertureIcon,
+  AlertTriangle,
+  ImageIcon,
+} from 'lucide-react';
 import { analyzeFood, AnalyzeState } from '../actions/actions';
 import HistorySection from './HistorySection';
 import AnalysisResult from './AnalysisResult';
@@ -134,7 +142,7 @@ export default function AnalyzePage() {
             >
               <Tabs.List mb={4}>
                 <Tabs.Trigger value="image">
-                  <CameraIcon className="hide-icon" size={18} style={{ marginRight: '8px' }} />
+                  <ImageIcon className="hide-icon" size={18} style={{ marginRight: '8px' }} />
                   Upload Foto
                 </Tabs.Trigger>
                 <Tabs.Trigger value="camera">
