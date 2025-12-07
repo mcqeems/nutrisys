@@ -13,4 +13,4 @@ Disallow: /user
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://nutrisys.com/sitemap.xml
+Sitemap: https://nutrisys.my.id/sitemap.xml
