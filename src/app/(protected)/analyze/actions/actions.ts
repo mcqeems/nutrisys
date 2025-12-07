@@ -169,7 +169,6 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
         log_date: new Date(),
       },
     });
-    console.log({ data: geminiResponse });
     return { success: true, data: geminiResponse };
   } catch (error) {
     console.error('Analysis error:', error);
