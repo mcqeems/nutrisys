@@ -1,124 +1,18 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import {
-  Box,
-  VStack,
-  HStack,
-  Input,
-  Text,
-  Flex,
-  Container,
-  Button,
-  Link as ChakraLink,
-  Dialog,
-  ScrollArea,
-  IconButton,
-} from '@chakra-ui/react';
+import { Box, VStack, Flex, Container, Button, Dialog, ScrollArea, Text } from '@chakra-ui/react';
 import { useColorModeValue } from '@/components/ui/color-mode';
-import NextLink from 'next/link';
-import {
-  SendIcon,
-  BotIcon,
-  UserIcon,
-  Trash2Icon,
-  Sparkles,
-  HelpCircle,
-  Apple,
-  Activity,
-  Heart,
-  Dumbbell,
-  Moon,
-  Droplets,
-} from 'lucide-react';
+import { BotIcon, UserIcon } from 'lucide-react';
 import { sendMessage, resetChat } from '../actions/actions';
 import type { ChatLogs } from '../types/types';
 import Loader from '@/components/Loader';
 import Chatbot from './Chatbot';
 import TypingIndicator from '@/components/TypingIndicator';
-
-const quickStartSuggestions = [
-  {
-    icon: Apple,
-    label: 'Nutrisi Sehat',
-    prompt: 'Apa saja makanan yang kaya akan nutrisi untuk diet seimbang?',
-  },
-  {
-    icon: Activity,
-    label: 'Tips Kesehatan',
-    prompt: 'Berikan tips untuk menjaga kesehatan tubuh sehari-hari',
-  },
-  {
-    icon: HelpCircle,
-    label: 'Tentang NutriSys',
-    prompt: 'Apa itu NutriSys dan fitur apa saja yang tersedia?',
-  },
-  {
-    icon: Sparkles,
-    label: 'Rekomendasi Diet',
-    prompt: 'Rekomendasikan pola makan sehat untuk menurunkan berat badan',
-  },
-  {
-    icon: Heart,
-    label: 'Kesehatan Jantung',
-    prompt: 'Makanan apa yang baik untuk menjaga kesehatan jantung?',
-  },
-  {
-    icon: Dumbbell,
-    label: 'Nutrisi Olahraga',
-    prompt: 'Apa yang sebaiknya dimakan sebelum dan sesudah berolahraga?',
-  },
-  {
-    icon: Moon,
-    label: 'Tidur Berkualitas',
-    prompt: 'Makanan apa yang membantu meningkatkan kualitas tidur?',
-  },
-  {
-    icon: Droplets,
-    label: 'Hidrasi Tubuh',
-    prompt: 'Berapa banyak air yang harus diminum setiap hari dan tips hidrasi?',
-  },
-];
-
-const RenderMessage = ({ content, isUser }: { content: string; isUser: boolean }) => {
-  const linkColor = useColorModeValue('blue.500', 'blue.300');
-  const linkHover = useColorModeValue('blue.600', 'blue.400');
-
-  const parts = content.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
-  return (
-    <>
-      {parts.map((part, index) => {
-        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-        if (linkMatch) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const [_, text, url] = linkMatch;
-          return (
-            <ChakraLink
-              key={index}
-              as={NextLink}
-              href={url}
-              color={isUser ? 'white' : linkColor}
-              textDecoration="underline"
-              _hover={{ color: isUser ? 'gray.200' : linkHover }}
-              transition="all"
-            >
-              {text}
-            </ChakraLink>
-          );
-        }
-        const boldMatch = part.match(/^\*\*([^*]+)\*\*$/);
-        if (boldMatch) {
-          return (
-            <Text as="span" fontWeight="bold" key={index}>
-              {boldMatch[1]}
-            </Text>
-          );
-        }
-        return part;
-      })}
-    </>
-  );
-};
+import { RenderMessage } from './RenderMessage';
+import { QuickStartSuggestions } from './QuickStartSuggestions';
+import { ChatInput } from './ChatInput';
+import { ChatHeader } from './ChatHeader';
 
 export default function ChatbotPage() {
   const [messages, setMessages] = useState<ChatLogs[]>([]);
@@ -127,18 +21,10 @@ export default function ChatbotPage() {
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
   const [isLoadingFetch, setIsLoadingFetch] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const redTrash = useColorModeValue('red.300', 'red.700');
-  const redTrashColor = useColorModeValue('red.700', 'red.300');
-  const redTrashHover = useColorModeValue('red.200', 'red.800');
 
-  const glassBg = useColorModeValue('rgba(255, 255, 255, 0.6)', 'rgba(26, 32, 44, 0.8)');
-  const glassBorder = useColorModeValue('whiteAlpha.400', 'whiteAlpha.100');
-  const quickStartBorder = useColorModeValue('gray.200', 'gray.600');
-  const textColor = useColorModeValue('gray.800', 'white');
   const botBg = useColorModeValue('white', 'gray.700');
   const botColor = useColorModeValue('gray.800', 'white');
   const botBorder = useColorModeValue('gray.100', 'gray.600');
-  const onlineColor = useColorModeValue('green.600', 'green.300');
   const emptyStateColor = useColorModeValue('gray.500', 'gray.400');
 
   const handleSuggestionClick = (prompt: string) => {
@@ -227,66 +113,9 @@ export default function ChatbotPage() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
   return (
     <Container maxW="full" h="calc(100vh - 140px)" p={0} display="flex" flexDirection="column" position="relative">
-      {/* Header */}
-      <Box position="absolute" top={4} left={4} right={4} zIndex={10}>
-        <Flex
-          justify="space-between"
-          align="center"
-          p={3}
-          bg={glassBg}
-          backdropFilter="blur(16px)"
-          border="1px solid"
-          borderColor={glassBorder}
-          rounded="3xl"
-          shadow="sm"
-        >
-          <HStack gap={3}>
-            <Box position="relative">
-              <BotIcon size={24} />
-              <Box
-                position="absolute"
-                bottom={-1}
-                right={-1}
-                w={2.5}
-                h={2.5}
-                bg="green.400"
-                rounded="full"
-                border="2px solid white"
-              />
-            </Box>
-            <VStack gap={0} align="start">
-              <Text fontWeight="bold" fontSize="md" color={textColor}>
-                NutriAI
-              </Text>
-              <Text fontSize="xs" color={onlineColor} fontWeight="medium">
-                Online
-              </Text>
-            </VStack>
-          </HStack>
-
-          <IconButton
-            variant="outline"
-            aria-label="Reset Chat"
-            rounded="full"
-            disabled={messages.length === 0}
-            onClick={() => setIsResetDialogOpen(true)}
-            bg={redTrash}
-            color={redTrashColor}
-            _hover={{ bg: redTrashHover }}
-          >
-            <Trash2Icon size={30} />
-          </IconButton>
-        </Flex>
-      </Box>
+      <ChatHeader onReset={() => setIsResetDialogOpen(true)} hasMessages={messages.length > 0} />
 
       <Dialog.Root open={isResetDialogOpen} onOpenChange={(e) => setIsResetDialogOpen(e.open)}>
         <Dialog.Backdrop />
@@ -402,92 +231,14 @@ export default function ChatbotPage() {
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
 
-      {/* Quick Start Suggestions - Only show when no messages */}
-      {messages.length === 0 && !isLoadingFetch && (
-        <Box position="absolute" bottom="90px" left={4} right={4} zIndex={10}>
-          <Box
-            bg={glassBg}
-            display={{ base: 'none', lg: 'block' }}
-            backdropFilter="blur(16px)"
-            border="1px solid"
-            borderColor={glassBorder}
-            rounded="2xl"
-            p={4}
-            shadow="sm"
-          >
-            <Flex gap={2} flexWrap="wrap" justifyContent="center">
-              {quickStartSuggestions.map((suggestion, index) => (
-                <Button
-                  key={index}
-                  size="sm"
-                  onClick={() => handleSuggestionClick(suggestion.prompt)}
-                  bg={glassBg}
-                  border="1px solid"
-                  borderColor={quickStartBorder}
-                  color={textColor}
-                  rounded="full"
-                  px={4}
-                  py={2}
-                  _hover={{
-                    bg: 'green.500',
-                    color: 'white',
-                    borderColor: 'green.500',
-                    transform: 'translateY(-2px)',
-                    shadow: 'md',
-                  }}
-                  transition="all 0.2s"
-                >
-                  <suggestion.icon size={14} />
-                  <Text ml={2} fontSize="xs" fontWeight="medium">
-                    {suggestion.label}
-                  </Text>
-                </Button>
-              ))}
-            </Flex>
-          </Box>
-        </Box>
-      )}
+      {messages.length === 0 && !isLoadingFetch && <QuickStartSuggestions onSuggestionClick={handleSuggestionClick} />}
 
-      {/* Input Area */}
-      <Box p={4} position="absolute" bottom={0} left={0} right={0} zIndex={10}>
-        <HStack
-          w="full"
-          bg={glassBg}
-          backdropFilter="blur(16px)"
-          border="1px solid"
-          borderColor={glassBorder}
-          rounded="3xl"
-          p={2}
-          shadow="lg"
-          gap={2}
-        >
-          <Input
-            placeholder="Tanya tentang kesehatan & nutrisi..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            variant="subtle"
-            size="lg"
-            bg="transparent"
-            border="none"
-            _focus={{ ring: 0, outline: 0 }}
-            flex={1}
-          />
-          <Button
-            onClick={handleSendMessage}
-            colorPalette="green"
-            rounded="full"
-            size="lg"
-            disabled={!inputValue.trim() || isLoading}
-            aria-label="Send message"
-            w="12"
-            h="12"
-            p={0}
-          >
-            <SendIcon />
-          </Button>
-        </HStack>
-      </Box>
+      <ChatInput
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onSend={handleSendMessage}
+        isLoading={isLoading}
+      />
     </Container>
   );
 }

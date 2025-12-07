@@ -76,7 +76,7 @@ export async function sendPublicChatMessage(
     }
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash-lite',
       generationConfig: {
         maxOutputTokens: 500,
         temperature: 0.7,

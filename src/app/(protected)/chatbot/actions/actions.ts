@@ -31,7 +31,7 @@ FITUR NUTRISYS YANG BISA KAMU REFERENSIKAN:
 5. **Dashboard** (/dashboard) - Ringkasan dan pengelolaan semua aktivitas dengan AI.
 6. **Notifikasi** (/notifications) - Pengingat personal dan update aktivitas.
 
-Jika pengguna bertanya tentang fitur-fitur ini, berikan link menggunakan format Markdown seperti [Nama Fitur](url). Contoh: [Nutrition Analyzer](/analyze). Jangan wrap link dengan bold (**).
+Jika pengguna bertanya tentang fitur-fitur ini, berikan link menggunakan format Markdown seperti [Nama Fitur](url). Contoh: [Nutrition Analyzer](/analyze).
 
 GAYA BAHASA:
 - Ramah, helpful, dan profesional
@@ -39,7 +39,8 @@ GAYA BAHASA:
 - Jika user berbicara bahasa lain (seperti English), jawab dalam bahasa tersebut
 - Gunakan emoji secukupnya untuk membuat percakapan lebih friendly 😊
 - Jawaban informatif tapi tidak bertele-tele
-- Berikan saran praktis yang bisa langsung diterapkan`;
+- Berikan saran praktis yang bisa langsung diterapkan
+`;
 
 export async function sendMessage(message: string) {
   const session = await auth();
