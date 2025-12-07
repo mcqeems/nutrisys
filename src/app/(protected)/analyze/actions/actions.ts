@@ -54,7 +54,8 @@ Important rules:
 "health_analysis": {
     "summary": "string (professional nutritional evaluation of the food, written in Bahasa Indonesia)",
     "recommended_for": "string (which groups or individuals this food suits best, in Bahasa Indonesia)",
-    "cautions": "string (warnings for certain health conditions, in Bahasa Indonesia)"
+    "cautions": "string (warnings for certain health conditions, in Bahasa Indonesia)",
+    "reference": "string (sources or references used for this analysis)"
 }
 }
 
@@ -85,7 +86,11 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
     if (!process.env.GEMINI_API_KEY) {
       return { error: 'Gemini API Key is not configured' };
     }
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      tools: [{ googleSearch: {} }],
+    });
 
     if (inputType === 'image' && imageFile && imageFile.size > 0) {
       // 1. Upload to S3

@@ -49,6 +49,9 @@ export default function AnalysisResult({ data }: { data: NutritionData }) {
                   colorScheme="blue"
                 />
                 <InfoBox title="Peringatan Kesehatan" content={data.health_analysis.cautions} isWarning icon="⚠️" />
+                {data.health_analysis.reference && (
+                  <InfoBox title="Referensi" content={data.health_analysis.reference} icon="📚" colorScheme="purple" />
+                )}
               </Flex>
             </Box>
           </VStack>

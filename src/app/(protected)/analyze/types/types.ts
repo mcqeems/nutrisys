@@ -26,6 +26,7 @@ export interface NutritionData {
     summary: string;
     recommended_for: string;
     cautions: string;
+    reference?: string;
   };
 }
 
