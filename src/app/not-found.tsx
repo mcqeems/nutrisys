@@ -1,15 +1,15 @@
-import Link from "next/link";
+import Link from 'next/link';
 import { Metadata } from 'next';
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from 'next-themes';
 
+// Not found
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | NutriSys",
+  title: '404 - Page Not Found | NutriSys',
   description:
     "Oops! The page or recipe you are looking for couldn't be found in the NutriSys kitchen. Head back to the homepage to find your nutrition guide.",
   openGraph: {
-    title: "404 - Recipe Missing",
-    description:
-      "Error 404: We are unable to find this page. Please try exploring our main menu.",
+    title: '404 - Recipe Missing',
+    description: 'Error 404: We are unable to find this page. Please try exploring our main menu.',
   },
 };
 const NotFound = () => {
@@ -27,18 +27,12 @@ const NotFound = () => {
         shadow-primary/50
       "
         >
-          <span className="text-3xl font-bold text-primary-foreground">
-            404
-          </span>
+          <span className="text-3xl font-bold text-primary-foreground">404</span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold mb-3 text-foreground tracking-tight">
-          Halaman Tidak Ditemukan
-        </h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-3 text-foreground tracking-tight">Halaman Tidak Ditemukan</h1>
 
-        <p className="text-base text-muted-foreground max-w-sm mb-6">
-          Maaf, halaman yang Anda cari tidak tersedia.
-        </p>
+        <p className="text-base text-muted-foreground max-w-sm mb-6">Maaf, halaman yang Anda cari tidak tersedia.</p>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Link href="/" passHref legacyBehavior>
