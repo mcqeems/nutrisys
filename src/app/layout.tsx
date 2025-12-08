@@ -18,8 +18,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nutrisys.my.id';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'NutriSys - AI-Powered Health & Wellness Platform',
-    template: '%s | NutriSys',
+    default: 'NutriSys - AI Powered Health & Wellness Platform',
+    template: '%s - NutriSys',
   },
   description:
     'NutriSys is an AI-powered health and wellness platform that helps you track nutrition, analyze food, and achieve your health goals with personalized insights.',
@@ -85,8 +85,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: '/icon.png',
-    apple: '/icon.png',
+    icon: '/icon/favicon.ico',
+    shortcut: '/icon/favicon_16x16.ico',
+    apple: '/icon/favicon_192x192.ico',
   },
 };
 
