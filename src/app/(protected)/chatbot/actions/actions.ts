@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { auth } from '@/auth';
 import { prisma } from '@/prisma';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY2!);
 
 const SYSTEM_PROMPT = `Kamu adalah NutriAI, asisten kesehatan dan nutrisi berbasis AI di platform NutriSys. Tugasmu adalah membantu pengguna dengan pertanyaan seputar kesehatan, nutrisi, diet, pola makan sehat, dan fitur-fitur NutriSys.
 

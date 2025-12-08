@@ -5,7 +5,7 @@ import { auth } from '@/auth';
 import { prisma } from '@/prisma';
 import { getSummarizeData } from './getSummarizeData';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY4 || '');
 
 export async function generateAISummary() {
   const session = await auth();
@@ -27,7 +27,7 @@ export async function generateAISummary() {
     const dataContext = prepareDataContext(userData);
 
     // 3. Generate AI Summary
-    if (!process.env.GEMINI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY4) {
       return { success: false, message: 'AI API key belum dikonfigurasi' };
     }
 

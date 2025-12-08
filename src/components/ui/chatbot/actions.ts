@@ -2,7 +2,7 @@
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY3 || '');
 
 const SYSTEM_PROMPT = `Kamu adalah asisten NutriSys, sebuah platform analisis nutrisi digital berbasis AI. Tugasmu adalah membantu pengunjung baru mengenal aplikasi NutriSys, kamu disini bertugas seperti customer service.
 
@@ -71,7 +71,7 @@ export async function sendPublicChatMessage(
   history: { role: 'user' | 'model'; text: string }[]
 ): Promise<{ success: boolean; response?: string; error?: string }> {
   try {
-    if (!process.env.GEMINI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY3) {
       return { success: false, error: 'API tidak tersedia' };
     }
 

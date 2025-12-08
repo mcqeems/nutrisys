@@ -5,7 +5,7 @@ import { auth } from '@/auth';
 import { prisma } from '@/prisma';
 import { revalidatePath } from 'next/cache';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY2 || '');
 
 export async function createJournal(mood: string, content: string) {
   const session = await auth();
