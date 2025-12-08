@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nutrisys.my.id';
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://nutrisys.my.id').replace(/\/$/, '');
 
   return [
     {
