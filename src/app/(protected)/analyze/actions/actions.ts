@@ -62,6 +62,27 @@ Important rules:
 Analyze the given food and fill in all values accurately, ensuring every text value is written in clear and natural Bahasa Indonesia.
 `;
 
+function cleanAndParseJSON(text: string) {
+  // Remove markdown code blocks
+  let cleanText = text.replace(/```json\n?|```/g, '').trim();
+
+  // Try to find the first '{' and last '}' to handle conversational wrappers
+  const firstBrace = cleanText.indexOf('{');
+  const lastBrace = cleanText.lastIndexOf('}');
+
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    cleanText = cleanText.substring(firstBrace, lastBrace + 1);
+  }
+
+  try {
+    return JSON.parse(cleanText);
+  } catch (error) {
+    console.error('JSON Parse Error:', error);
+    console.error('Raw Text:', text);
+    throw new Error('Invalid JSON format from AI');
+  }
+}
+
 export type AnalyzeState = {
   success?: boolean;
   error?: string | null;
@@ -111,12 +132,7 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
       ]);
 
       const text = result.response.text();
-      // Clean up markdown code blocks if present
-      const jsonString = text
-        .replace(/```json\n|\n```/g, '')
-        .replace(/```/g, '')
-        .trim();
-      geminiResponse = JSON.parse(jsonString);
+      geminiResponse = cleanAndParseJSON(text);
     } else if (inputType === 'camera' && cameraImage) {
       const matches = cameraImage.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
       if (!matches || matches.length !== 3) {
@@ -141,20 +157,12 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
       ]);
 
       const text = result.response.text();
-      const jsonString = text
-        .replace(/```json\n|\n```/g, '')
-        .replace(/```/g, '')
-        .trim();
-      geminiResponse = JSON.parse(jsonString);
+      geminiResponse = cleanAndParseJSON(text);
     } else if (inputType === 'text' && textInput) {
       const result = await model.generateContent([SYSTEM_PROMPT, `Food description: ${textInput}`]);
 
       const text = result.response.text();
-      const jsonString = text
-        .replace(/```json\n|\n```/g, '')
-        .replace(/```/g, '')
-        .trim();
-      geminiResponse = JSON.parse(jsonString);
+      geminiResponse = cleanAndParseJSON(text);
     } else {
       return { error: 'Please provide an image or text description' };
     }
@@ -172,6 +180,9 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
     return { success: true, data: geminiResponse };
   } catch (error) {
     console.error('Analysis error:', error);
-    return { error: error instanceof Error ? error.message : 'Failed to analyze food' };
+    return {
+      error:
+        'Nutrisys masih dalam tahap pengembangan, coba analisis ulang dan kalau belum bisa harap menghubungi developer Nutrisys.',
+    };
   }
 }
