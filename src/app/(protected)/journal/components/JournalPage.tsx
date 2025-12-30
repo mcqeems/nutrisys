@@ -18,7 +18,7 @@ import {
   Badge,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { PlusIcon, XIcon, SparklesIcon, PenLineIcon } from 'lucide-react';
+import { PlusIcon, XIcon, SparklesIcon, PenLineIcon, Trash2Icon } from 'lucide-react';
 import Book from './Book';
 import type { Journals } from '../types/types';
 import { createJournal, getAiReply } from '../actions/actions';
@@ -34,6 +34,7 @@ export default function JournalPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGeneratingAi, setIsGeneratingAi] = useState(false);
   const [selectedJournal, setSelectedJournal] = useState<Journals | null>(null);
+  const [deletingJournalId, setDeletingJournalId] = useState<number | null>(null);
 
   const cardBg = useColorModeValue('white', 'gray.800');
   const cardBgGreen = useColorModeValue('green.50', 'green.800');
@@ -110,6 +111,33 @@ export default function JournalPage() {
       console.error(error);
     } finally {
       setIsGeneratingAi(false);
+    }
+  };
+
+  const handleDeleteJournal = async (journal: Journals) => {
+    setDeletingJournalId(journal.id);
+
+    // Optimistic UI update
+    setJournals((prev) => prev.filter((j) => j.id !== journal.id));
+    setSelectedJournal((prev) => (prev?.id === journal.id ? null : prev));
+
+    try {
+      const response = await fetch(`/api/journals?id=${journal.id}`, { method: 'DELETE' });
+      if (!response.ok) {
+        toaster.create({ title: 'Gagal menghapus jurnal', type: 'error' });
+        // Re-sync state if delete failed
+        fetchJournals();
+        return;
+      }
+
+      toaster.create({ title: 'Jurnal berhasil dihapus', type: 'success' });
+      fetchJournals();
+    } catch (error) {
+      console.error(error);
+      toaster.create({ title: 'Gagal menghapus jurnal', type: 'error' });
+      fetchJournals();
+    } finally {
+      setDeletingJournalId(null);
     }
   };
 
@@ -306,15 +334,29 @@ export default function JournalPage() {
                       onClick={() => setSelectedJournal(journal)}
                     >
                       <Card.Body p={4}>
-                        <Flex justify="space-between" mb={2}>
+                        <Flex justify="space-between" mb={2} gap={2} align="center">
                           <Badge colorPalette={isSelected ? 'green' : 'gray'} variant="surface">
                             {journal.mood}
                           </Badge>
-                          <Text fontSize="xs" color="gray.400">
-                            {new Date(journal.entry_date).toLocaleDateString('id-ID', {
-                              dateStyle: 'medium',
-                            })}
-                          </Text>
+                          <Flex align="center" gap={2}>
+                            <Text fontSize="xs" color="gray.400">
+                              {new Date(journal.entry_date).toLocaleDateString('id-ID', {
+                                dateStyle: 'medium',
+                              })}
+                            </Text>
+                            <IconButton
+                              size="xs"
+                              variant="ghost"
+                              aria-label="Remove journal"
+                              loading={deletingJournalId === journal.id}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteJournal(journal);
+                              }}
+                            >
+                              <Trash2Icon size={14} />
+                            </IconButton>
+                          </Flex>
                         </Flex>
                         <Text lineClamp={2} fontSize="sm" fontWeight={isSelected ? 'medium' : 'normal'}>
                           {journal.content}
