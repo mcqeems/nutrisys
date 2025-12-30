@@ -72,11 +72,11 @@ const HeroSection = () => {
               height={1000}
             />
             {/* Badge 1 */}
-            <div className="absolute top-1/4 left-4 sm:left-0">
+            <div className="absolute top-1/4 left-4 sm:left-0 z-100">
               <FloatingText icon={<Clock className="h-5 w-5 text-primary" />} title="Melacak Kalori" />
             </div>
             {/* Badge 2 */}
-            <div className="absolute bottom-1/4 right-4 sm:right-0 px-30">
+            <div className="absolute bottom-1/4 right-4 sm:right-0 px-30 z-100">
               <FloatingText icon={<Scale className="h-5 w-5 text-primary" />} title="Keseimbangan" />
             </div>
             {/* Logo Lingkaran */}
