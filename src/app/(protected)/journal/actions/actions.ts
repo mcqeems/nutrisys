@@ -37,7 +37,7 @@ export async function getAiReply(journalId: number, content: string, mood: strin
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
     const prompt = `
       User Mood: ${mood}
       Journal Content: ${content}
