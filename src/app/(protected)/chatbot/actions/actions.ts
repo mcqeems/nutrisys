@@ -99,7 +99,7 @@ export async function sendMessage(message: string) {
     const recentLogs = await prisma.chat_logs.findMany({
       where: { user_id: userId },
       orderBy: { timestamp: 'desc' },
-      take: 21, // Fetch last 20 + current one
+      take: 11,
     });
 
     // Reverse to chronological order
@@ -114,7 +114,13 @@ export async function sendMessage(message: string) {
       parts: [{ text: log.message }],
     }));
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-3-flash-preview',
+      generationConfig: {
+        maxOutputTokens: 1200,
+        temperature: 0.5,
+      },
+    });
 
     const chat = model.startChat({
       history: [

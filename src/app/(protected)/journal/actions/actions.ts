@@ -37,13 +37,19 @@ export async function getAiReply(journalId: number, content: string, mood: strin
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-3-flash-preview',
+      generationConfig: {
+        maxOutputTokens: 700,
+        temperature: 0.4,
+      },
+    });
     const prompt = `
       User Mood: ${mood}
       Journal Content: ${content}
       
       As a supportive wellness assistant, provide a short, empathetic, and constructive reply to this journal entry. 
-      Keep it under 100 words. Language: Bahasa Indonesia.
+      Keep it under 125 words. Language: Bahasa Indonesia.
     `;
 
     const result = await model.generateContent(prompt);

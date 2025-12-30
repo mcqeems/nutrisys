@@ -34,7 +34,8 @@ export async function generateAISummary() {
     const model = genAI.getGenerativeModel({
       model: 'gemini-3-flash-preview',
       generationConfig: {
-        temperature: 0.7, // Balanced creativity
+        maxOutputTokens: 2048,
+        temperature: 0.6, // Balanced creativity
       },
     });
 

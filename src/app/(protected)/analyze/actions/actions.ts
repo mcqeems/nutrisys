@@ -110,7 +110,10 @@ export async function analyzeFood(prevState: AnalyzeState, formData: FormData): 
 
     const model = genAI.getGenerativeModel({
       model: 'gemini-3-flash-preview',
-      tools: [{ googleSearch: {} }],
+      generationConfig: {
+        maxOutputTokens: 4000,
+        temperature: 0.3,
+      },
     });
 
     if (inputType === 'image' && imageFile && imageFile.size > 0) {
