@@ -1,11 +1,11 @@
-'use client';
-import { Leaf, Apple, ChevronRight, Scale, Clock } from 'lucide-react';
-import { FloatingText } from '@/components/ui/floating-text';
-import TextType from '@/components/TextType';
-import Image from 'next/image';
-import AnimatedBackground from './AnimatedBackground';
+"use client";
+import { Leaf, Apple, ChevronRight, Scale, Clock } from "lucide-react";
+import { FloatingText } from "@/components/ui/floating-text";
+import TextType from "@/components/TextType";
+import Image from "next/image";
+import AnimatedBackground from "./AnimatedBackground";
 
-const HEALTH_MODEL_URL = '/Logo/nutrisys-large.webp';
+const HEALTH_MODEL_URL = "/Logo/nutrisys-large.webp";
 
 const HeroSection = () => {
   return (
@@ -21,7 +21,7 @@ const HeroSection = () => {
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
               <TextType
-                text={['Rencana Nutrisi', 'Khusus Untukmu']}
+                text={["Rencana Nutrisi", "Khusus Untukmu"]}
                 typingSpeed={40}
                 pauseDuration={1500}
                 showCursor={true}
@@ -30,7 +30,7 @@ const HeroSection = () => {
               <span
                 className="block title-accent-span"
                 style={{
-                  color: 'var(--color-primary)',
+                  color: "var(--color-primary)",
                 }}
               >
                 Partner Kesehatan Nutrisi Harian Anda
@@ -63,7 +63,7 @@ const HeroSection = () => {
           </div>
 
           {/* sisi kanan logo & budget*/}
-          <div className="lg:w-1/2 relative lg:h-[600px] justify-center items-center mt-12 lg:mt-0 hidden lg:flex">
+          <div className="lg:w-1/2 relative lg:h-150 justify-center items-center mt-12 lg:mt-0 hidden lg:flex">
             <Image
               src={HEALTH_MODEL_URL}
               alt="Healthy food bowl with fresh ingredients"

@@ -73,7 +73,6 @@ Dibangun dengan teknologi modern dan terpercaya:
   - Tailwind CSS 4.1.17
   - Emotion (CSS-in-JS)
 - **Animasi**:
-  - GSAP 3.13.0
   - Lottie React 2.4.1
   - Motion 12.23.24
 - **Type Safety**: TypeScript 5.9.3
@@ -401,7 +400,7 @@ model articles {
 ```typescript
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  session: { strategy: 'jwt' },
+  session: { strategy: "jwt" },
   providers: [
     Credentials({
       authorize: async (credentials) => {
@@ -449,7 +448,7 @@ Semua route di bawah direktori `(protected)` memerlukan autentikasi. Layout mena
 // src/app/(protected)/layout.tsx
 const session = await auth();
 if (!session) {
-  redirect('/login');
+  redirect("/login");
 }
 ```
 
