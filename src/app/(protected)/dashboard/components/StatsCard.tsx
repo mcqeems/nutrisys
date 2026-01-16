@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import { Box, Text, Heading, IconButton } from '@chakra-ui/react';
-import { useColorModeValue } from '@/components/ui/color-mode';
-import { ExternalLinkIcon, LucideIcon } from 'lucide-react';
-import RandomAnimation from '../../analyze/components/RandomAnimation';
-import Chatbot from '../../chatbot/components/Chatbot';
-import Book from '../../journal/components/Book';
-import TargetAnimation from '../../target/components/Target';
-import Link from 'next/link';
+import { Box, Text, Heading, IconButton } from "@chakra-ui/react";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { ExternalLinkIcon, LucideIcon } from "lucide-react";
+import RandomAnimation from "../../analyze/components/RandomAnimation";
+import Chatbot from "../../chatbot/components/Chatbot";
+import Book from "../../journal/components/Book";
+import TargetAnimation from "../../target/components/Target";
+import Link from "next/link";
 
 interface StatsCardProps {
   title: string;
   label: string;
   count: number;
   icon: LucideIcon;
-  background: 'analyze' | 'chatbot' | 'journal' | 'target';
+  background: "analyze" | "chatbot" | "journal" | "target";
   link: string;
 }
 
 export default function StatsCard({ title, label, count, icon: Icon, background, link }: StatsCardProps) {
-  const cardBg = useColorModeValue('white', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const mutedColor = useColorModeValue('gray.500', 'gray.400');
-  const iconBg = useColorModeValue('green.200', 'green.700');
+  const cardBg = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const mutedColor = useColorModeValue("gray.500", "gray.400");
+  const iconBg = useColorModeValue("green.200", "green.700");
 
   const renderBackground = () => {
     switch (background) {
-      case 'analyze':
-        return <RandomAnimation />;
-      case 'chatbot':
-        return <Chatbot />;
-      case 'journal':
-        return <Book loop={true} />;
-      case 'target':
-        return <TargetAnimation loop={true} />;
+      case "analyze":
+        return <RandomAnimation loop={false} />;
+      case "chatbot":
+        return <Chatbot loop={false} />;
+      case "journal":
+        return <Book loop={false} />;
+      case "target":
+        return <TargetAnimation loop={false} />;
       default:
         return null;
     }
