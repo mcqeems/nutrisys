@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY3 || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY3 || "");
 
 const SYSTEM_PROMPT = `Kamu adalah asisten NutriSys, sebuah platform analisis nutrisi digital berbasis AI. Tugasmu adalah membantu pengunjung baru mengenal aplikasi NutriSys, kamu disini bertugas seperti customer service.
 
@@ -68,15 +68,15 @@ Apabila pengguna mengeluh dan memberikan keluhan yang bisa dibilang ke arah tekn
 
 export async function sendPublicChatMessage(
   message: string,
-  history: { role: 'user' | 'model'; text: string }[]
+  history: { role: "user" | "model"; text: string }[],
 ): Promise<{ success: boolean; response?: string; error?: string }> {
   try {
     if (!process.env.GEMINI_API_KEY3) {
-      return { success: false, error: 'API tidak tersedia' };
+      return { success: false, error: "API tidak tersedia" };
     }
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-3-flash-preview',
+      model: "gemini-2.5-flash-lite",
       generationConfig: {
         maxOutputTokens: 2048,
         temperature: 0.7,
@@ -92,14 +92,14 @@ export async function sendPublicChatMessage(
     const chat = model.startChat({
       history: [
         {
-          role: 'user',
+          role: "user",
           parts: [{ text: SYSTEM_PROMPT }],
         },
         {
-          role: 'model',
+          role: "model",
           parts: [
             {
-              text: 'Understood! Saya siap membantu pengunjung mengenal NutriSys. Saya akan fokus menjawab pertanyaan tentang fitur, cara kerja, dan manfaat aplikasi. Untuk pertanyaan mendalam tentang kesehatan dan nutrisi, saya akan mengarahkan mereka untuk mendaftar dan menggunakan NutriAI Chat, dan juga saya siap mematuhi semua aturan-aturan ketat yang ada.',
+              text: "Understood! Saya siap membantu pengunjung mengenal NutriSys. Saya akan fokus menjawab pertanyaan tentang fitur, cara kerja, dan manfaat aplikasi. Untuk pertanyaan mendalam tentang kesehatan dan nutrisi, saya akan mengarahkan mereka untuk mendaftar dan menggunakan NutriAI Chat, dan juga saya siap mematuhi semua aturan-aturan ketat yang ada.",
             },
           ],
         },
@@ -112,10 +112,10 @@ export async function sendPublicChatMessage(
 
     return { success: true, response };
   } catch (error) {
-    console.error('Public chat error:', error);
+    console.error("Public chat error:", error);
     return {
       success: false,
-      error: 'Maaf, terjadi kesalahan. Silakan coba lagi.',
+      error: "Maaf, terjadi kesalahan. Silakan coba lagi.",
     };
   }
 }

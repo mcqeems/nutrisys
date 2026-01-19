@@ -1,16 +1,16 @@
-'use server';
+"use server";
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { auth } from '@/auth';
-import { prisma } from '@/prisma';
-import { getSummarizeData } from './getSummarizeData';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { auth } from "@/auth";
+import { prisma } from "@/prisma";
+import { getSummarizeData } from "./getSummarizeData";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY4 || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY4 || "");
 
 export async function generateAISummary() {
   const session = await auth();
   if (!session?.user?.id) {
-    return { success: false, message: 'Unauthorized' };
+    return { success: false, message: "Unauthorized" };
   }
 
   const userId = session.user.id;
@@ -20,7 +20,7 @@ export async function generateAISummary() {
     const userData = await getSummarizeData();
 
     if (!userData) {
-      return { success: false, message: 'Gagal mengambil data pengguna' };
+      return { success: false, message: "Gagal mengambil data pengguna" };
     }
 
     // 2. Prepare the data context for AI
@@ -28,11 +28,11 @@ export async function generateAISummary() {
 
     // 3. Generate AI Summary
     if (!process.env.GEMINI_API_KEY4) {
-      return { success: false, message: 'AI API key belum dikonfigurasi' };
+      return { success: false, message: "AI API key belum dikonfigurasi" };
     }
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-3-flash-preview',
+      model: "gemini-2.5-flash",
       generationConfig: {
         maxOutputTokens: 2048,
         temperature: 0.6, // Balanced creativity
@@ -102,11 +102,11 @@ ${dataContext}`;
         description: summaryText,
         generated_at: new Date(),
       },
-      message: 'Rangkuman berhasil dibuat!',
+      message: "Rangkuman berhasil dibuat!",
     };
   } catch (error) {
-    console.error('Error generating AI summary:', error);
-    return { success: false, message: 'Gagal membuat rangkuman AI' };
+    console.error("Error generating AI summary:", error);
+    return { success: false, message: "Gagal membuat rangkuman AI" };
   }
 }
 
@@ -129,7 +129,7 @@ function prepareDataContext(data: NonNullable<Awaited<ReturnType<typeof getSumma
     if (data.userInfo.medical_history) profile.push(`Riwayat Penyakit: ${data.userInfo.medical_history}`);
 
     if (profile.length > 0) {
-      sections.push(`PROFIL KESEHATAN:\n${profile.join('\n')}`);
+      sections.push(`PROFIL KESEHATAN:\n${profile.join("\n")}`);
     }
   }
 
@@ -138,12 +138,12 @@ function prepareDataContext(data: NonNullable<Awaited<ReturnType<typeof getSumma
     const foodItems = data.food_logs
       .filter((log) => log.description)
       .map((log) => {
-        if (typeof log.description === 'object' && log.description !== null) {
+        if (typeof log.description === "object" && log.description !== null) {
           return JSON.stringify(log.description);
         }
         return String(log.description);
       })
-      .join('\n- ');
+      .join("\n- ");
 
     if (foodItems) {
       sections.push(`RIWAYAT MAKANAN (${data.food_logs.length} log terbaru):\n- ${foodItems}`);
@@ -152,15 +152,15 @@ function prepareDataContext(data: NonNullable<Awaited<ReturnType<typeof getSumma
 
   // Chat Logs (User questions/concerns)
   if (data.chat_logs && data.chat_logs.length > 0) {
-    const chatTopics = data.chat_logs.map((log) => log.message).join('\n- ');
+    const chatTopics = data.chat_logs.map((log) => log.message).join("\n- ");
     sections.push(`PERTANYAAN/TOPIK DISKUSI PENGGUNA (${data.chat_logs.length} terbaru):\n- ${chatTopics}`);
   }
 
   // Journal Entries
   if (data.journal_entries && data.journal_entries.length > 0) {
     const journals = data.journal_entries
-      .map((entry) => `[Mood: ${entry.mood || 'tidak diketahui'}] ${entry.content.substring(0, 150)}...`)
-      .join('\n- ');
+      .map((entry) => `[Mood: ${entry.mood || "tidak diketahui"}] ${entry.content.substring(0, 150)}...`)
+      .join("\n- ");
     sections.push(`JURNAL KESEHATAN (${data.journal_entries.length} terbaru):\n- ${journals}`);
   }
 
@@ -168,19 +168,19 @@ function prepareDataContext(data: NonNullable<Awaited<ReturnType<typeof getSumma
   if (data.user_targets && data.user_targets.length > 0) {
     const targets = data.user_targets
       .map((target) => {
-        const startDate = new Date(target.start_date).toLocaleDateString('id-ID');
-        const endDate = new Date(target.end_date).toLocaleDateString('id-ID');
-        return `${target.name} (${startDate} - ${endDate}) [Status: ${target.status || 'aktif'}]`;
+        const startDate = new Date(target.start_date).toLocaleDateString("id-ID");
+        const endDate = new Date(target.end_date).toLocaleDateString("id-ID");
+        return `${target.name} (${startDate} - ${endDate}) [Status: ${target.status || "aktif"}]`;
       })
-      .join('\n- ');
+      .join("\n- ");
     sections.push(`TARGET KESEHATAN (${data.user_targets.length} target):\n- ${targets}`);
   }
 
   // Notifications (recent activities)
   if (data.notifications && data.notifications.length > 0) {
-    const notifs = data.notifications.map((n) => n.message).join('\n- ');
+    const notifs = data.notifications.map((n) => n.message).join("\n- ");
     sections.push(`NOTIFIKASI TERBARU:\n- ${notifs}`);
   }
 
-  return sections.join('\n\n') || 'Data pengguna masih kosong. Pengguna baru memulai menggunakan Nutrisys.';
+  return sections.join("\n\n") || "Data pengguna masih kosong. Pengguna baru memulai menggunakan Nutrisys.";
 }

@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { auth } from '@/auth';
-import { prisma } from '@/prisma';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { auth } from "@/auth";
+import { prisma } from "@/prisma";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY2!);
 
@@ -45,11 +45,11 @@ GAYA BAHASA:
 export async function sendMessage(message: string) {
   const session = await auth();
   if (!session?.user?.id) {
-    return { error: 'Unauthorized' };
+    return { error: "Unauthorized" };
   }
 
   const userId = session.user.id;
-  const sessionId = 'default';
+  const sessionId = "default";
 
   try {
     // 1. Fetch user info for personalized context
@@ -66,7 +66,7 @@ export async function sendMessage(message: string) {
     });
 
     // Build personalized context
-    let userContext = '';
+    let userContext = "";
     if (userInfo) {
       const details: string[] = [];
       if (userInfo.user?.name) details.push(`Nama: ${userInfo.user.name}`);
@@ -80,7 +80,7 @@ export async function sendMessage(message: string) {
 
       if (details.length > 0) {
         userContext = `\n\nINFORMASI PENGGUNA SAAT INI:\n${details.join(
-          '\n'
+          "\n",
         )}\n\nGunakan informasi ini untuk memberikan saran yang lebih personal dan relevan. Sapa pengguna dengan namanya jika tersedia. Pertimbangkan alergi makanan dan riwayat medis saat memberikan rekomendasi nutrisi.`;
       }
     }
@@ -90,7 +90,7 @@ export async function sendMessage(message: string) {
       data: {
         user_id: userId,
         session_id: sessionId,
-        sender_type: 'user',
+        sender_type: "user",
         message: message,
       },
     });
@@ -98,7 +98,7 @@ export async function sendMessage(message: string) {
     // 2. Fetch recent history for context
     const recentLogs = await prisma.chat_logs.findMany({
       where: { user_id: userId },
-      orderBy: { timestamp: 'desc' },
+      orderBy: { timestamp: "desc" },
       take: 11,
     });
 
@@ -110,12 +110,12 @@ export async function sendMessage(message: string) {
     const historyLogs = chronologicalLogs.slice(0, -1);
 
     const history = historyLogs.map((log) => ({
-      role: log.sender_type === 'user' ? 'user' : 'model',
+      role: log.sender_type === "user" ? "user" : "model",
       parts: [{ text: log.message }],
     }));
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-3-flash-preview',
+      model: "gemini-2.5-flash",
       generationConfig: {
         maxOutputTokens: 1200,
         temperature: 0.5,
@@ -125,14 +125,14 @@ export async function sendMessage(message: string) {
     const chat = model.startChat({
       history: [
         {
-          role: 'user',
+          role: "user",
           parts: [{ text: SYSTEM_PROMPT + userContext }],
         },
         {
-          role: 'model',
+          role: "model",
           parts: [
             {
-              text: 'Understood! Saya NutriAI, siap membantu kamu dengan pertanyaan seputar kesehatan dan nutrisi. 😊 Saya bisa membantu tentang pola makan sehat, diet, kandungan nutrisi makanan, tips kebugaran, dan penggunaan fitur-fitur NutriSys. Saya juga akan mematuhi semua aturan ketat yang berlaku. Ada yang bisa saya bantu hari ini?',
+              text: "Understood! Saya NutriAI, siap membantu kamu dengan pertanyaan seputar kesehatan dan nutrisi. 😊 Saya bisa membantu tentang pola makan sehat, diet, kandungan nutrisi makanan, tips kebugaran, dan penggunaan fitur-fitur NutriSys. Saya juga akan mematuhi semua aturan ketat yang berlaku. Ada yang bisa saya bantu hari ini?",
             },
           ],
         },
@@ -149,22 +149,22 @@ export async function sendMessage(message: string) {
       data: {
         user_id: userId,
         session_id: sessionId,
-        sender_type: 'bot',
+        sender_type: "bot",
         message: text,
       },
     });
 
     return { success: true, message: text };
   } catch (error) {
-    console.error('Chatbot Error:', error);
-    return { error: 'Maaf, terjadi kesalahan saat memproses pesan Anda.' };
+    console.error("Chatbot Error:", error);
+    return { error: "Maaf, terjadi kesalahan saat memproses pesan Anda." };
   }
 }
 
 export async function resetChat() {
   const session = await auth();
   if (!session?.user?.id) {
-    return { error: 'Unauthorized' };
+    return { error: "Unauthorized" };
   }
 
   const userId = session.user.id;
@@ -177,7 +177,7 @@ export async function resetChat() {
     });
     return { success: true };
   } catch (error) {
-    console.error('Reset Chat Error:', error);
-    return { error: 'Gagal menghapus riwayat chat.' };
+    console.error("Reset Chat Error:", error);
+    return { error: "Gagal menghapus riwayat chat." };
   }
 }
